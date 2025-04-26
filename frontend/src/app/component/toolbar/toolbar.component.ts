@@ -1,3 +1,4 @@
+import { SiteRouteEnums } from './../../shared/enums/SiteRouteEnums';
 import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,8 +16,7 @@ import { isUserLoggedIn } from '../../shared/helper/UserRoleHelper';
 export class ToolbarComponent implements OnInit {
   selectedPageName: string = '';
   userRole: UserRoleEnums = UserRoleEnums.NOT_LOGGED_IN_USER;
-
-  constructor() {}
+  siteRoutes: typeof SiteRouteEnums = SiteRouteEnums;
 
   ngOnInit(): void {
     this.handleUserAuthentication();

@@ -13,7 +13,7 @@
   >
     <ul fxLayout fxLayoutGap="10px">
       <li>
-        <a routerLink="/home">
+        <a routerLink="{{ siteRoutes.HOME_PAGE }}">
           <ng-container>Home</ng-container>
         </a>
       </li>
@@ -21,19 +21,19 @@
       <!-- The following menu options are only available with specific user roles -->
       <ng-container *ngIf="isUserLoggedIn(); else notLoggedInUser">
         <li>
-          <a routerLink="/chanel">
+          <a routerLink="{{ siteRoutes.CHANEL_PAGE }}">
             <ng-container>Chanel</ng-container>
           </a>
         </li>
       </ng-container>
       <ng-template #notLoggedInUser>
         <li>
-          <a routerLink="/login">
+          <a routerLink="{{ siteRoutes.LOGIN }}">
             <ng-container>Login</ng-container>
           </a>
         </li>
         <li>
-          <a routerLink="/registration">
+          <a routerLink="{{ siteRoutes.REGISTRATION_PAGE }}">
             <ng-container>Registration</ng-container>
           </a>
         </li>

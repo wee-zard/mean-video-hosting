@@ -1,1 +1,40 @@
-<p>registration works!</p>
+<app-backdrop [isLoading]="isLoading"></app-backdrop>
+<div class="login-container">
+  <div class="card-container">
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+      class="form-holder"
+    >
+      <div class="form-control-holder">
+        <mat-form-field>
+          <mat-label for="email">Enter your email address</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="example@example.xyz"
+            formControlName="email"
+            required
+            maxlength="200"
+          />
+        </mat-form-field>
+      </div>
+      <div class="button-holder">
+        <div>
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </div>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            [routerLink]="'/' + siteRoutes.REGISTRATION_PAGE"
+            [disabled]="isLoading"
+          >
+            Registration
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

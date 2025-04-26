@@ -1,35 +1,36 @@
 import { Routes } from '@angular/router';
+import { SiteRouteEnums } from './shared/enums/SiteRouteEnums';
 
 export const routes: Routes = [
   {
-    path: 'chanel',
+    path: SiteRouteEnums.CHANEL_PAGE,
     loadComponent: () =>
       import('./view/chanel/chanel.component').then((c) => c.ChanelComponent),
   },
   {
-    path: 'video',
+    path: SiteRouteEnums.VIDEO_PAGE,
     loadComponent: () =>
       import('./view/video/video.component').then((c) => c.VideoComponent),
   },
   {
-    path: 'home',
+    path: SiteRouteEnums.HOME_PAGE,
     loadComponent: () =>
       import('./view/home/home.component').then((c) => c.HomeComponent),
   },
   {
-    path: 'registration',
+    path: SiteRouteEnums.REGISTRATION_PAGE,
     loadComponent: () =>
       import('./view/registration/registration.component').then(
         (c) => c.RegistrationComponent,
       ),
   },
   {
-    path: 'login',
+    path: SiteRouteEnums.LOGIN,
     loadComponent: () =>
       import('./view/login/login.component').then((c) => c.LoginComponent),
   },
   {
-    path: 'not-found',
+    path: SiteRouteEnums.NOT_FOUND,
     loadComponent: () =>
       import('./view/not-found/not-found.component').then(
         (c) => c.NotFoundComponent,
@@ -37,11 +38,11 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: SiteRouteEnums.HOME_PAGE,
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: 'not-found',
+    redirectTo: SiteRouteEnums.NOT_FOUND,
   },
 ];
