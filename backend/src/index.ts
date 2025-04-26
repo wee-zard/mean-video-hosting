@@ -6,6 +6,7 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import { configureRoutes } from './routes/routes';
 import { loadFlywayMigrations } from './mongodb/mongodb-flyway';
+import cors from 'cors';
 
 const app = express();
 const port = 8081;
@@ -23,6 +24,23 @@ mongoose
     console.log('Unexpected error occurred while connecting to MongoDB.', error);
     return;
   });
+
+// Add cors to the server
+const whitelist = ['*', 'http://localhost:4200'];
+const corsOptions = {
+  origin: (
+    origin: string | undefined,
+    callback: (err: Error | null, allowed?: boolean) => void
+  ) => {
+    if (whitelist.indexOf(origin!) !== -1 || whitelist.includes('*')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS.'));
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Add bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
