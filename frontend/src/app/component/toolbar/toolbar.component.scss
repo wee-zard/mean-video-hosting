@@ -1,0 +1,31 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-direction: row-reverse;
+
+  ul {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    padding: 0 8px;
+    margin: 0;
+    text-shadow: 1px 1px 1px gray;
+    cursor: pointer;
+  }
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+}
