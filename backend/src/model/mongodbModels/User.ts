@@ -1,13 +1,9 @@
-import mongoose, { Document, Model, ObjectId, Schema } from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import { UserRoleEnum } from '../enum/UserRoleEnum';
+import { VideoRatingType } from '../types/VideoRatingType';
 
 const SALT_FACTOR = 10;
-
-type VideoRatingType = {
-  videoId: string;
-  isLiked: boolean;
-};
 
 interface IUser extends Document {
   id: string;
@@ -22,19 +18,20 @@ interface IUser extends Document {
   phoneNumber?: string;
   comparePassword: (
     candidatePassword: string,
-    callback: (error: Error | null, isMatch: boolean) => void
+    callback: (error: Error | undefined, isMatch: boolean) => void
   ) => void;
 }
 
 const UserSchema: Schema<IUser> = new mongoose.Schema({
-  id: { type: String, required: true },
+  id: { type: String },
+  email: { type: String, required: true },
   password: { type: String, required: true },
-  username: { type: String, required: true },
-  userRole: { type: String, required: true },
-  birthDate: { type: String, required: true },
-  registrationTime: { type: String, required: true },
-  profilePicturePath: { type: String, required: false },
-  phoneNumber: { type: String, required: false },
+  username: { type: String },
+  userRole: { type: String },
+  birthDate: { type: String },
+  registrationTime: { type: String },
+  profilePicturePath: { type: String },
+  phoneNumber: { type: String },
 });
 
 // hook
@@ -58,12 +55,10 @@ UserSchema.pre<IUser>('save', function (next) {
 
 UserSchema.methods.comparePassword = function (
   candidatePassword: string,
-  callback: (error: Error | null, isMatch: boolean) => void
+  callback: (error: Error | undefined, isMatch: boolean) => void
 ): void {
   const user = this;
-  bcrypt.compare(candidatePassword, user.password, (error, isMatch) =>
-    callback(error ?? null, error ? false : isMatch)
-  );
+  bcrypt.compare(candidatePassword, user.password, callback);
 };
 
 export const User: Model<IUser> = mongoose.model<IUser>('User', UserSchema);

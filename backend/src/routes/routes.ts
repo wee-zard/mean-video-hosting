@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
 import { PassportStatic } from 'passport';
 import { configureUserRoutes } from './controllers/user-routes';
 

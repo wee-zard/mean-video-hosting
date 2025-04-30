@@ -7,7 +7,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891a6',
       email: 'johndoe92@example.com',
-      password: '$2y$10$sJiODmWo4y35DzZzLsvlc.Had3OGHHknopA0jW2mlSo5e0WpyHUmW',
+      password: 'johndoe92',
       username: 'johndoe_92',
       userRole: UserRoleEnum.ADMIN_USER,
       birthDate: new Date(new Date().setFullYear(1992, 7, 15)).toISOString(),
@@ -18,7 +18,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891a7',
       email: 'emilysmith@example.com',
-      password: '$2y$10$13x8jELQSnu69hEBlDqiAOvS4diwdeALPyS1vbm/F2nLCyj28v9N2',
+      password: 'emilysmith',
       username: 'emily_smith',
       userRole: UserRoleEnum.ADMIN_USER,
       birthDate: new Date(new Date().setFullYear(1988, 1, 4)).toISOString(),
@@ -30,7 +30,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891a8',
       email: 'tomjones@example.com',
-      password: '$2y$10$Js7Cn1ZBAfJwhvOeMop4.uAIDYu4C4xdKfajctsg6W4v3Z5BCHkCy',
+      password: 'tomjones',
       username: 'tom_jones',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1990, 10, 30)).toISOString(),
@@ -42,7 +42,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891a9',
       email: 'sarahmiller@example.com',
-      password: '$2y$10$obnKmwYYYdKw3xY5R5IIyeNszWHmNB5sae046GDwR70033ZYuNlFK',
+      password: 'sarahmiller',
       username: 'sarahmiller',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1995, 0, 22)).toISOString(),
@@ -54,7 +54,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891aa',
       email: 'alexwilliams@example.com',
-      password: '$2y$10$obnKmwYYYdKw3xY5R5IIyeNszWHmNB5sae046GDwR70033ZYuNlFK',
+      password: 'alexwilliams',
       username: 'alexwilliams',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1987, 10, 9)).toISOString(),
@@ -65,7 +65,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891ab',
       email: 'lisataylor@example.com',
-      password: '$2y$10$5xUoDT1FvL6/coGNTNpN1.EnS4.wxHNBsddQg1.Cie6yO5gjqJj22',
+      password: 'lisataylor',
       username: 'lisataylor',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(2000, 10, 9)).toISOString(),
@@ -76,7 +76,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891ac',
       email: 'michaelhall@example.com',
-      password: '$2y$10$gHxS./ny5kZ20RdUgowIFOxDMOMPZZpn37gmp5LB9DNq7YUXfy6xa',
+      password: 'michaelhall',
       username: 'michaelhall',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1993, 11, 13)).toISOString(),
@@ -87,7 +87,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891ad',
       email: 'rachelle@example.com',
-      password: '$2y$10$27Gi30g6KitWvKBNMHT8bOWo4H/eJkNvxrwtwyBk21eOPLH2q7SfG',
+      password: 'rachelle',
       username: 'rachelle',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1998, 4, 13)).toISOString(),
@@ -99,7 +99,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891ae',
       email: 'davidmartin@example.com',
-      password: '$2y$10$M4jF3RmSTFFKpleXgAHEjeouNnNjOsFc2CknJqacKKp8sw4iZ5tx.',
+      password: 'davidmartin',
       username: 'davidmartin',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1992, 9, 2)).toISOString(),
@@ -111,7 +111,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891af',
       email: 'oliviawood@example.com',
-      password: '$2y$10$obnKmwYYYdKw3xY5R5IIyeNszWHmNB5sae046GDwR70033ZYuNlFK',
+      password: 'oliviawoodK',
       username: 'oliviawood',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1996, 8, 2)).toISOString(),
@@ -123,7 +123,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b0',
       email: 'mark23@example.com',
-      password: '$2y$10$6UyOb1Mwbuh/OJiqnpXlmuTlz1Sw6z77/D/JIwKIKG2biOJkabzLe',
+      password: 'mark23',
       username: 'mark23',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1990, 7, 11)).toISOString(),
@@ -136,7 +136,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b1',
       email: 'sarahjane@example.com',
-      password: '$2y$10$Hio6mRr1t7aPoJoEsbRVs.uoiMeQJxK2wxp.wV1VI0DR6/q2tqqp2',
+      password: 'sarahjane',
       username: 'sarahjane',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1978, 3, 4)).toISOString(),
@@ -148,7 +148,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b2',
       email: 'robertwilson@example.com',
-      password: '$2y$10$obnKmwYYYdKw3xY5R5IIyeNszWHmNB5sae046GDwR70033ZYuNlFK',
+      password: 'robertwilson',
       username: 'robertwilson',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1982, 5, 5)).toISOString(),
@@ -160,7 +160,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b3',
       email: 'emilydavis@example.com',
-      password: '$2y$10$fMElYAd.9JeNgn.yLybw9uIjJ/F7pUyR2pxhQTWe/ayvlAlV6s322',
+      password: 'emilydavis',
       username: 'emilydavis',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1978, 9, 8)).toISOString(),
@@ -173,7 +173,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b4',
       email: 'tomsmith@example.com',
-      password: '$2y$10$LKOO5UfXgw1sJGrkooBP6OYi4mXeSzsMnhGvahK4mEvzsq85uJFlC',
+      password: 'tomsmith',
       username: 'tomsmith',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1983, 12, 5)).toISOString(),
@@ -185,7 +185,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b5',
       email: 'annamartin@example.com',
-      password: '$2y$10$jnrKabo8ay9lZs/YYbApJuco4gjdk6fWKkHlddDza73PgqZ3BdDxe',
+      password: 'annamartin',
       username: 'annamartin',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1997, 5, 19)).toISOString(),
@@ -197,7 +197,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b6',
       email: 'jamesbrown@example.com',
-      password: '$2y$10$26zWX3/APmfU6CkXy8vTA.zEZTyxIH.OigrXwxsjY27J7rp5a2N1G',
+      password: 'jamesbrown',
       username: 'jamesbrown',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1995, 2, 22)).toISOString(),
@@ -209,7 +209,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b7',
       email: 'lucywhite@example.com',
-      password: '$2y$10$26zWX3/APmfU6CkXy8vTA.zEZTyxIH.OigrXwxsjY27J7rp5a2N1G',
+      password: 'lucywhite',
       username: 'lucywhite',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1991, 3, 10)).toISOString(),
@@ -221,7 +221,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b8',
       email: 'danieljohnson@example.com',
-      password: '$2y$10$rnjdZi/waZb36U51g5MbLu6pykvTXzhd24.MXUTIpKkznEWwxbm4u',
+      password: 'danieljohnson',
       username: 'danieljohnson',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1986, 4, 11)).toISOString(),
@@ -234,7 +234,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891b9',
       email: 'oliviaclark@example.com',
-      password: '$2y$10$DR2elcUI690OFDxZUhjH6./MJSg9.9LNgUHTNxjiJDiac4amhGJlG',
+      password: 'oliviaclark',
       username: 'oliviaclark',
       userRole: UserRoleEnum.CONTENT_CREATOR_USER,
       birthDate: new Date(new Date().setFullYear(1984, 7, 12)).toISOString(),
@@ -246,7 +246,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891ba',
       email: 'udvattila99@gmail.com',
-      password: '$2y$10$JJGLEVTX9V/fPsXa/V4N6eRagvnVp29NjCFIfL476Cw3RNBVELO1.',
+      password: 'udvattila99',
       username: 'udvattila',
       userRole: UserRoleEnum.ADMIN_USER,
       birthDate: new Date(new Date().setFullYear(1999, 11, 22)).toISOString(),
@@ -257,5 +257,11 @@ export const runMigration = async () => {
     }),
   ];
 
-  await User.insertMany(listOfDocuments);
+  for await (const user of listOfDocuments) {
+    try {
+      await user.save();
+    } catch (error) {
+      console.log('Error while saving test user', user);
+    }
+  }
 };

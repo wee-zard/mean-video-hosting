@@ -1,22 +1,21 @@
 import { PassportStatic } from 'passport';
-import { Strategy } from 'passport-local';
+import { IStrategyOptions, Strategy } from 'passport-local';
 import { User } from '../model/mongodbModels/User';
 
-export const configurePassport = (passport: PassportStatic): PassportStatic => {
-  passport.serializeUser((user: Express.User, done) => {
-    console.log('user is serialized.');
-    done(null, user);
-  });
+const iStrategyOption: IStrategyOptions = {
+  usernameField: 'email',
+  passwordField: 'password',
+};
 
-  passport.deserializeUser((user: Express.User, done) => {
-    console.log('user is deserialized.');
-    done(null, user);
-  });
+export const configurePassport = (passport: PassportStatic): PassportStatic => {
+  passport.serializeUser((user: Express.User, done) => done(null, user));
+
+  passport.deserializeUser((user: Express.User, done) => done(null, user));
 
   passport.use(
     'local',
-    new Strategy((username, password, done) => {
-      const query = User.findOne({ email: username });
+    new Strategy(iStrategyOption, (email, password, done) => {
+      const query = User.findOne({ email: email });
       query
         .then((user) => {
           if (!user) {
@@ -24,14 +23,9 @@ export const configurePassport = (passport: PassportStatic): PassportStatic => {
             return;
           }
 
-          user.comparePassword(password, (error, _) => {
-            if (error) {
-              done('Incorrect username or password.');
-            } else {
-              // TODO: done(null, user._id);
-              done(null, user);
-            }
-          });
+          user.comparePassword(password, (_, isMatch) =>
+            done(!isMatch ? 'Incorrect username or password.' : null, !isMatch ? undefined : user)
+          );
         })
         .catch((error) => done(error));
     })

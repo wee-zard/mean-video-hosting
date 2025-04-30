@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import { configureRoutes } from './routes/routes';
 import { loadFlywayMigrations } from './mongodb/mongodb-flyway';
 import cors from 'cors';
+import { configurePassport } from './passport/passport';
 
 const app = express();
 const port = 8081;
@@ -43,14 +44,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Add bodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Add cookieParser
 app.use(cookieParser());
 
 // Add sessions
 const sessionOptions: expressSession.SessionOptions = {
-  secret: 'my-very-own-secret',
+  secret: 'myveryownsecret',
   resave: false,
   saveUninitialized: false,
 };
@@ -59,6 +60,7 @@ app.use(expressSession(sessionOptions));
 // Add passport
 app.use(passport.initialize());
 app.use(passport.session());
+configurePassport(passport);
 
 // Add routes
 app.use('/app', configureRoutes(passport));
