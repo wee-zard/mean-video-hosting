@@ -14,7 +14,7 @@ export const configureUserRoutes = (passport: PassportStatic): Router => {
     passport.authenticate('local', (error: string | null, user: typeof User) => {
       if (error) {
         const baseResponse: BaseResponse = { error: error };
-        res.status(500).send(baseResponse);
+        res.status(400).send(baseResponse);
         return;
       }
 
@@ -27,7 +27,7 @@ export const configureUserRoutes = (passport: PassportStatic): Router => {
       req.login(user, (err: string | null) => {
         if (err) {
           const baseResponse: BaseResponse = { error: 'Internal server error.' };
-          res.status(500).send(baseResponse);
+          res.status(400).send(baseResponse);
           return;
         }
         res.status(200).send(user);
@@ -52,22 +52,28 @@ export const configureUserRoutes = (passport: PassportStatic): Router => {
     user
       .save()
       .then((data) => res.status(200).send(data))
-      .catch((error) => res.status(500).send(error));
+      .catch((error) => res.status(400).send(error));
   });
 
-  // TODO:
-  router.post('/logout', (req: Request, res: Response) => {
-    if (req.isAuthenticated()) {
-      req.logout((error) => {
-        if (error) {
-          console.log(error);
-          res.status(500).send('Internal server error.');
-        }
-        res.status(200).send('Successfully logged out.');
-      });
-    } else {
-      res.status(500).send('User is not logged in.');
+  /**
+   * Logout the logged in user from the server and sever the session.
+   */
+  router.get('/logout', (req: Request, res: Response) => {
+    if (!req.isAuthenticated()) {
+      const baseResponse: BaseResponse = { error: 'User is not logged in.' };
+      res.status(400).send(baseResponse);
+      return;
     }
+
+    req.logout((error) => {
+      if (error) {
+        const baseResponse: BaseResponse = { error: 'Internal server error.' };
+        res.status(400).send(baseResponse);
+      } else {
+        const baseResponse: BaseResponse = { message: 'Successfully logged out.' };
+        res.status(200).send(baseResponse);
+      }
+    });
   });
 
   /**
@@ -77,7 +83,7 @@ export const configureUserRoutes = (passport: PassportStatic): Router => {
     if (req.isAuthenticated()) {
       res.status(200).send(true);
     } else {
-      res.status(500).send(false);
+      res.status(400).send(false);
     }
   });
 

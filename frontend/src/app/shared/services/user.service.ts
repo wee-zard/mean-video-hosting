@@ -1,56 +1,33 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { User } from '../models/User';
-import { lastValueFrom } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
-import { BaseResponse } from '../models/response/BaseResponse';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { UserModel } from '../models/models/UserModels';
+import { StorageKeyEnum } from '../enums/StorageKeyEnums';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnInit {
+  private userModel = new BehaviorSubject<UserModel | undefined>(undefined);
+  userModel$ = this.userModel.asObservable();
+  server: string = `${environment.serverUrl}/user`;
+
   constructor(private http: HttpClient) {}
 
-  server: string = environment.serverUrl;
+  ngOnInit(): void {
+    const userStorage = localStorage.getItem(StorageKeyEnum.AUTHENTICATED_USER);
 
-  getHeaderWithCredential() {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }),
-      withCredentials: true,
-    };
+    if (!userStorage) {
+      return;
+    }
+
+    const user: UserModel = JSON.parse(userStorage);
+
+    this.updateUserModel(user);
   }
 
-  login(email: string, password: string): Promise<BaseResponse> {
-    const body = new URLSearchParams();
-    body.set('username', email);
-    body.set('password', password);
-
-    return lastValueFrom(
-      this.http.post<BaseResponse>(
-        `${this.server}/login`,
-        body,
-        this.getHeaderWithCredential(),
-      ),
-    );
-  }
-
-  register(user: User) {
-    /*
-      // HTTP POST request
-      const body = new URLSearchParams();
-      body.set('email', user.email);
-      body.set('name', user.name);
-      body.set('address', user.address);
-      body.set('nickname', user.nickname);
-      body.set('password', user.password);
-
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      });
-
-      return this.http.post('http://localhost:5000/app/register', body, {headers: headers});
-      */
+  updateUserModel(user?: UserModel) {
+    this.userModel.next(user);
   }
 }

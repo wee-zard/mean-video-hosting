@@ -14,3 +14,21 @@ body {
   box-shadow: 1px 2px 2px gray;
   color: #fff !important;
 }
+
+.success-snackbar .mat-mdc-snackbar-surface {
+  background-color: #15e438 !important;
+  box-shadow: 1px 2px 2px gray;
+  color: #fff !important;
+}
+
+.warning-snackbar .mat-mdc-snackbar-surface {
+  background-color: #dce711 !important;
+  box-shadow: 1px 2px 2px gray;
+  color: #fff !important;
+}
+
+.info-snackbar .mat-mdc-snackbar-surface {
+  background-color: #14d4db !important;
+  box-shadow: 1px 2px 2px gray;
+  color: #fff !important;
+}

@@ -19,10 +19,17 @@
       </li>
 
       <!-- The following menu options are only available with specific user roles -->
-      <ng-container *ngIf="isUserLoggedIn(); else notLoggedInUser">
+      <ng-container *ngIf="isUserLoggedIn; else notLoggedInUser">
+        <ng-container *ngIf="isRoleAdmin()">
+          <li>
+            <a routerLink="{{ siteRoutes.CHANEL_PAGE }}">
+              <ng-container>Chanel</ng-container>
+            </a>
+          </li>
+        </ng-container>
         <li>
-          <a routerLink="{{ siteRoutes.CHANEL_PAGE }}">
-            <ng-container>Chanel</ng-container>
+          <a (click)="onLogoutClick()">
+            <ng-container>Logout</ng-container>
           </a>
         </li>
       </ng-container>

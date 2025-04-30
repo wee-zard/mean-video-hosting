@@ -1,39 +1,84 @@
-<app-backdrop [isLoading]="isLoading"></app-backdrop>
+userid:<app-backdrop [isLoading]="isLoading"></app-backdrop>
 <div class="login-container">
   <div class="card-container">
-    <form
-      [formGroup]="registrationForm"
-      (ngSubmit)="onSubmit()"
-      class="form-holder"
-    >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-holder">
       <div class="form-control-holder">
         <mat-form-field>
-          <mat-label for="email">Enter your email address</mat-label>
+          <mat-label>Enter your email address</mat-label>
           <input
             matInput
-            type="email"
+            [type]="formFields.EMAIL"
+            [formControlName]="formFields.EMAIL"
             placeholder="example@example.xyz"
-            formControlName="email"
             required
             maxlength="200"
           />
+          <mat-error>{{ formError?.[formFields.EMAIL] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="secret-password"
+            [formControlName]="formFields.PASSWORD"
+            required
+            minlength="8"
+            maxlength="50"
+          />
+          <mat-error>{{ formError?.[formFields.PASSWORD] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter your re-password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="password again"
+            [formControlName]="formFields.RE_PASSWORD"
+            required
+            minlength="8"
+            maxlength="50"
+          />
+          <mat-error>{{ formError?.[formFields.RE_PASSWORD] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Provide a username</mat-label>
+          <input
+            matInput
+            type="text"
+            [formControlName]="formFields.USERNAME"
+            required
+            minlength="8"
+            maxlength="100"
+          />
+          <mat-error>{{ formError?.[formFields.USERNAME] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Select your birthdate"
+            [max]="birthDateLowerLimit"
+            [formControlName]="formFields.BIRTHDATE"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>{{ formError?.[formFields.BIRTHDATE] }}</mat-error>
         </mat-form-field>
       </div>
       <div class="button-holder">
-        <div>
-          <button mat-raised-button color="primary" type="submit">Login</button>
-        </div>
-        <div>
-          <button
-            mat-raised-button
-            color="primary"
-            type="button"
-            [routerLink]="'/' + siteRoutes.REGISTRATION_PAGE"
-            [disabled]="isLoading"
-          >
-            Registration
-          </button>
-        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading"
+        >
+          Register
+        </button>
       </div>
     </form>
   </div>

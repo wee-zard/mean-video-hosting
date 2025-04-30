@@ -1,6 +1,0 @@
-export enum UserRoleEnums {
-  NOT_LOGGED_IN_USER,
-  LOGGED_IN_USER,
-  CONTENT_CREATOR_USER,
-  ADMIN_USER,
-}

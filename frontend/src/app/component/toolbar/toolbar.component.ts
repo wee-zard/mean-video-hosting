@@ -3,9 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { UserRoleEnums } from '../../shared/enums/UserRoleEnums';
-import { isUserLoggedIn } from '../../shared/helper/UserRoleHelper';
+import { Router, RouterModule } from '@angular/router';
+import { AutoUnsubscribe } from '../../shared/decorators/AutoUnsubscribe';
+import { Subscription } from 'rxjs';
+import { UserService } from '../../shared/services/user.service';
+import { UserModel, UserRoleEnum } from '../../shared/models/models/UserModels';
+import { AuthService } from '../../shared/services/auth.service';
+import { SnackbarService } from '../../shared/services/snackbar.service';
+import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,29 +18,60 @@ import { isUserLoggedIn } from '../../shared/helper/UserRoleHelper';
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
+@AutoUnsubscribe
 export class ToolbarComponent implements OnInit {
   selectedPageName: string = '';
-  userRole: UserRoleEnums = UserRoleEnums.NOT_LOGGED_IN_USER;
   siteRoutes: typeof SiteRouteEnums = SiteRouteEnums;
+  authenticatedUser?: UserModel;
+  isUserLoggedIn: boolean = false;
+  private userModelSubscription?: Subscription;
+
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private snackbarService: SnackbarService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.handleUserAuthentication();
+    this.userModelSubscription = this.userService.userModel$.subscribe(
+      (user) => {
+        this.authenticatedUser = user;
+        this.handleUserAuthentication();
+      },
+    );
   }
 
   private handleUserAuthentication(): void {
-    // TODO: If user is not logged in
-    // TODO: If user is logged into
-    // TODO: If the user is a normal user/ admin user/ content creator user
-    //this.isUserLoggedIn = false;
-  }
-
-  isUserLoggedIn(): boolean {
-    return isUserLoggedIn(this.userRole);
+    this.authService
+      .checkAuth()
+      .then((res) => (this.isUserLoggedIn = res))
+      .catch(() => (this.isUserLoggedIn = false));
   }
 
   getCurrentPageName(): string {
     return `APP${this.selectedPageName !== '' ? ` - ${this.selectedPageName.toUpperCase()} PAGE` : ''}`;
   }
 
-  onMenuClick(): void {}
+  isRoleAdmin(): boolean {
+    return (
+      this.authenticatedUser?.userRole === UserRoleEnum.CONTENT_CREATOR_USER
+    );
+  }
+
+  onLogoutClick(): void {
+    this.authService
+      .logout()
+      .then((res) => {
+        this.snackbarService.open(SnackbarSeverityEnums.SUCCESS, res.message);
+        this.userService.updateUserModel();
+        //this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
+      })
+      .catch((error) => {
+        this.snackbarService.open(
+          SnackbarSeverityEnums.ERROR,
+          error?.error?.error ?? error.message,
+        );
+      });
+  }
 }

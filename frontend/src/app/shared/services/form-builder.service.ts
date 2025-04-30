@@ -1,40 +1,82 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginFormType } from '../models/forms/LoginForm';
+import { RegistrationFormType } from '../models/forms/RegistrationForm';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormBuilderService {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
-  buildLoginForm(): FormGroup {
-    return this.formBuilder.group({
-      email: [
-        '',
-        [Validators.required, Validators.email, Validators.maxLength(200)],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
-      ],
+  private getEmailFormControl() {
+    return [
+      '',
+      [Validators.required, Validators.email, Validators.maxLength(200)],
+    ];
+  }
+
+  private getPasswordFormControl() {
+    return [
+      '',
+      [Validators.required, Validators.minLength(8), Validators.maxLength(50)],
+    ];
+  }
+
+  private getBirthDateFormControl() {
+    return ['', [Validators.required]];
+  }
+
+  private getTextFormControl() {
+    return ['', [Validators.required, Validators.maxLength(100)]];
+  }
+
+  /**
+   * Created a new form group for the login.
+   * The form will contains required form controls as well.
+   * @returns Returns the login form group.
+   */
+  buildLoginForm() {
+    return this.fb.group<LoginFormType>({
+      email: this.getEmailFormControl(),
+      password: this.getPasswordFormControl(),
     });
   }
 
-  buildRegistrationForm(): FormGroup {
-    return this.formBuilder.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.minLength(8),
-          Validators.maxLength(200),
-        ],
-      ],
-    });
+  /**
+   * Created a new form group for the registration.
+   * The form will contains required form controls as well.
+   * @returns Returns the registration form group.
+   */
+  buildRegistrationForm(): FormGroup<RegistrationFormType> {
+    return this.fb.group(
+      {
+        email: this.getEmailFormControl(),
+        password: this.getPasswordFormControl(),
+        repassword: this.getPasswordFormControl(),
+        birthdate: this.getBirthDateFormControl(),
+        username: this.getTextFormControl(),
+      },
+      {
+        validator: this.mustMatch('password', 'repassword'),
+      },
+    );
+  }
+
+  private mustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && matchingControl.errors['mustMatch']) {
+        return;
+      }
+
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ mustMatch: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   }
 }

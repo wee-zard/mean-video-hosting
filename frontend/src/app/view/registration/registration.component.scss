@@ -18,7 +18,6 @@
 .button-holder {
   display: flex;
   justify-self: center;
-  gap: 16px;
 }
 
 .card-container {
@@ -30,6 +29,10 @@
 
 button {
   width: 150px;
+}
+
+mat-form-field {
+  padding: 8px;
 }
 
 @media only screen and (max-width: 900px) {

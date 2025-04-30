@@ -1,18 +1,19 @@
 <app-backdrop [isLoading]="isLoading"></app-backdrop>
 <div class="login-container">
   <div class="card-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-holder">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-holder">
       <div class="form-control-holder">
         <mat-form-field>
-          <mat-label for="email">Enter your email address</mat-label>
+          <mat-label>Enter your email address</mat-label>
           <input
             matInput
-            type="email"
+            [type]="formFields.EMAIL"
+            [formControlName]="formFields.EMAIL"
             placeholder="example@example.xyz"
-            formControlName="email"
             required
             maxlength="200"
           />
+          <mat-error>{{ formError?.[formFields.EMAIL] }}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label for="password">Enter your password</mat-label>
@@ -20,29 +21,23 @@
             matInput
             type="password"
             placeholder="secret-password"
-            formControlName="password"
+            [formControlName]="formFields.PASSWORD"
             required
             minlength="8"
             maxlength="50"
-            [disabled]="isLoading"
           />
+          <mat-error>{{ formError?.[formFields.PASSWORD] }}</mat-error>
         </mat-form-field>
       </div>
       <div class="button-holder">
-        <div>
-          <button mat-raised-button color="primary" type="submit">Login</button>
-        </div>
-        <div>
-          <button
-            mat-raised-button
-            color="primary"
-            type="button"
-            [routerLink]="'/' + siteRoutes.REGISTRATION_PAGE"
-            [disabled]="isLoading"
-          >
-            Registration
-          </button>
-        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading"
+        >
+          Login
+        </button>
       </div>
     </form>
   </div>
