@@ -1,6 +1,6 @@
 import mongoose, { Model, Schema } from 'mongoose';
-import { ITagType, Tag } from './Tag';
-import { Category, ICategoryType } from './Category';
+import { ITagType } from './Tag';
+import { ICategoryType } from './Category';
 
 export type IVideoType = {
   id: string;

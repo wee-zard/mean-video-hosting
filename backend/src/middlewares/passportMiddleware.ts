@@ -7,7 +7,7 @@ const iStrategyOption: IStrategyOptions = {
   passwordField: 'password',
 };
 
-export const configurePassport = (passport: PassportStatic): PassportStatic => {
+export const configurePassportMiddleware = (passport: PassportStatic): PassportStatic => {
   passport.serializeUser((user: Express.User, done) => done(null, user));
 
   passport.deserializeUser((user: Express.User, done) => done(null, user));

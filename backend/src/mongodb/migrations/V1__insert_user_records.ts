@@ -111,7 +111,7 @@ export const runMigration = async () => {
     new User({
       id: '6806233ad1fbc4a94e0891af',
       email: 'oliviawood@example.com',
-      password: 'oliviawoodK',
+      password: 'oliviawood',
       username: 'oliviawood',
       userRole: UserRoleEnum.NORMAL_USER,
       birthDate: new Date(new Date().setFullYear(1996, 8, 2)).toISOString(),

@@ -9,7 +9,11 @@ export const runMigration = async () => {
       description: 'Viva La Dirt League - sketch comedy extraordinaires ',
       title: 'We are Viva La Dirt League',
       rating: { numberOfLikes: 4803, numberOsfDislikes: 2537 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ad' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ad',
+        uploadingUserName: 'rachelle',
+        uploadTime: new Date(new Date().setFullYear(1998, 7, 18)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -66,7 +70,11 @@ export const runMigration = async () => {
         "On March 12, 2015, Hot Ones premiered to the world with Sean Evans serving up hot questions and even hotter wings for Tony Yayo. Now, we celebrate the show's 10th anniversary with one of the giants of Hot Ones history, Kevin Hart. He's an actor, producer, director, and entrepreneuer—not to mention one of the most successful stand-up comedians of all time. Check out the animated series based on his childhood, Lil Kev, now streaming on BET+`",
       title: 'Kevin Hart Celebrates 10 Years of Hot Ones While Eating Spicy Wings | Hot Ones',
       rating: { numberOfLikes: 278496, numberOsfDislikes: 826679 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ad' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ad',
+        uploadingUserName: 'rachelle',
+        uploadTime: new Date(new Date().setFullYear(2001, 11, 9)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c1', name: 'Music', color: { red: 128, green: 0, blue: 128 } },
@@ -128,7 +136,11 @@ export const runMigration = async () => {
       title:
         'Street Racing, Contempt & Defiant Defendants - 6 Tragic Suspended License Violations | Court Cam',
       rating: { numberOfLikes: 529057, numberOsfDislikes: 153480 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ab' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ab',
+        uploadingUserName: 'lisataylor',
+        uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -191,7 +203,11 @@ export const runMigration = async () => {
         'Everyone in the family knew that Zilpha was the cool aunt, but to Jeremiah she was more. They had a special bond. So in the Fall of 1992 when Jeremiah disappeared, Zilpha knew something was wrong. Then just eight months later, Zilpha disappeared, too.',
       title: 'A Family Cursed - Cold Case Files: The Podcast | A&E',
       rating: { numberOfLikes: 80, numberOsfDislikes: 58 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b0' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b0',
+        uploadingUserName: 'mark23',
+        uploadTime: new Date(new Date().setFullYear(2023, 3, 23)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -257,7 +273,11 @@ export const runMigration = async () => {
       title:
         'She Locked Her BF In A Suitcase During Sick Game of Hide & Seek - Murder of Jorge Torres',
       rating: { numberOfLikes: 111, numberOsfDislikes: 204 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891af' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891af',
+        uploadingUserName: 'oliviawood',
+        uploadTime: new Date(new Date().setFullYear(2012, 8, 3)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -317,7 +337,11 @@ export const runMigration = async () => {
         'On June 3rd, 2022, officers were dispatched to BestBuy following reports of a man brandishing a firearm during a road rage incident. This is footage of the events that followed.',
       title: 'When You Go to Best Buy and Leave with a Felony',
       rating: { numberOfLikes: 56827, numberOsfDislikes: 12675 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ad' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ad',
+        uploadingUserName: 'rachelle',
+        uploadTime: new Date(new Date().setFullYear(2023, 9, 9)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891c1', name: 'Music', color: { red: 128, green: 0, blue: 128 } },
@@ -387,7 +411,11 @@ export const runMigration = async () => {
       description: '.',
       title: 'Penn & Teller: Fool Us - Animal Traps - Season 3 Episode 11 (2016)',
       rating: { numberOfLikes: 8014, numberOsfDislikes: 9442 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891a9' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891a9',
+        uploadingUserName: 'sarahmiller',
+        uploadTime: new Date(new Date().setFullYear(2024, 11, 11)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -439,7 +467,11 @@ export const runMigration = async () => {
         "Paul Gertner is a Trade Show and Corporate Magician who specializes in fooling the world's most analytics audiences from Scientists to Engineers. Paul Gertner has been awarded Close-Up Magician of the Year twice from the Magic Castle in Hollywood, and he has won The Siegfried & Roy Gold Lion Award, as well as the First Prize at FISM",
       title: 'Paul Gertner Returns to Penn & Teller: Fool Us Season 4 // Cups and Steel Balls',
       rating: { numberOfLikes: 57, numberOsfDislikes: 413 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891af' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891af',
+        uploadingUserName: 'oliviawood',
+        uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -509,7 +541,11 @@ export const runMigration = async () => {
       description: 'Defending your thesis may be different than you think.',
       title: 'Thesis Defense - Studio C',
       rating: { numberOfLikes: 30594, numberOsfDislikes: 16252 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b7' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b7',
+        uploadingUserName: 'lucywhite',
+        uploadTime: new Date(new Date().setFullYear(2019, 4, 13)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -570,7 +606,11 @@ export const runMigration = async () => {
         "Today we're in Judge Fleischer's courtroom for a wild hearing involving a defendant previously charged with a serious felony: armed robbery. He has already served time but is now on lifetime probation, so any new charges or bond violations mean swift and stern penalties. That's exactly what brings us to court today, but what sets this hearing apart is the dialogue between the defendant and judge. The defendant makes a uniquely compelling argument–much more thorough than the typical defendant we see on GavelGazers–but will it be enough to sway Judge Fleischer?",
       title: 'Violent Felon Loses His Cool In Court, Gets Locked Up AGAIN',
       rating: { numberOfLikes: 37015, numberOsfDislikes: 137987 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ad' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ad',
+        uploadingUserName: 'rachelle',
+        uploadTime: new Date(new Date().setFullYear(2014, 3, 12)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c1', name: 'Music', color: { red: 128, green: 0, blue: 128 } },
@@ -639,7 +679,11 @@ export const runMigration = async () => {
         'Rowan works to motivate the red shirts by offering commission on every sale...chaos ensues.',
       title: 'Sales commissions gone wrong',
       rating: { numberOfLikes: 202245, numberOsfDislikes: 2123024 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891af' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891af',
+        uploadingUserName: 'oliviawood',
+        uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -698,7 +742,11 @@ export const runMigration = async () => {
         "Indulge in the delightful and heartwarming sounds of our adorable lofi cat mix! Whether you're studying, working, trying to relax, or just in need of some aesthetic vibes, this compilation is tailored to bring joy to your day.",
       title: 'Coffee Lofi 1 Hour Cafe Song Stream cafe cute & relaxing music Make Your Day Better',
       rating: { numberOfLikes: 370533, numberOsfDislikes: 4084693 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ad' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ad',
+        uploadingUserName: 'rachelle',
+        uploadTime: new Date(new Date().setFullYear(2006, 6, 12)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -778,7 +826,11 @@ export const runMigration = async () => {
         'Falling stars tear through the night. leaving trails of forgotten wishes, etched into the heart of the sky.',
       title: "80's Tokyo Funky Lofi Playlist",
       rating: { numberOfLikes: 919813, numberOsfDislikes: 143717 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b0' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b0',
+        uploadingUserName: 'mark23',
+        uploadTime: new Date(new Date().setFullYear(2011, 7, 17)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
         {
@@ -842,7 +894,11 @@ export const runMigration = async () => {
       title:
         'Penn & Teller: Fool Us - A CLASSIC of MAGIC in our own style. Watch us pull a rabbit from a hat.',
       rating: { numberOfLikes: 19106, numberOsfDislikes: 21960 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b6' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b6',
+        uploadingUserName: 'jamesbrown',
+        uploadTime: new Date(new Date().setFullYear(2022, 7, 2)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -903,7 +959,11 @@ export const runMigration = async () => {
         'Family Feud Season 3 Marathon PART 2/2!! Steve Harvey gets pushed to the ultimate limit!! The clips appear in the order they were recorded in 2012.',
       title: 'Family Feud TORCHES Steve Harvey!! (3rd season marathon 2/2)',
       rating: { numberOfLikes: 168266, numberOsfDislikes: 1043166 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b3' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b3',
+        uploadingUserName: 'emilydavis',
+        uploadTime: new Date(new Date().setFullYear(2021, 2, 16)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -966,7 +1026,17 @@ export const runMigration = async () => {
         'Hello everyone, this is YOUR Daily Dose of Internet. In this video, a guy created water out of air.',
       title: 'Creating Water Out of Air',
       rating: { numberOfLikes: 722621, numberOsfDislikes: 1168698 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891aa' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891aa',
+        uploadingUserName: 'alexwilliams',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -1042,7 +1112,17 @@ export const runMigration = async () => {
         "This is the two-minute version of our trailer which we first showed at Mysterium in July! In addition to polishing up the visuals, this trailer includes an updated score from composer and friend of Cyan, Hollister Starrett (who also composed the music for our one-minute launch trailer). We're thrilled with what he's done to expand and extend the themes of Myst and we hope you'll love it as much as we do",
       title: 'Myst Launch Trailer - 2 Minute Edition',
       rating: { numberOfLikes: 54531, numberOsfDislikes: 22309 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b8' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b8',
+        uploadingUserName: 'danieljohnson',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -1106,7 +1186,17 @@ export const runMigration = async () => {
       description: "We're SO proud of this one, friends. We can't wait for you to play it!",
       title: 'Riven | Official Accolades Trailer | Available NOW | 4k',
       rating: { numberOfLikes: 3407, numberOsfDislikes: 7808 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b3' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b3',
+        uploadingUserName: 'emilydavis',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -1174,7 +1264,17 @@ export const runMigration = async () => {
         'TUNIC is out now on Xbox Series X|S and Xbox One! Play it day one on Gamepass and be brave, little fox! ',
       title: 'TUNIC Launch Trailer',
       rating: { numberOfLikes: 232057, numberOsfDislikes: 14833 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b5' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b5',
+        uploadingUserName: 'annamartin',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -1251,7 +1351,17 @@ export const runMigration = async () => {
         "You wake up, alone, on a strange island full of puzzles that will challenge and surprise you. You don't remember who you are, and you don't remember how you got here, but there's one thing you can do: explore the island in hope of discovering clues, regaining your memory, and somehow finding your way home. The Witness is a single-player game in an open world with dozens of locations to explore and over 500 puzzles. This game respects you as an intelligent player and it treats your time as precious. There's no filler; each of those puzzles brings its own new idea into the mix. So, this is a game full of ideas.",
       title: 'The Witness - Trailer',
       rating: { numberOfLikes: 36993, numberOsfDislikes: 226241 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b2' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b2',
+        uploadingUserName: 'robertwilson',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -1321,7 +1431,17 @@ export const runMigration = async () => {
       description: 'An Insurance Adventure with Minimal Colour',
       title: 'Return of the Obra Dinn - Available Now',
       rating: { numberOfLikes: 46277, numberOsfDislikes: 301061 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891b6' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891b6',
+        uploadingUserName: 'jamesbrown',
+        uploadTime: new Date(
+          new Date().setFullYear(
+            Math.round(Math.random() * 24 + 2000),
+            Math.round(Math.random() * 11),
+            Math.round(Math.random() * 28)
+          )
+        ).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891c2',
@@ -1371,7 +1491,11 @@ export const runMigration = async () => {
         'Jump into mind-blowing moments and experience the many worlds of Split Fiction™, a boundary-pushing co-op adventure from Hazelight, the studio behind It Takes Two. Master a variety of abilities and overcome diverse challenges while jumping between sci-fi and fantasy worlds!',
       title: 'Split Fiction | Official Gameplay Reveal Trailer',
       rating: { numberOfLikes: 635588, numberOsfDislikes: 1011698 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ab' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ab',
+        uploadingUserName: 'lisataylor',
+        uploadTime: new Date(new Date().setFullYear(2020, 9, 21)).toISOString(),
+      },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -1428,7 +1552,11 @@ export const runMigration = async () => {
       description: "Brennan, Izzy, and Lou play Sam's own version of Simon Says, with a few twists",
       title: 'Sam Says | Game Changer [Full Episode]',
       rating: { numberOfLikes: 981478, numberOsfDislikes: 2729587 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891a9' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891a9',
+        uploadingUserName: 'sarahmiller',
+        uploadTime: new Date(new Date().setFullYear(2024, 9, 1)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
@@ -1486,7 +1614,11 @@ export const runMigration = async () => {
         'Josh Ruben is DEAD - and only Rekha and Grant have the sleuthing skills to figure out whodunnit.',
       title: 'Murder Mystery Game Show | Game Changer [Full Episode]',
       rating: { numberOfLikes: 2832494, numberOsfDislikes: 1866194 },
-      upload: { uploadingUserId: '6806233ad1fbc4a94e0891ab' },
+      upload: {
+        uploadingUserId: '6806233ad1fbc4a94e0891ab',
+        uploadingUserName: 'lisataylor',
+        uploadTime: new Date(new Date().setFullYear(2022, 10, 23)).toISOString(),
+      },
       tags: [
         {
           id: '68062bcdd1fbc4a94e0891bd',
