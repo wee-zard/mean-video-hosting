@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { SiteRouteEnums } from '../enums/SiteRouteEnums';
 import { VideoService } from '../services/video.service';
 
-export const VideoGuardExistGuard: CanActivateFn = (route, state) => {
+export const VideoExistGuard: CanActivateFn = (route, state) => {
   const r = inject(Router);
 
   const videoId = route?.params['video_id'];

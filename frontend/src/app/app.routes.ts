@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { SiteRouteEnums } from './shared/enums/SiteRouteEnums';
-import { VideoGuardExistGuard } from './shared/guards/video-exist.guard';
+import { VideoExistGuard } from './shared/guards/video-exist.guard';
 
 export const routes: Routes = [
   {
@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: `${SiteRouteEnums.VIDEO_PAGE}/:video_id`,
-    canActivate: [VideoGuardExistGuard],
+    canActivate: [VideoExistGuard],
     loadComponent: () =>
       import('./view/video/video.component').then((c) => c.VideoComponent),
   },
