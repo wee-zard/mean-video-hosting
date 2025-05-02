@@ -1,0 +1,15 @@
+.sidenav-container {
+  height: 91%;
+}
+
+.sidenav {
+  padding: 20px;
+  background-color: rgba(225, 225, 225, 0.35);
+  box-shadow: 1px 1px 1px gray;
+  display: flex;
+}
+
+.inner-content {
+  padding-left: 16px;
+  height: 100%;
+}
