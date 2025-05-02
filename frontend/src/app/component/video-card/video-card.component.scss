@@ -1,0 +1,23 @@
+.video-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px gray;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 28%;
+  cursor: pointer;
+}
+
+.video-card-image {
+  width: 100%;
+  cursor: pointer;
+}
+
+.video-view-and-upload {
+  display: flex;
+  gap: 4px;
+
+  div:last-of-type::before {
+    content: "•";
+  }
+}
