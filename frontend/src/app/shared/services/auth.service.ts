@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getHeaderWithCredential } from '../helper/HttpHeaderHelper';
+import { getRequestHeader } from '../helper/HttpHeaderHelper';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/models/UserModels';
@@ -27,7 +27,7 @@ export class AuthService {
       this.http.post<UserModel>(
         `${this.server}/login`,
         form,
-        getHeaderWithCredential(true),
+        getRequestHeader({ isWithCredentials: true }),
       ),
     );
   }
@@ -43,7 +43,7 @@ export class AuthService {
       this.http.post<UserModel>(
         `${this.server}/register`,
         form,
-        getHeaderWithCredential(),
+        getRequestHeader({}),
       ),
     );
   }

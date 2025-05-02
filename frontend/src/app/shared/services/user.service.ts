@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -13,7 +12,7 @@ export class UserService implements OnInit {
   userModel$ = this.userModel.asObservable();
   server: string = `${environment.serverUrl}/user`;
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit(): void {
     const userStorage = localStorage.getItem(StorageKeyEnum.AUTHENTICATED_USER);
