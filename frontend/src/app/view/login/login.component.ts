@@ -83,13 +83,12 @@ export class LoginComponent implements OnInit {
         this.userService.updateUserModel(userModel);
         this.router.navigateByUrl(`/${SiteRouteEnums.HOME_PAGE}`);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((error) =>
         this.snackbarService.open(
           SnackbarSeverityEnums.ERROR,
           error?.error?.error ?? error.message,
-        );
-      })
+        ),
+      )
       .finally(() => (this.isLoading = false));
   }
 }
