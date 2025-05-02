@@ -1,17 +1,24 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 type HeaderOptions = {
   headers: HttpHeaders;
   withCredentials: boolean;
+  params?: HttpParams;
 };
 
-export const getHeaderWithCredential = (
-  isWithCredentials: boolean = false,
+type HeaderOptionParams = {
+  isWithCredentials?: boolean;
+  params?: HttpParams;
+};
+
+export const getRequestHeader = (
+  headerOptionParams: HeaderOptionParams,
 ): HeaderOptions => {
   return {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
-    withCredentials: isWithCredentials,
+    withCredentials: headerOptionParams.isWithCredentials ?? false,
+    params: headerOptionParams.params,
   };
 };
