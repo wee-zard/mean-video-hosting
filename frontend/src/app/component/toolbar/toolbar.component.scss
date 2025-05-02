@@ -8,6 +8,12 @@ a:active {
   color: lightgray;
 }
 
+.header-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .navigation-items {
   display: flex;
   gap: 8px;

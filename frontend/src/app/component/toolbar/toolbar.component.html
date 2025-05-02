@@ -1,5 +1,10 @@
 <mat-toolbar color="primary">
-  <div>
+  <div class="header-container">
+    <div>
+      <button mat-icon-button type="button" (click)="onHeadlineIconClick()">
+        <mat-icon>view_headline</mat-icon>
+      </button>
+    </div>
     <div>
       {{ getCurrentPageName() }}
     </div>

@@ -11,10 +11,18 @@ import { UserModel, UserRoleEnum } from '../../shared/models/models/UserModels';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
+import { MatButtonModule } from '@angular/material/button';
+import { SettingService } from '../../shared/services/setting.service';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [MatToolbarModule, MatIconModule, CommonModule, RouterModule],
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+  ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
@@ -31,12 +39,18 @@ export class ToolbarComponent implements OnInit {
     private authService: AuthService,
     private snackbarService: SnackbarService,
     private router: Router,
+    private settingService: SettingService,
   ) {}
 
   ngOnInit(): void {
     this.userModelSubscription = this.userService.userModel$.subscribe(
       (user) => {
         this.authenticatedUser = user;
+
+        if (!user) {
+          return;
+        }
+
         this.handleUserAuthentication();
       },
     );
@@ -59,13 +73,17 @@ export class ToolbarComponent implements OnInit {
     );
   }
 
+  onHeadlineIconClick(): void {
+    this.settingService.updateToggleSidenav();
+  }
+
   onLogoutClick(): void {
     this.authService
       .logout()
       .then((res) => {
         this.snackbarService.open(SnackbarSeverityEnums.SUCCESS, res.message);
         this.userService.updateUserModel();
-        //this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
+        this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
       })
       .catch((error) => {
         this.snackbarService.open(
