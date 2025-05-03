@@ -12,8 +12,9 @@ export type VideoResponse = {
     numberOsfDislikes: number;
   };
   upload: {
-    uploadingUserId: string;
-    uploadingUserName: string;
+    userId: string;
+    userImagePath: string;
+    userName: string;
     uploadTime: string;
   };
   tags: TagResponse[];

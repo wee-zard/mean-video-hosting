@@ -1,1 +1,44 @@
-<p>video works!</p>
+<div class="video-page-container" *ngIf="video">
+  <div class="video-info-container">
+    <div class="video-container">
+      <iframe
+        [src]="video.videoUrlPath | sanitizeResourceUrl"
+        title="Video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+    <div>
+      <h2>{{ video.title }}</h2>
+      <div class="video-header-container">
+        <div class="video-uploader-container" (click)="handleUploaderOnClick()">
+          <div>
+            <img
+              [src]="video.upload.userImagePath"
+              [width]="40"
+              class="uploader-image"
+              alt="uploader user's profile picture"
+            />
+          </div>
+          <div>{{ video.upload.userName }}</div>
+        </div>
+        <div>
+          <app-like-dislike-toggle />
+        </div>
+      </div>
+      <div>
+        <h4>Tags</h4>
+        <h4>Categories</h4>
+      </div>
+      <div>
+        <div>{{ video.viewCount | viewCountFormatter }}</div>
+        <div>{{ video.upload.uploadTime | uploadTimeFormatter }}</div>
+        <p>{{ video.description }}</p>
+      </div>
+    </div>
+    <div>
+      <h2>Comments</h2>
+    </div>
+  </div>
+  <div class="video-right-container">12312312</div>
+</div>

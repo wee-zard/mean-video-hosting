@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { SiteRouteEnums } from './shared/enums/SiteRouteEnums';
 import { VideoExistGuard } from './shared/guards/video-exist.guard';
+import { ChanelExistGuard } from './shared/guards/chanel-exist.guard';
 
 export const routes: Routes = [
   {
-    path: SiteRouteEnums.CHANEL_PAGE,
+    path: `${SiteRouteEnums.CHANEL_PAGE}/:user_id`,
+    canActivate: [ChanelExistGuard],
     loadComponent: () =>
       import('./view/chanel/chanel.component').then((c) => c.ChanelComponent),
   },

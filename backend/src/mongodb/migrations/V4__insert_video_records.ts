@@ -10,9 +10,10 @@ export const runMigration = async () => {
       title: 'We are Viva La Dirt League',
       rating: { numberOfLikes: 4803, numberOsfDislikes: 2537 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ad',
-        uploadingUserName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ad',
+        userName: 'rachelle',
         uploadTime: new Date(new Date().setFullYear(1998, 7, 18)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -71,9 +72,10 @@ export const runMigration = async () => {
       title: 'Kevin Hart Celebrates 10 Years of Hot Ones While Eating Spicy Wings | Hot Ones',
       rating: { numberOfLikes: 278496, numberOsfDislikes: 826679 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ad',
-        uploadingUserName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ad',
+        userName: 'rachelle',
         uploadTime: new Date(new Date().setFullYear(2001, 11, 9)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -137,9 +139,10 @@ export const runMigration = async () => {
         'Street Racing, Contempt & Defiant Defendants - 6 Tragic Suspended License Violations | Court Cam',
       rating: { numberOfLikes: 529057, numberOsfDislikes: 153480 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ab',
-        uploadingUserName: 'lisataylor',
+        userId: '6806233ad1fbc4a94e0891ab',
+        userName: 'lisataylor',
         uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/03/11/15/16/couple-4922442_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -204,9 +207,11 @@ export const runMigration = async () => {
       title: 'A Family Cursed - Cold Case Files: The Podcast | A&E',
       rating: { numberOfLikes: 80, numberOsfDislikes: 58 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b0',
-        uploadingUserName: 'mark23',
+        userId: '6806233ad1fbc4a94e0891b0',
+        userName: 'mark23',
         uploadTime: new Date(new Date().setFullYear(2023, 3, 23)).toISOString(),
+        userImagePath:
+          'https://cdn.pixabay.com/photo/2022/12/03/11/11/christmas-picture-7632475_1280.jpg',
       },
       tags: [
         {
@@ -274,9 +279,10 @@ export const runMigration = async () => {
         'She Locked Her BF In A Suitcase During Sick Game of Hide & Seek - Murder of Jorge Torres',
       rating: { numberOfLikes: 111, numberOsfDislikes: 204 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891af',
-        uploadingUserName: 'oliviawood',
+        userId: '6806233ad1fbc4a94e0891af',
+        userName: 'oliviawood',
         uploadTime: new Date(new Date().setFullYear(2012, 8, 3)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2022/06/25/09/27/blue-tit-7283187_1280.jpg',
       },
       tags: [
         {
@@ -338,9 +344,10 @@ export const runMigration = async () => {
       title: 'When You Go to Best Buy and Leave with a Felony',
       rating: { numberOfLikes: 56827, numberOsfDislikes: 12675 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ad',
-        uploadingUserName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ad',
+        userName: 'rachelle',
         uploadTime: new Date(new Date().setFullYear(2023, 9, 9)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -412,9 +419,11 @@ export const runMigration = async () => {
       title: 'Penn & Teller: Fool Us - Animal Traps - Season 3 Episode 11 (2016)',
       rating: { numberOfLikes: 8014, numberOsfDislikes: 9442 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891a9',
-        uploadingUserName: 'sarahmiller',
+        userId: '6806233ad1fbc4a94e0891a9',
+        userName: 'sarahmiller',
         uploadTime: new Date(new Date().setFullYear(2024, 11, 11)).toISOString(),
+        userImagePath:
+          'https://media.istockphoto.com/id/2190583070/hu/fotó/a-female-groomer-trims-the-hair-on-the-paws-of-a-spitz.jpg?s=1024x1024&w=is&k=20&c=fTzcarQIztWbgUeF-GgEx3nq55RjW9CXmOSwCPO4EaU=',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -468,9 +477,10 @@ export const runMigration = async () => {
       title: 'Paul Gertner Returns to Penn & Teller: Fool Us Season 4 // Cups and Steel Balls',
       rating: { numberOfLikes: 57, numberOsfDislikes: 413 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891af',
-        uploadingUserName: 'oliviawood',
+        userId: '6806233ad1fbc4a94e0891af',
+        userName: 'oliviawood',
         uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2022/06/25/09/27/blue-tit-7283187_1280.jpg',
       },
       tags: [
         {
@@ -542,9 +552,10 @@ export const runMigration = async () => {
       title: 'Thesis Defense - Studio C',
       rating: { numberOfLikes: 30594, numberOsfDislikes: 16252 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b7',
-        uploadingUserName: 'lucywhite',
+        userId: '6806233ad1fbc4a94e0891b7',
+        userName: 'lucywhite',
         uploadTime: new Date(new Date().setFullYear(2019, 4, 13)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/24/08/52/birds-8784588_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -607,9 +618,10 @@ export const runMigration = async () => {
       title: 'Violent Felon Loses His Cool In Court, Gets Locked Up AGAIN',
       rating: { numberOfLikes: 37015, numberOsfDislikes: 137987 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ad',
-        uploadingUserName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ad',
+        userName: 'rachelle',
         uploadTime: new Date(new Date().setFullYear(2014, 3, 12)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -680,9 +692,10 @@ export const runMigration = async () => {
       title: 'Sales commissions gone wrong',
       rating: { numberOfLikes: 202245, numberOsfDislikes: 2123024 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891af',
-        uploadingUserName: 'oliviawood',
+        userId: '6806233ad1fbc4a94e0891af',
+        userName: 'oliviawood',
         uploadTime: new Date(new Date().setFullYear(2019, 10, 24)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2022/06/25/09/27/blue-tit-7283187_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -743,9 +756,10 @@ export const runMigration = async () => {
       title: 'Coffee Lofi 1 Hour Cafe Song Stream cafe cute & relaxing music Make Your Day Better',
       rating: { numberOfLikes: 370533, numberOsfDislikes: 4084693 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ad',
-        uploadingUserName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ad',
+        userName: 'rachelle',
         uploadTime: new Date(new Date().setFullYear(2006, 6, 12)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
       },
       tags: [
         {
@@ -827,9 +841,11 @@ export const runMigration = async () => {
       title: "80's Tokyo Funky Lofi Playlist",
       rating: { numberOfLikes: 919813, numberOsfDislikes: 143717 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b0',
-        uploadingUserName: 'mark23',
+        userId: '6806233ad1fbc4a94e0891b0',
+        userName: 'mark23',
         uploadTime: new Date(new Date().setFullYear(2011, 7, 17)).toISOString(),
+        userImagePath:
+          'https://cdn.pixabay.com/photo/2022/12/03/11/11/christmas-picture-7632475_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -895,9 +911,10 @@ export const runMigration = async () => {
         'Penn & Teller: Fool Us - A CLASSIC of MAGIC in our own style. Watch us pull a rabbit from a hat.',
       rating: { numberOfLikes: 19106, numberOsfDislikes: 21960 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b6',
-        uploadingUserName: 'jamesbrown',
+        userId: '6806233ad1fbc4a94e0891b6',
+        userName: 'jamesbrown',
         uploadTime: new Date(new Date().setFullYear(2022, 7, 2)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -960,9 +977,11 @@ export const runMigration = async () => {
       title: 'Family Feud TORCHES Steve Harvey!! (3rd season marathon 2/2)',
       rating: { numberOfLikes: 168266, numberOsfDislikes: 1043166 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b3',
-        uploadingUserName: 'emilydavis',
+        userId: '6806233ad1fbc4a94e0891b3',
+        userName: 'emilydavis',
         uploadTime: new Date(new Date().setFullYear(2021, 2, 16)).toISOString(),
+        userImagePath:
+          'https://cdn.pixabay.com/photo/2017/07/29/00/57/photographer-2550378_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -1027,8 +1046,8 @@ export const runMigration = async () => {
       title: 'Creating Water Out of Air',
       rating: { numberOfLikes: 722621, numberOsfDislikes: 1168698 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891aa',
-        uploadingUserName: 'alexwilliams',
+        userId: '6806233ad1fbc4a94e0891aa',
+        userName: 'alexwilliams',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1036,6 +1055,7 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2021/04/27/15/04/wagtail-6211745_1280.jpg',
       },
       tags: [
         {
@@ -1113,8 +1133,8 @@ export const runMigration = async () => {
       title: 'Myst Launch Trailer - 2 Minute Edition',
       rating: { numberOfLikes: 54531, numberOsfDislikes: 22309 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b8',
-        uploadingUserName: 'danieljohnson',
+        userId: '6806233ad1fbc4a94e0891b8',
+        userName: 'danieljohnson',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1122,6 +1142,7 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -1187,8 +1208,8 @@ export const runMigration = async () => {
       title: 'Riven | Official Accolades Trailer | Available NOW | 4k',
       rating: { numberOfLikes: 3407, numberOsfDislikes: 7808 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b3',
-        uploadingUserName: 'emilydavis',
+        userId: '6806233ad1fbc4a94e0891b3',
+        userName: 'emilydavis',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1196,6 +1217,8 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath:
+          'https://cdn.pixabay.com/photo/2017/07/29/00/57/photographer-2550378_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891bf', name: 'Tech', color: { red: 0, green: 0, blue: 255 } },
@@ -1265,8 +1288,8 @@ export const runMigration = async () => {
       title: 'TUNIC Launch Trailer',
       rating: { numberOfLikes: 232057, numberOsfDislikes: 14833 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b5',
-        uploadingUserName: 'annamartin',
+        userId: '6806233ad1fbc4a94e0891b5',
+        userName: 'annamartin',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1274,6 +1297,7 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2021/09/02/20/18/boat-6594343_1280.jpg',
       },
       tags: [
         {
@@ -1352,8 +1376,8 @@ export const runMigration = async () => {
       title: 'The Witness - Trailer',
       rating: { numberOfLikes: 36993, numberOsfDislikes: 226241 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b2',
-        uploadingUserName: 'robertwilson',
+        userId: '6806233ad1fbc4a94e0891b2',
+        userName: 'robertwilson',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1361,6 +1385,7 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2013/11/28/10/02/camera-219958_1280.jpg',
       },
       tags: [
         {
@@ -1432,8 +1457,8 @@ export const runMigration = async () => {
       title: 'Return of the Obra Dinn - Available Now',
       rating: { numberOfLikes: 46277, numberOsfDislikes: 301061 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891b6',
-        uploadingUserName: 'jamesbrown',
+        userId: '6806233ad1fbc4a94e0891b6',
+        userName: 'jamesbrown',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1441,6 +1466,7 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg',
       },
       tags: [
         {
@@ -1492,9 +1518,10 @@ export const runMigration = async () => {
       title: 'Split Fiction | Official Gameplay Reveal Trailer',
       rating: { numberOfLikes: 635588, numberOsfDislikes: 1011698 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ab',
-        uploadingUserName: 'lisataylor',
+        userId: '6806233ad1fbc4a94e0891ab',
+        userName: 'lisataylor',
         uploadTime: new Date(new Date().setFullYear(2020, 9, 21)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/03/11/15/16/couple-4922442_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -1553,9 +1580,11 @@ export const runMigration = async () => {
       title: 'Sam Says | Game Changer [Full Episode]',
       rating: { numberOfLikes: 981478, numberOsfDislikes: 2729587 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891a9',
-        uploadingUserName: 'sarahmiller',
+        userId: '6806233ad1fbc4a94e0891a9',
+        userName: 'sarahmiller',
         uploadTime: new Date(new Date().setFullYear(2024, 9, 1)).toISOString(),
+        userImagePath:
+          'https://media.istockphoto.com/id/2190583070/hu/fotó/a-female-groomer-trims-the-hair-on-the-paws-of-a-spitz.jpg?s=1024x1024&w=is&k=20&c=fTzcarQIztWbgUeF-GgEx3nq55RjW9CXmOSwCPO4EaU=',
       },
       tags: [
         {
@@ -1615,9 +1644,10 @@ export const runMigration = async () => {
       title: 'Murder Mystery Game Show | Game Changer [Full Episode]',
       rating: { numberOfLikes: 2832494, numberOsfDislikes: 1866194 },
       upload: {
-        uploadingUserId: '6806233ad1fbc4a94e0891ab',
-        uploadingUserName: 'lisataylor',
+        userId: '6806233ad1fbc4a94e0891ab',
+        userName: 'lisataylor',
         uploadTime: new Date(new Date().setFullYear(2022, 10, 23)).toISOString(),
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/03/11/15/16/couple-4922442_1280.jpg',
       },
       tags: [
         {

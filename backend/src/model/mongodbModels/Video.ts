@@ -13,8 +13,9 @@ export type IVideoType = {
     numberOsfDislikes: number;
   };
   upload: {
-    uploadingUserId: string;
-    uploadingUserName: string;
+    userId: string;
+    userImagePath: string;
+    userName: string;
     uploadTime: string;
   };
   tags: ITagType[];
@@ -30,7 +31,12 @@ const VideoSchema: Schema<IVideo> = new mongoose.Schema({
   description: { type: String, required: true },
   title: { type: String, required: true },
   rating: { numberOfLikes: Number, numberOsfDislikes: Number },
-  upload: { uploadingUserId: String, uploadingUserName: String, uploadTime: String },
+  upload: {
+    userId: String,
+    userName: String,
+    uploadTime: String,
+    userImagePath: String,
+  },
   tags: [{ id: String, name: String, color: { red: Number, green: Number, blue: Number } }],
   categories: [{ id: String, name: String }],
 });

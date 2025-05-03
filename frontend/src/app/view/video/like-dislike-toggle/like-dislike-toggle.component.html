@@ -1,0 +1,32 @@
+<ng-container *ngIf="video">
+  <div class="toggle-container">
+    <mat-button-toggle-group
+      multiple
+      (change)="toggleChange($event)"
+      [value]="selectedToggleOption"
+    >
+      <mat-button-toggle value="like" [disabled]="!userModel">
+        <div class="flex-container">
+          <mat-icon>thumb_up</mat-icon>
+          <div>
+            {{ video.rating.numberOfLikes | likeCountFormatter }}
+          </div>
+        </div>
+      </mat-button-toggle>
+      <mat-button-toggle value="dislike" [disabled]="!userModel">
+        <div class="flex-container">
+          <mat-icon>thumb_down</mat-icon>
+          <div>
+            {{ video.rating.numberOsfDislikes | likeCountFormatter }}
+          </div>
+        </div>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="getRatio()"
+      ></mat-progress-bar>
+    </div>
+  </div>
+</ng-container>

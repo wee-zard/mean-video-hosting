@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from '../../shared/services/video.service';
-import { VideoSearchRequest } from '../../shared/models/VideoSearchRequest';
+import { VideoSearchRequest } from '../../shared/models/request/VideoSearchRequest';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
 import { CommonModule } from '@angular/common';

@@ -5,7 +5,7 @@ import { VideoRatingType } from '../types/VideoRatingType';
 
 const SALT_FACTOR = 10;
 
-interface IUser extends Document {
+export interface IUser extends Document {
   id: string;
   email: string;
   password: string;
@@ -23,13 +23,14 @@ interface IUser extends Document {
 }
 
 const UserSchema: Schema<IUser> = new mongoose.Schema({
-  id: { type: String },
+  id: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   username: { type: String },
   userRole: { type: String },
   birthDate: { type: String },
   registrationTime: { type: String },
+  videoRatings: [{ videoId: String, isLiked: Boolean }],
   profilePicturePath: { type: String },
   phoneNumber: { type: String },
 });

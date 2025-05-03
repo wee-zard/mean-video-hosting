@@ -1,11 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { VideoResponse } from '../../shared/models/response/VideoResponse';
+import { VideoService } from '../../shared/services/video.service';
+import { ViewCountFormatterPipe } from '../../shared/pipes/view-count-formatter.pipe';
+import { UploadTimeFormatterPipe } from '../../shared/pipes/upload-time-formatter.pipe';
+import { SanitizeResourceUrlPipe } from '../../shared/pipes/sanitize-resource-url.pipe';
+import { SiteRouteEnums } from '../../shared/enums/SiteRouteEnums';
+import { LikeDislikeToggleComponent } from './like-dislike-toggle/like-dislike-toggle.component';
+import { AutoUnsubscribe } from '../../shared/decorators/AutoUnsubscribe';
 
 @Component({
   selector: 'app-video',
-  imports: [],
+  imports: [
+    CommonModule,
+    ViewCountFormatterPipe,
+    UploadTimeFormatterPipe,
+    SanitizeResourceUrlPipe,
+    LikeDislikeToggleComponent,
+  ],
   templateUrl: './video.component.html',
-  styleUrl: './video.component.scss'
+  styleUrl: './video.component.scss',
 })
-export class VideoComponent {
+@AutoUnsubscribe
+export class VideoComponent implements OnInit {
+  video?: VideoResponse;
 
+  constructor(
+    private videoService: VideoService,
+    private router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    const splittedUrl = this.router.url.split('/');
+    const videoId = splittedUrl[splittedUrl.length - 1];
+
+    this.videoService.getOneVideoById(videoId).then((videoResponse) => {
+      this.video = videoResponse;
+      this.videoService.updateSelectedVideo(videoResponse);
+    });
+  }
+
+  handleUploaderOnClick(): void {
+    if (!this.video) {
+      return;
+    }
+
+    this.router.navigateByUrl(
+      `/${SiteRouteEnums.CHANEL_PAGE}/${this.video.upload.userId}`,
+    );
+  }
 }

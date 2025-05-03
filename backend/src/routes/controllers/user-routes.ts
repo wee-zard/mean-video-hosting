@@ -8,6 +8,17 @@ export const configureUserRoutes = (passport: PassportStatic): Router => {
   const router = Router();
 
   /**
+   * Checks whether the provided content creator user is exists on the server or not.
+   */
+  router.get('/is-exists', (req: Request, res: Response) => {
+    const query = User.findOne({
+      id: req.query.user_id,
+      userRole: UserRoleEnum.CONTENT_CREATOR_USER,
+    });
+    query.then(() => res.status(200).send(true)).catch(() => res.status(400).send(false));
+  });
+
+  /**
    * Logs the user into the application.
    */
   router.post('/login', (req: Request, res: Response, next: NextFunction) => {
