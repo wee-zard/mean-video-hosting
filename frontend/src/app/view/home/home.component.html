@@ -1,6 +1,6 @@
 <div>
   <ng-container *ngIf="listOfVideos.length > 0; else noVideoFound">
-    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+    <div class="video-card-outer-container">
       <ng-container *ngFor="let video of listOfVideos">
         <app-video-card [video]="video"></app-video-card>
       </ng-container>

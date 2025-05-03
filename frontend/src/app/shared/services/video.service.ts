@@ -5,7 +5,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { VideoSearchRequest } from '../models/request/VideoSearchRequest';
 import { VideoResponse } from '../models/response/VideoResponse';
-import { LikeToggleType } from '../models/LikeToggleType';
 import { UserModel } from '../models/models/UserModels';
 import { VideoRatingUpdateRequest } from '../models/request/VideoRatingUpdateRequest';
 
@@ -19,7 +18,8 @@ export class VideoService {
   selectedVideo$ = this.selectedVideo.asObservable();
   private listOfVideos = new BehaviorSubject<VideoResponse[]>([]);
   listOfVideos$ = this.listOfVideos.asObservable();
-
+  private videoReload = new BehaviorSubject<null>(null);
+  videoReload$ = this.videoReload.asObservable();
   server: string = `${environment.serverUrl}/video`;
 
   constructor(private http: HttpClient) {}
@@ -30,6 +30,10 @@ export class VideoService {
 
   updateSelectedVideo(data?: VideoResponse) {
     this.selectedVideo.next(data);
+  }
+
+  reloadVideoWebsite() {
+    this.videoReload.next(null);
   }
 
   /**
@@ -97,6 +101,21 @@ export class VideoService {
         `${this.server}/update-rating`,
         videoRatingUpdate,
         getRequestHeader({ isWithCredentials: true }),
+      ),
+    );
+  }
+
+  /**
+   * Get a list of random videos except the provided video by id.
+   * @param videoId The id of the video which must not be included in the list of random videos.
+   * @returns list of random videos.
+   */
+  getRandomVideosExceptVideoId(videoId: string): Promise<VideoResponse[]> {
+    const queryParams = new HttpParams().append('id', videoId);
+    return lastValueFrom(
+      this.http.get<VideoResponse[]>(
+        `${this.server}/list-random`,
+        getRequestHeader({ params: queryParams }),
       ),
     );
   }

@@ -1,0 +1,36 @@
+.comments-wrapper {
+  display: grid;
+  gap: 8px;
+
+  .comment-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 16px;
+    border-radius: 16px;
+
+    .uploader-image-wrapper {
+      height: 100%;
+
+      .uploader-image {
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .username-style {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .username-style:hover {
+      text-decoration: underline;
+    }
+
+    .header-container {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+  }
+}

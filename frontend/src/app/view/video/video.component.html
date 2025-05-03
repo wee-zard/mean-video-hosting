@@ -28,7 +28,15 @@
     </div>
     <div>
       <h2>Comments</h2>
+      <app-video-comments
+        [listOfComments]="listOfComments"
+      ></app-video-comments>
     </div>
   </div>
-  <div class="video-right-container">12312312</div>
+  <div class="video-right-container">
+    <app-video-card
+      *ngFor="let randomVideo of listOfRandomVideos"
+      [video]="randomVideo"
+    ></app-video-card>
+  </div>
 </div>

@@ -130,8 +130,6 @@ export const configureVideoRoutes = (): Router => {
       }
     }
 
-    console.log(foundUser, foundUser.videoRatings);
-
     const query = Video.updateOne({ id: videoId }, { $set: { rating: changedRating } });
     query
       .then(() => {
@@ -176,6 +174,25 @@ export const configureVideoRoutes = (): Router => {
 
     const query = Video.find(filterQuery);
     query.then((result) => res.status(200).send(result)).catch(() => res.status(400).send([]));
+  });
+
+  /**
+   * Get a list of random videos.
+   */
+  router.get('/list-random', (req: Request, res: Response) => {
+    const query = Video.aggregate([
+      { $addFields: { randomField: { $rand: {} } } },
+      { $sort: { randomField: 1 } },
+      { $limit: 6 },
+    ]);
+    query
+      .then((result: IVideoType[]) => {
+        const filteredList = result
+          .filter((video) => video.id !== req.query.id)
+          .filter((_, index) => index < 5);
+        res.status(200).send(filteredList);
+      })
+      .catch(() => res.status(400).send([]));
   });
 
   return router;

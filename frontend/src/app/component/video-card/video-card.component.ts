@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VideoResponse } from '../../shared/models/response/VideoResponse';
 import { ViewCountFormatterPipe } from '../../shared/pipes/view-count-formatter.pipe';
 import { VideoImagePathPipe } from '../../shared/pipes/video-image-path.pipe';
 import { UploadTimeFormatterPipe } from '../../shared/pipes/upload-time-formatter.pipe';
 import { Router } from '@angular/router';
 import { SiteRouteEnums } from '../../shared/enums/SiteRouteEnums';
+import { VideoService } from '../../shared/services/video.service';
 
 @Component({
   selector: 'app-video-card',
@@ -19,9 +20,14 @@ import { SiteRouteEnums } from '../../shared/enums/SiteRouteEnums';
 export class VideoCardComponent {
   @Input() video!: VideoResponse;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private videoService: VideoService,
+  ) {}
 
   handleOnClick(): void {
-    this.router.navigateByUrl(`/${SiteRouteEnums.VIDEO_PAGE}/${this.video.id}`);
+    this.router
+      .navigateByUrl(`/${SiteRouteEnums.VIDEO_PAGE}/${this.video.id}`)
+      .then(() => this.videoService.reloadVideoWebsite());
   }
 }

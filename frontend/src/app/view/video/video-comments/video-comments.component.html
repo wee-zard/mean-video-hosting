@@ -1,0 +1,60 @@
+<div class="comments-wrapper">
+  <ng-container *ngFor="let comment of listOfComments">
+    <div class="comment-container" *ngIf="comment.replyId === rootComment?.id">
+      <div class="uploader-image-wrapper">
+        <img
+          [src]="comment.user.profilePicturePath"
+          [width]="40"
+          [height]="40"
+          (click)="handleUploaderOnClick(comment.user.userId)"
+          class="uploader-image"
+          alt="comment writer's profile picture"
+        />
+      </div>
+      <div class="grid-container">
+        <div class="flex-container">
+          <div
+            class="username-style"
+            (click)="handleUploaderOnClick(comment.user.userId)"
+          >
+            {{ comment.user.userName }}
+          </div>
+          <div>
+            {{ comment.lastModification | uploadTimeFormatter }}
+          </div>
+        </div>
+        <div>
+          {{ comment.message }}
+        </div>
+        <ng-container *ngIf="getNumberOfReplies(comment)">
+          <div class="header-container">
+            <button
+              mat-button
+              type="button"
+              (click)="onHeadlineIconClick(comment)"
+            >
+              <div class="flex-container">
+                <ng-container
+                  *ngIf="!comment.isCommentClicked; else arrowUpside"
+                >
+                  <mat-icon>arrow_downward</mat-icon>
+                </ng-container>
+                <ng-template #arrowUpside>
+                  <mat-icon>arrow_upward</mat-icon>
+                </ng-template>
+                {{ getNumberOfReplies(comment) }}
+                {{ getNumberOfReplies(comment) > 1 ? "replies" : "reply" }}
+              </div>
+            </button>
+          </div>
+          <ng-container *ngIf="comment.isCommentClicked">
+            <app-video-comments
+              [listOfComments]="listOfComments"
+              [rootComment]="comment"
+            ></app-video-comments>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
