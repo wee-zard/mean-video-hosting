@@ -17,10 +17,16 @@ export class VideoService {
     undefined,
   );
   selectedVideo$ = this.selectedVideo.asObservable();
+  private listOfVideos = new BehaviorSubject<VideoResponse[]>([]);
+  listOfVideos$ = this.listOfVideos.asObservable();
 
   server: string = `${environment.serverUrl}/video`;
 
   constructor(private http: HttpClient) {}
+
+  updateListOfVideos(data: VideoResponse[]) {
+    this.listOfVideos.next(data);
+  }
 
   updateSelectedVideo(data?: VideoResponse) {
     this.selectedVideo.next(data);
@@ -36,9 +42,9 @@ export class VideoService {
     request: VideoSearchRequest,
   ): Promise<VideoResponse[]> {
     const queryParams = new HttpParams()
-      .append('text', request.searchByText ?? '')
-      .append('tag_id', request.searchByTagId ?? '')
-      .append('category_id', request.searchByCategoryId ?? '');
+      .append('text', request.text ?? '')
+      .append('tag_id', request.tag ?? '')
+      .append('category_id', request.category ?? '');
 
     return lastValueFrom(
       this.http.get<VideoResponse[]>(

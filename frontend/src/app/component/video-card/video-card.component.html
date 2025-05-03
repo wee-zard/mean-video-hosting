@@ -1,20 +1,20 @@
 <div class="video-card" (click)="handleOnClick()">
-  <img
-    class="video-card-image"
-    [src]="video.videoUrlPath | videoImagePath"
-    alt="Video Thumbnail"
-  />
   <div>
+    <img
+      class="video-card-image"
+      [src]="video.videoUrlPath | videoImagePath"
+      alt="Video Thumbnail"
+    />
     <div>
-      <p className="video-title">
+      <p>
         {{ video.title }}
       </p>
     </div>
-    <div class="video-view-and-upload">
-      <div>{{ video.viewCount | viewCountFormatter }}</div>
-      <div>
-        {{ video.upload.uploadTime | uploadTimeFormatter }}
-      </div>
+  </div>
+  <div class="video-view-and-upload">
+    <div>{{ video.viewCount | viewCountFormatter }}</div>
+    <div>
+      {{ video.upload.uploadTime | uploadTimeFormatter }}
     </div>
   </div>
 </div>

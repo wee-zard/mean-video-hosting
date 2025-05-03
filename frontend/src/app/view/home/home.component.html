@@ -1,5 +1,25 @@
 <div>
-  <ng-container *ngFor="let video of listOfVideos">
-    <app-video-card [video]="video"></app-video-card>
+  <ng-container *ngIf="listOfVideos.length > 0; else noVideoFound">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <ng-container *ngFor="let video of listOfVideos">
+        <app-video-card [video]="video"></app-video-card>
+      </ng-container>
+    </div>
   </ng-container>
+  <ng-template #noVideoFound>
+    <div class="no-result-holder">
+      <div class="no-result-image-holder">
+        <img
+          class="no-result-image"
+          src="assets/media/search-no-result.svg"
+          alt="404 not found icon"
+          width="35%"
+        />
+      </div>
+      <div class="no-result-text-holder">
+        <p>No Results found</p>
+        <p>Try adjusting your search to find what you are looking for</p>
+      </div>
+    </div>
+  </ng-template>
 </div>

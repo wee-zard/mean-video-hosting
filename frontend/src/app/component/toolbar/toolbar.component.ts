@@ -10,9 +10,10 @@ import { UserService } from '../../shared/services/user.service';
 import { UserModel, UserRoleEnum } from '../../shared/models/models/UserModels';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
-import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
+import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../../shared/services/setting.service';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -22,6 +23,7 @@ import { SettingService } from '../../shared/services/setting.service';
     CommonModule,
     RouterModule,
     MatButtonModule,
+    SearchbarComponent,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
@@ -63,10 +65,6 @@ export class ToolbarComponent implements OnInit {
       .catch(() => (this.isUserLoggedIn = false));
   }
 
-  getCurrentPageName(): string {
-    return `APP${this.selectedPageName !== '' ? ` - ${this.selectedPageName.toUpperCase()} PAGE` : ''}`;
-  }
-
   isRoleAdmin(): boolean {
     return (
       this.authenticatedUser?.userRole === UserRoleEnum.CONTENT_CREATOR_USER
@@ -81,13 +79,13 @@ export class ToolbarComponent implements OnInit {
     this.authService
       .logout()
       .then((res) => {
-        this.snackbarService.open(SnackbarSeverityEnums.SUCCESS, res.message);
+        this.snackbarService.open(SeverityEnums.SUCCESS, res.message);
         this.userService.updateUserModel();
         this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
       })
       .catch((error) => {
         this.snackbarService.open(
-          SnackbarSeverityEnums.ERROR,
+          SeverityEnums.ERROR,
           error?.error?.error ?? error.message,
         );
       });

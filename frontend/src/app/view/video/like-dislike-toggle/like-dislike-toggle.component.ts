@@ -12,7 +12,7 @@ import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { VideoService } from '../../../shared/services/video.service';
 import { LikeToggleType } from '../../../shared/models/LikeToggleType';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
-import { SnackbarSeverityEnums } from '../../../shared/enums/SnackbarSeverityEnums';
+import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
 
 @Component({
   selector: 'app-like-dislike-toggle',
@@ -127,7 +127,7 @@ export class LikeDislikeToggleComponent implements OnInit {
       })
       .catch(() => {
         this.snackService.open(
-          SnackbarSeverityEnums.ERROR,
+          SeverityEnums.ERROR,
           'Unexpected error occurred while rating the video!',
         );
       });

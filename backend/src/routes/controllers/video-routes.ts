@@ -149,27 +149,27 @@ export const configureVideoRoutes = (): Router => {
    */
   router.get('/search', (req: Request, res: Response) => {
     const searchTerms: VideoSearchRequest = {
-      searchByText: req.query.text as string,
-      searchByTagId: req.query.tag_id as string,
-      searchByCategoryId: req.query.category_id as string,
+      text: req.query.text as string,
+      tag: req.query.tag_id as string,
+      category: req.query.category_id as string,
     };
 
-    let filterQuery = { title: { $regex: searchTerms.searchByText, $options: 'i' } };
+    let filterQuery = { title: { $regex: searchTerms.text, $options: 'i' } };
 
-    if (searchTerms.searchByTagId) {
+    if (searchTerms.tag) {
       filterQuery = {
         ...{
           ...filterQuery,
-          'tags.id': searchTerms.searchByTagId,
+          'tags.id': searchTerms.tag,
         },
       };
     }
 
-    if (searchTerms.searchByCategoryId) {
+    if (searchTerms.category) {
       filterQuery = {
         ...{
           ...filterQuery,
-          'categories.id': searchTerms.searchByCategoryId,
+          'categories.id': searchTerms.category,
         },
       };
     }

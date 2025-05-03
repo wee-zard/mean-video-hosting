@@ -1,0 +1,40 @@
+$searchbarHeight: 40px;
+
+.searchbar-container {
+  height: $searchbarHeight;
+
+  mat-form-field {
+    width: 400px;
+    height: $searchbarHeight;
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      border-radius: 16px;
+    }
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      height: $searchbarHeight;
+      display: flex;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    input {
+      position: relative;
+      bottom: 8px;
+    }
+
+    ::ng-deep .mdc-floating-label {
+      padding-bottom: 15px !important;
+    }
+
+    ::ng-deep .mdc-text-field--outlined {
+      --mdc-outlined-text-field-container-shape: 20px;
+    }
+  }
+}
+
+.searchbar-icon-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}

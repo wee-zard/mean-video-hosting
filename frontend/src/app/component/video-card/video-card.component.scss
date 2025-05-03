@@ -3,21 +3,29 @@
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px gray;
   padding: 1rem;
-  border-radius: 8px;
-  width: 28%;
+  border-radius: 16px;
   cursor: pointer;
-}
-
-.video-card-image {
-  width: 100%;
-  cursor: pointer;
-}
-
-.video-view-and-upload {
   display: flex;
-  gap: 4px;
+  align-content: space-between;
+  flex-wrap: wrap;
 
-  div:last-of-type::before {
-    content: "•";
+  .video-card-image {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 6px;
   }
+
+  .video-view-and-upload {
+    display: flex;
+    gap: 4px;
+
+    div:last-of-type::before {
+      content: "•";
+    }
+  }
+}
+
+:host {
+  display: flex;
+  width: 28%;
 }

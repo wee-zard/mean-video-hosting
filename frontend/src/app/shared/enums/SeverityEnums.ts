@@ -1,4 +1,4 @@
-export enum SnackbarSeverityEnums {
+export enum SeverityEnums {
   INFO = 'info-snackbar',
   ERROR = 'error-snackbar',
   WARNING = 'warning-snackbar',

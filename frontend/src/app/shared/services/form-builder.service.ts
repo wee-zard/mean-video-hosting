@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginFormType } from '../models/forms/LoginForm';
 import { RegistrationFormType } from '../models/forms/RegistrationForm';
+import {
+  VideoSearchFormFields,
+  VideoSearchFormType,
+} from '../models/forms/VideoSearchForm';
+
+type FormControlOption = {
+  isNotRequired: boolean;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +35,12 @@ export class FormBuilderService {
     return ['', [Validators.required]];
   }
 
-  private getTextFormControl() {
-    return ['', [Validators.required, Validators.maxLength(100)]];
+  private getTextFormControl(option?: FormControlOption) {
+    if (option?.isNotRequired) {
+      return ['', [Validators.maxLength(100)]];
+    } else {
+      return ['', [Validators.required, Validators.maxLength(100)]];
+    }
   }
 
   /**
@@ -78,5 +90,24 @@ export class FormBuilderService {
         matchingControl.setErrors(null);
       }
     };
+  }
+
+  /**
+   * Created a new form group for the searchbar.
+   * The form will contains required form controls as well.
+   * @returns Returns the searchbar form group.
+   */
+  buildVideoSearchForm() {
+    return this.fb.group<VideoSearchFormType>({
+      [VideoSearchFormFields.TEXT]: this.getTextFormControl({
+        isNotRequired: true,
+      }),
+      [VideoSearchFormFields.TAG]: this.getTextFormControl({
+        isNotRequired: true,
+      }),
+      [VideoSearchFormFields.CATEGORY]: this.getTextFormControl({
+        isNotRequired: true,
+      }),
+    });
   }
 }

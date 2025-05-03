@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarSeverityEnums } from '../enums/SnackbarSeverityEnums';
+import { SeverityEnums } from '../enums/SeverityEnums';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ import { SnackbarSeverityEnums } from '../enums/SnackbarSeverityEnums';
 export class SnackbarService {
   constructor(private snackbar: MatSnackBar) {}
 
-  open(severityClass: SnackbarSeverityEnums, message?: string | null): void {
+  open(severityClass: SeverityEnums, message?: string | null): void {
     this.snackbar.open(message ?? '', '', {
       duration: 5000,
       horizontalPosition: 'center',

@@ -1,5 +1,5 @@
 export interface VideoSearchRequest {
-  searchByText?: string;
-  searchByTagId?: string;
-  searchByCategoryId?: string;
+  text?: string;
+  tag?: string;
+  category?: string;
 }

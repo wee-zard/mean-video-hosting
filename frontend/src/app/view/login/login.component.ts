@@ -20,7 +20,7 @@ import { AutoUnsubscribe } from '../../shared/decorators/AutoUnsubscribe';
 import { FormValidationService } from '../../shared/services/form-validation.service';
 import { convertFormToModel } from '../../shared/helper/ConversionHelper';
 import { AuthService } from '../../shared/services/auth.service';
-import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
+import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { UserService } from '../../shared/services/user.service';
 
 @Component({
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       .login(model)
       .then((userModel) => {
         this.snackbarService.open(
-          SnackbarSeverityEnums.SUCCESS,
+          SeverityEnums.SUCCESS,
           'Login is successfully finished.',
         );
         this.userService.updateUserModel(userModel);
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       })
       .catch((error) =>
         this.snackbarService.open(
-          SnackbarSeverityEnums.ERROR,
+          SeverityEnums.ERROR,
           error?.error?.error ?? error.message,
         ),
       )

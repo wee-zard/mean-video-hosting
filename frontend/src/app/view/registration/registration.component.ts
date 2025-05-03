@@ -22,7 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { convertFormToModel } from '../../shared/helper/ConversionHelper';
 import { StorageKeyEnum } from '../../shared/enums/StorageKeyEnums';
 import { AuthService } from '../../shared/services/auth.service';
-import { SnackbarSeverityEnums } from '../../shared/enums/SnackbarSeverityEnums';
+import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 
 @Component({
   selector: 'app-registration',
@@ -94,14 +94,14 @@ export class RegistrationComponent implements OnInit {
           JSON.stringify(result),
         );
         this.snackbarService.open(
-          SnackbarSeverityEnums.SUCCESS,
+          SeverityEnums.SUCCESS,
           'Registration is successfully finished.',
         );
         this.router.navigateByUrl(`/${SiteRouteEnums.HOME_PAGE}`);
       })
       .catch((error) =>
         this.snackbarService.open(
-          SnackbarSeverityEnums.ERROR,
+          SeverityEnums.ERROR,
           error?.error?.error ?? error.message,
         ),
       )

@@ -1,14 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar-container">
   <div class="header-container">
-    <div>
-      <button mat-icon-button type="button" (click)="onHeadlineIconClick()">
-        <mat-icon>view_headline</mat-icon>
-      </button>
-    </div>
-    <div>
-      {{ getCurrentPageName() }}
-    </div>
+    <button mat-icon-button type="button" (click)="onHeadlineIconClick()">
+      <mat-icon>view_headline</mat-icon>
+    </button>
   </div>
+  <div><app-searchbar></app-searchbar></div>
   <div
     fxFlex
     fxLayout

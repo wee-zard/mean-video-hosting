@@ -31,7 +31,9 @@ a:active {
   }
 }
 
-mat-toolbar {
+.toolbar-container {
   position: sticky;
   top: 0;
+  display: flex;
+  gap: 16px;
 }
