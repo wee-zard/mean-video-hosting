@@ -30,7 +30,7 @@ iframe {
   display: inline-flex;
   gap: 8px;
   align-items: center;
-  background-color: beige;
+  background-color: rgba(174, 174, 153, 0.3);
   box-shadow: 1px 2px 2px rgb(195, 195, 174);
   padding: 4px;
   border-radius: 16px;
@@ -38,7 +38,7 @@ iframe {
 }
 
 .video-uploader-container:hover {
-  background-color: rgba(225, 225, 200, 0.7);
+  background-color: rgba(231, 231, 210, 0.8);
 }
 
 .uploader-image {

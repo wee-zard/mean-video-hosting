@@ -1,0 +1,20 @@
+<div class="description-container grid-container" *ngIf="video">
+  <div class="flex-container">
+    <div class="minor-text">
+      {{ video.viewCount | viewCountFormatter }}
+    </div>
+    <div class="minor-text">
+      {{ video.upload.uploadTime | uploadTimeFormatter }}
+    </div>
+  </div>
+  <div class="minor-text">
+    <mat-chip-set>
+      <mat-chip *ngFor="let tag of video.tags" class="custom-chip">
+        #{{ tag.name }}
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+  <div>
+    <p>{{ video.description }}</p>
+  </div>
+</div>

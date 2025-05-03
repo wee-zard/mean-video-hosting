@@ -1,0 +1,15 @@
+.description-container {
+  background-color: rgba(174, 174, 153, 0.3);
+  box-shadow: 1px 2px 2px rgb(195, 195, 174);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.custom-chip {
+  height: 14px;
+  padding: 0 8px;
+
+  ::ng-deep .mat-mdc-chip-action-label {
+    font-size: 10px;
+  }
+}

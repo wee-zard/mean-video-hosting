@@ -3,21 +3,19 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { VideoResponse } from '../../shared/models/response/VideoResponse';
 import { VideoService } from '../../shared/services/video.service';
-import { ViewCountFormatterPipe } from '../../shared/pipes/view-count-formatter.pipe';
-import { UploadTimeFormatterPipe } from '../../shared/pipes/upload-time-formatter.pipe';
 import { SanitizeResourceUrlPipe } from '../../shared/pipes/sanitize-resource-url.pipe';
 import { SiteRouteEnums } from '../../shared/enums/SiteRouteEnums';
 import { LikeDislikeToggleComponent } from './like-dislike-toggle/like-dislike-toggle.component';
 import { AutoUnsubscribe } from '../../shared/decorators/AutoUnsubscribe';
+import { VideoDescriptionComponent } from './video-description/video-description.component';
 
 @Component({
   selector: 'app-video',
   imports: [
     CommonModule,
-    ViewCountFormatterPipe,
-    UploadTimeFormatterPipe,
     SanitizeResourceUrlPipe,
     LikeDislikeToggleComponent,
+    VideoDescriptionComponent,
   ],
   templateUrl: './video.component.html',
   styleUrl: './video.component.scss',

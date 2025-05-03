@@ -8,33 +8,23 @@
         allowFullScreen
       ></iframe>
     </div>
-    <div>
+    <div class="grid-container">
       <h2>{{ video.title }}</h2>
       <div class="video-header-container">
         <div class="video-uploader-container" (click)="handleUploaderOnClick()">
-          <div>
-            <img
-              [src]="video.upload.userImagePath"
-              [width]="40"
-              class="uploader-image"
-              alt="uploader user's profile picture"
-            />
-          </div>
+          <img
+            [src]="video.upload.userImagePath"
+            [width]="40"
+            class="uploader-image"
+            alt="uploader user's profile picture"
+          />
           <div>{{ video.upload.userName }}</div>
         </div>
         <div>
           <app-like-dislike-toggle />
         </div>
       </div>
-      <div>
-        <h4>Tags</h4>
-        <h4>Categories</h4>
-      </div>
-      <div>
-        <div>{{ video.viewCount | viewCountFormatter }}</div>
-        <div>{{ video.upload.uploadTime | uploadTimeFormatter }}</div>
-        <p>{{ video.description }}</p>
-      </div>
+      <app-video-description></app-video-description>
     </div>
     <div>
       <h2>Comments</h2>

@@ -39,6 +39,12 @@ body {
   align-items: center;
 }
 
+.grid-container {
+  display: grid;
+  gap: 8px;
+  align-items: center;
+}
+
 .no-result-image-holder {
   display: flex;
   justify-content: center;
@@ -55,4 +61,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.minor-text {
+  font-size: 12px;
 }

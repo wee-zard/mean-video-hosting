@@ -54,8 +54,6 @@ export class LikeDislikeToggleComponent implements OnInit {
         this.updateSelectedToggleOption();
       },
     );
-
-    // TODO: Check the this.userModel.ratings for the selected video and init a default value the selectedToggleOption.
   }
 
   private updateSelectedToggleOption(): void {
