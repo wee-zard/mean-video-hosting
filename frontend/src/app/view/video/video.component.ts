@@ -13,6 +13,7 @@ import { VideoCardComponent } from '../../component/video-card/video-card.compon
 import { CommentService } from '../../shared/services/comment.service';
 import { CommentResponse } from '../../shared/models/response/CommentResponse';
 import { Subscription } from 'rxjs';
+import { getLastUrlChunk } from '../../shared/helper/UrlParserHelper';
 
 @Component({
   selector: 'app-video',
@@ -31,7 +32,6 @@ import { Subscription } from 'rxjs';
 export class VideoComponent implements OnInit {
   video?: VideoResponse;
   listOfRandomVideos: VideoResponse[] = [];
-  listOfComments: CommentResponse[] = [];
   private reloadSubscription?: Subscription;
 
   constructor(
@@ -47,30 +47,24 @@ export class VideoComponent implements OnInit {
   }
 
   initVideoWebsite(): void {
-    const splittedUrl = this.router.url.split('/');
-    const videoId = splittedUrl[splittedUrl.length - 1];
+    const videoId = getLastUrlChunk(this.router.url);
 
-    this.videoService.getOneVideoById(videoId).then((videoResponse) => {
-      this.video = videoResponse;
-      this.videoService.updateSelectedVideo(videoResponse);
-    });
+    this.videoService
+      .getOneVideoById(videoId)
+      .then((videoResponse) => {
+        this.video = videoResponse;
+        this.videoService.updateSelectedVideo(videoResponse);
+      })
+      .catch(() => this.videoService.updateSelectedVideo());
 
-    this.handleRandomVideoFetch(videoId);
-    this.handleVideoCommentsFetch(videoId);
-  }
-
-  private handleRandomVideoFetch(videoId: string): void {
     this.videoService
       .getRandomVideosExceptVideoId(videoId)
-      .then(
-        (listOfRandomVideos) => (this.listOfRandomVideos = listOfRandomVideos),
-      );
-  }
+      .then((res) => (this.listOfRandomVideos = res));
 
-  private handleVideoCommentsFetch(videoId: string): void {
     this.commentService
-      .getVideosBySearchParams(videoId)
-      .then((listOfComments) => (this.listOfComments = listOfComments));
+      .getCommentsByVideoId(videoId)
+      .then((res) => this.commentService.updateListOfComments(res))
+      .catch(() => this.commentService.updateListOfComments([]));
   }
 
   handleUploaderOnClick(): void {

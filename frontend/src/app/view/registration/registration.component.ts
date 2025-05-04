@@ -70,7 +70,6 @@ export class RegistrationComponent implements OnInit {
     this.isLoading = true;
 
     if (!this.form?.valid) {
-      console.log(this.form, this.form.controls);
       this.formError =
         this.formValidationService.getErrorMessages<RegistrationFormType>(
           this.form.controls,

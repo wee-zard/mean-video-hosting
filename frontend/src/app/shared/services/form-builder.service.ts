@@ -6,9 +6,11 @@ import {
   VideoSearchFormFields,
   VideoSearchFormType,
 } from '../models/forms/VideoSearchForm';
+import { CommentFormField, CommentFormType } from '../models/forms/CommentForm';
 
 type FormControlOption = {
-  isNotRequired: boolean;
+  isNotRequired?: boolean;
+  maxLength?: number;
 };
 
 @Injectable({
@@ -36,10 +38,12 @@ export class FormBuilderService {
   }
 
   private getTextFormControl(option?: FormControlOption) {
+    const maxLength = option?.maxLength ?? 100;
+
     if (option?.isNotRequired) {
-      return ['', [Validators.maxLength(100)]];
+      return ['', [Validators.maxLength(maxLength)]];
     } else {
-      return ['', [Validators.required, Validators.maxLength(100)]];
+      return ['', [Validators.required, Validators.maxLength(maxLength)]];
     }
   }
 
@@ -108,6 +112,17 @@ export class FormBuilderService {
       [VideoSearchFormFields.CATEGORY]: this.getTextFormControl({
         isNotRequired: true,
       }),
+    });
+  }
+
+  /**
+   * Created a new form group for the comments.
+   * The form will contains required form controls as well.
+   * @returns Returns the comment form group.
+   */
+  buildCommentForm() {
+    return this.fb.group<CommentFormType>({
+      [CommentFormField.MESSAGE]: this.getTextFormControl({ maxLength: 500 }),
     });
   }
 }

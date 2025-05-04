@@ -22,6 +22,7 @@ import { convertFormToModel } from '../../shared/helper/ConversionHelper';
 import { AuthService } from '../../shared/services/auth.service';
 import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { UserService } from '../../shared/services/user.service';
+import { StorageKeyEnum } from '../../shared/enums/StorageKeyEnums';
 
 @Component({
   selector: 'app-login',
@@ -79,6 +80,10 @@ export class LoginComponent implements OnInit {
         this.snackbarService.open(
           SeverityEnums.SUCCESS,
           'Login is successfully finished.',
+        );
+        localStorage.setItem(
+          StorageKeyEnum.AUTHENTICATED_USER,
+          JSON.stringify(userModel),
         );
         this.userService.updateUserModel(userModel);
         this.router.navigateByUrl(`/${SiteRouteEnums.HOME_PAGE}`);

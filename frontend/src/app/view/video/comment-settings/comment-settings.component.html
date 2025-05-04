@@ -1,0 +1,31 @@
+<ng-container *ngIf="isLoggedIn()">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngIf="isLoggedIn()" (click)="handleCommentReply()">
+      <mat-icon>reply</mat-icon>
+      <span>Reply to comment</span>
+    </button>
+    <button mat-menu-item *ngIf="isContentCreatorOrAdmin()" disabled>
+      <mat-icon>visibility</mat-icon>
+      <span>Hide comment</span>
+    </button>
+    <button mat-menu-item *ngIf="isContentCreatorOrAdmin()">
+      <mat-icon>block</mat-icon>
+      <span>Block user</span>
+    </button>
+    <button mat-menu-item *ngIf="isItOwnComment() && isReplyCanBeWritten()">
+      <mat-icon>edit</mat-icon>
+      <span>Edit comment</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="isContentCreatorOrAdmin() || isItOwnComment()"
+      (click)="handleCommentRemoval()"
+    >
+      <mat-icon>delete</mat-icon>
+      <span>Remove comment</span>
+    </button>
+  </mat-menu>
+</ng-container>

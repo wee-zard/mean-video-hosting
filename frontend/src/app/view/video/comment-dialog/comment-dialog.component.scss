@@ -1,0 +1,11 @@
+.comment-container {
+  padding: 16px;
+
+  mat-form-field {
+    width: 390px;
+
+    textarea {
+      resize: none;
+    }
+  }
+}

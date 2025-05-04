@@ -1,6 +1,6 @@
 import mongoose, { Model, Schema } from 'mongoose';
 
-export type ICommentsTYpe = {
+export type ICommentsType = {
   id: string;
   message: string;
   lastModification: string;
@@ -13,10 +13,10 @@ export type ICommentsTYpe = {
   videoId: string;
 };
 
-interface IComment extends Document, ICommentsTYpe {}
+interface IComment extends Document, ICommentsType {}
 
 const CommentSchema: Schema<IComment> = new mongoose.Schema({
-  id: { type: String, required: true },
+  id: { type: String },
   message: { type: String, required: true },
   lastModification: { type: String, required: true },
   replyId: { type: String },

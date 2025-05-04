@@ -12,7 +12,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class UserService implements OnInit {
   private userModel = new BehaviorSubject<UserModel | undefined>(undefined);
   userModel$ = this.userModel.asObservable();
-  server: string = `${environment.serverUrl}/user`;
+  private server: string = `${environment.serverUrl}/user`;
 
   constructor(private http: HttpClient) {}
 

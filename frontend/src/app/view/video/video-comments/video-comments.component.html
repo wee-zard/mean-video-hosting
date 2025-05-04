@@ -1,3 +1,8 @@
+<ng-container *ngIf="!rootComment">
+  <button mat-button type="button" (click)="onNewCommentClick()">
+    Write a new comment!
+  </button>
+</ng-container>
 <div class="comments-wrapper">
   <ng-container *ngFor="let comment of listOfComments">
     <div class="comment-container" *ngIf="comment.replyId === rootComment?.id">
@@ -11,7 +16,7 @@
           alt="comment writer's profile picture"
         />
       </div>
-      <div class="grid-container">
+      <div class="grid-container" style="width: 100%">
         <div class="flex-container">
           <div
             class="username-style"
@@ -23,8 +28,11 @@
             {{ comment.lastModification | uploadTimeFormatter }}
           </div>
         </div>
-        <div>
-          {{ comment.message }}
+        <div class="flex-container video-message-container">
+          <div>
+            {{ comment.message }}
+          </div>
+          <app-comment-settings [comment]="comment"></app-comment-settings>
         </div>
         <ng-container *ngIf="getNumberOfReplies(comment)">
           <div class="header-container">
@@ -47,12 +55,10 @@
               </div>
             </button>
           </div>
-          <ng-container *ngIf="comment.isCommentClicked">
-            <app-video-comments
-              [listOfComments]="listOfComments"
-              [rootComment]="comment"
-            ></app-video-comments>
-          </ng-container>
+          <app-video-comments
+            *ngIf="comment.isCommentClicked"
+            [rootComment]="comment"
+          ></app-video-comments>
         </ng-container>
       </div>
     </div>

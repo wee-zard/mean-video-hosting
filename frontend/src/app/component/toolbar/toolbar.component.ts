@@ -14,6 +14,7 @@ import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../../shared/services/setting.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { StorageKeyEnum } from '../../shared/enums/StorageKeyEnums';
 
 @Component({
   selector: 'app-toolbar',
@@ -47,22 +48,33 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.userModelSubscription = this.userService.userModel$.subscribe(
       (user) => {
-        this.authenticatedUser = user;
-
         if (!user) {
           return;
         }
 
-        this.handleUserAuthentication();
+        this.authService
+          .checkAuth()
+          .then((res) => (this.isUserLoggedIn = res))
+          .catch(() => {
+            this.isUserLoggedIn = false;
+            this.userService.updateUserModel();
+            localStorage.removeItem(StorageKeyEnum.AUTHENTICATED_USER);
+          });
       },
     );
+
+    this.loadUserFromStorage();
   }
 
-  private handleUserAuthentication(): void {
-    this.authService
-      .checkAuth()
-      .then((res) => (this.isUserLoggedIn = res))
-      .catch(() => (this.isUserLoggedIn = false));
+  private loadUserFromStorage(): void {
+    const element = localStorage.getItem(StorageKeyEnum.AUTHENTICATED_USER);
+
+    if (!element) {
+      return;
+    }
+
+    const user: UserModel = JSON.parse(element);
+    this.userService.updateUserModel(user);
   }
 
   isRoleAdmin(): boolean {

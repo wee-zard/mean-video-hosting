@@ -1,0 +1,28 @@
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
+<div class="grid-container comment-container">
+  <h3>{{ getDialogTitleMessage() }}</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field>
+        <textarea
+          matInput
+          [formControlName]="formFields.MESSAGE"
+          rows="6"
+          maxlength="500"
+        ></textarea>
+      </mat-form-field>
+      <div class="button-holder">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
