@@ -1,0 +1,13 @@
+.video-upload-container {
+  display: grid;
+  justify-content: center;
+  gap: 16px;
+
+  .file-input {
+    display: none;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+}

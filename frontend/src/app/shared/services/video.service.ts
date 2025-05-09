@@ -20,6 +20,8 @@ export class VideoService {
   listOfVideos$ = this.listOfVideos.asObservable();
   private videoReload = new BehaviorSubject<null>(null);
   videoReload$ = this.videoReload.asObservable();
+  private listOfChanelVideos = new BehaviorSubject<VideoResponse[]>([]);
+  listOfChanelVideos$ = this.listOfChanelVideos.asObservable();
   server: string = `${environment.serverUrl}/video`;
 
   constructor(private http: HttpClient) {}
@@ -34,6 +36,10 @@ export class VideoService {
 
   reloadVideoWebsite() {
     this.videoReload.next(null);
+  }
+
+  updateListOfChanelVideos(data: VideoResponse[]) {
+    this.listOfChanelVideos.next(data);
   }
 
   /**
@@ -116,6 +122,21 @@ export class VideoService {
       this.http.get<VideoResponse[]>(
         `${this.server}/list-random`,
         getRequestHeader({ params: queryParams }),
+      ),
+    );
+  }
+
+  /**
+   * Get a list of videos what a specific user uploaded to the server
+   * @param userId The id of the user who uploaded the videos.
+   * @returns list of videos uploaded by the user.
+   */
+  getVideosUploadedByUser(userId: string): Promise<VideoResponse[]> {
+    const queryParams = new HttpParams().append('user_id', userId);
+    return lastValueFrom(
+      this.http.get<VideoResponse[]>(
+        `${this.server}/chanel-videos`,
+        getRequestHeader({ params: queryParams, isWithCredentials: true }),
       ),
     );
   }

@@ -1,0 +1,18 @@
+<div *ngIf="!!user" class="flex-container">
+  <img
+    [src]="user.profilePicturePath"
+    [width]="120"
+    [height]="120"
+    class="uploader-image"
+    alt="chanel owner's profile picture"
+  />
+  <div>
+    <p class="username-style">
+      {{ user.username }}
+    </p>
+    <p>
+      {{ getUploadedVideoFormatter() }}
+    </p>
+    <p>Channel created at {{ user.registrationTime | isoDateTimeFormatter }}</p>
+  </div>
+</div>

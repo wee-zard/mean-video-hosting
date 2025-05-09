@@ -33,8 +33,7 @@ import { StorageKeyEnum } from '../../shared/enums/StorageKeyEnums';
 export class ToolbarComponent implements OnInit {
   selectedPageName: string = '';
   siteRoutes: typeof SiteRouteEnums = SiteRouteEnums;
-  authenticatedUser?: UserModel;
-  isUserLoggedIn: boolean = false;
+  user?: UserModel;
   private userModelSubscription?: Subscription;
 
   constructor(
@@ -49,16 +48,19 @@ export class ToolbarComponent implements OnInit {
     this.userModelSubscription = this.userService.userModel$.subscribe(
       (user) => {
         if (!user) {
+          this.user = undefined;
           return;
         }
 
         this.authService
           .checkAuth()
-          .then((res) => (this.isUserLoggedIn = res))
+          .then((res) => {
+            this.user = user;
+          })
           .catch(() => {
-            this.isUserLoggedIn = false;
             this.userService.updateUserModel();
             localStorage.removeItem(StorageKeyEnum.AUTHENTICATED_USER);
+            this.user = undefined;
           });
       },
     );
@@ -77,29 +79,30 @@ export class ToolbarComponent implements OnInit {
     this.userService.updateUserModel(user);
   }
 
-  isRoleAdmin(): boolean {
-    return (
-      this.authenticatedUser?.userRole === UserRoleEnum.CONTENT_CREATOR_USER
-    );
-  }
-
   onHeadlineIconClick(): void {
     this.settingService.updateToggleSidenav();
+  }
+
+  navigateToUserChanelRoute(): string {
+    return this.user ? `${this.siteRoutes.CHANEL_PAGE}/${this.user.id}` : '';
   }
 
   onLogoutClick(): void {
     this.authService
       .logout()
-      .then((res) => {
-        this.snackbarService.open(SeverityEnums.SUCCESS, res.message);
-        this.userService.updateUserModel();
-        this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
-      })
-      .catch((error) => {
+      .then((res) =>
+        this.snackbarService.open(SeverityEnums.SUCCESS, res.message),
+      )
+      .catch((error) =>
         this.snackbarService.open(
           SeverityEnums.ERROR,
           error?.error?.error ?? error.message,
-        );
+        ),
+      )
+      .finally(() => {
+        localStorage.removeItem(StorageKeyEnum.AUTHENTICATED_USER);
+        this.userService.updateUserModel(undefined);
+        this.router.navigateByUrl(`/${SiteRouteEnums.LOGIN}`);
       });
   }
 }

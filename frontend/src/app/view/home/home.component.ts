@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { VideoService } from '../../shared/services/video.service';
 import { VideoSearchRequest } from '../../shared/models/request/VideoSearchRequest';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { SeverityEnums } from '../../shared/enums/SeverityEnums';
-import { CommonModule } from '@angular/common';
 import { VideoResponse } from '../../shared/models/response/VideoResponse';
-import { VideoCardComponent } from '../../component/video-card/video-card.component';
-import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from '../../shared/decorators/AutoUnsubscribe';
+import { VideoListDisplayComponent } from '../../component/video-list-display/video-list-display.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, VideoCardComponent],
+  imports: [VideoListDisplayComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -30,6 +29,7 @@ export class HomeComponent implements OnInit {
     this.videoService
       .getVideosBySearchParams(this.videoSearchRequest)
       .then((videos) =>
+        // TODO: Remove the filter condition before submitting the project to the client.
         this.videoService.updateListOfVideos(
           videos.filter((video, index) => index < 6),
         ),

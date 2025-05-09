@@ -1,0 +1,14 @@
+.no-result-image {
+  border-radius: 50%;
+}
+
+.video-card-outer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  ::ng-deep app-video-card {
+    display: flex;
+    width: 28%;
+  }
+}

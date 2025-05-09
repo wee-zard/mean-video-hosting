@@ -1,0 +1,17 @@
+.channel-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chanel-tab-container {
+  height: 100%;
+
+  mat-tab-group {
+    height: 100%;
+
+    ::ng-deep .mat-mdc-tab-body-wrapper {
+      height: 100%;
+    }
+  }
+}

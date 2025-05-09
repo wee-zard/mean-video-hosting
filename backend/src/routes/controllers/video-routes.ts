@@ -12,6 +12,14 @@ export const configureVideoRoutes = (): Router => {
     query.then((result) => res.status(200).send(result)).catch(() => res.status(400).send(null));
   });
 
+  /**
+   * Get the list of videos what a specific user uploaded so far to the server.
+   */
+  router.get('/chanel-videos', (req: Request, res: Response) => {
+    const query = Video.find({ 'upload.userId': req.query.user_id });
+    query.then((result) => res.status(200).send(result)).catch(() => res.status(400).send([]));
+  });
+
   router.get('/is-exists', (req: Request, res: Response) => {
     const query = Video.find({ id: req.query.video_id });
     query

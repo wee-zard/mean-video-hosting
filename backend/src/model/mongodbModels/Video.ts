@@ -25,7 +25,7 @@ export type IVideoType = {
 interface IVideo extends Document, IVideoType {}
 
 const VideoSchema: Schema<IVideo> = new mongoose.Schema({
-  id: { type: String, required: true },
+  id: { type: String },
   viewCount: { type: Number, required: true },
   videoUrlPath: { type: String, required: true },
   description: { type: String, required: true },

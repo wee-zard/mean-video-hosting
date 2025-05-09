@@ -1,1 +1,21 @@
-<p>chanel works!</p>
+<div class="grid-container channel-container">
+  <app-chanel-header></app-chanel-header>
+  <div class="chanel-tab-container">
+    <mat-tab-group>
+      <mat-tab label="Videos"><app-chanel-videos></app-chanel-videos></mat-tab>
+      <ng-container *ngIf="isVideoStatisticsAreDisplayed()">
+        <mat-tab label="Video Management">TODO</mat-tab>
+      </ng-container>
+      <ng-container *ngIf="isVideoStatisticsAreDisplayed()">
+        <mat-tab label="Video Statistics"
+          ><app-chanel-video-statistics></app-chanel-video-statistics
+        ></mat-tab>
+      </ng-container>
+      <ng-container *ngIf="isBrowsingUserTheChanelOwner()">
+        <mat-tab label="Upload Video"
+          ><app-chanel-video-upload></app-chanel-video-upload
+        ></mat-tab>
+      </ng-container>
+    </mat-tab-group>
+  </div>
+</div>
