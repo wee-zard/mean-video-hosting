@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Subscription } from 'rxjs';
+import { UserModel } from '../../../shared/models/models/UserModels';
+import { VideoResponse } from '../../../shared/models/response/VideoResponse';
+import { VideoService } from '../../../shared/services/video.service';
+import { getLastUrlChunk } from '../../../shared/helper/UrlParserHelper';
+import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
+import { VideoImagePathPipe } from '../../../shared/pipes/video-image-path.pipe';
+import { SiteRouteEnums } from '../../../shared/enums/SiteRouteEnums';
+import { MatDialog } from '@angular/material/dialog';
+import { ChanelVideoDeleteDialogComponent } from '../chanel-video-delete-dialog/chanel-video-delete-dialog.component';
+import { videoRemovalMatDialogConfigs } from '../../../shared/helper/DialogHelper';
+
+@Component({
+  selector: 'app-chanel-video-management',
+  imports: [MatTableModule, VideoImagePathPipe, MatButtonModule, MatIconModule],
+  templateUrl: './chanel-video-management.component.html',
+  styleUrl: './chanel-video-management.component.scss',
+})
+@AutoUnsubscribe
+export class ChanelVideoManagementComponent implements OnInit {
+  channelOwnerId?: string;
+  user?: UserModel;
+  displayedColumns = ['videoUrlPath', 'title', 'description', 'action'];
+  dataSource = new MatTableDataSource<VideoResponse>([]);
+  private listOfChanelVideosSubs?: Subscription;
+
+  constructor(
+    private videoService: VideoService,
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
+
+  ngOnInit(): void {
+    this.channelOwnerId = getLastUrlChunk(this.router.url);
+
+    this.listOfChanelVideosSubs =
+      this.videoService.listOfChanelVideos$.subscribe((data) => {
+        this.dataSource = new MatTableDataSource<VideoResponse>(data);
+      });
+  }
+
+  handleOnVideoClick(videoId: string): void {
+    this.router.navigateByUrl(`/${SiteRouteEnums.VIDEO_PAGE}/${videoId}`);
+  }
+
+  handleOnDeleteClick(video: VideoResponse): void {
+    this.dialog.open(
+      ChanelVideoDeleteDialogComponent,
+      videoRemovalMatDialogConfigs(video),
+    );
+  }
+
+  handleOnEditClick(video: VideoResponse): void {}
+}

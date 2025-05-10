@@ -1,3 +1,6 @@
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
 <div class="video-upload-container">
   <h3>Select a video and upload it here!</h3>
   <div>

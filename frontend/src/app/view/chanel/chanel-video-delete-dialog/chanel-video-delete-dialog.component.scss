@@ -1,0 +1,19 @@
+::ng-deep .common-dialog-setting mat-dialog-container .mat-mdc-dialog-surface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.delete-dialog-container {
+  height: 100%;
+
+  img {
+    max-width: 430px;
+    width: 430px;
+  }
+
+  .delete-button {
+    color: red !important;
+  }
+}

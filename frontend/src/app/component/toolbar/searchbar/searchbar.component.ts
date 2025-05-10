@@ -15,6 +15,7 @@ import { VideoService } from '../../../shared/services/video.service';
 import { VideoSearchRequest } from '../../../shared/models/request/VideoSearchRequest';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-searchbar',
@@ -34,6 +35,8 @@ export class SearchbarComponent implements OnInit {
   isLoading: boolean = false;
   form!: FormGroup<VideoSearchFormType>;
   formFields: typeof VideoSearchFormFields = VideoSearchFormFields;
+  isDisplayed: boolean = false;
+  private isDisplayedSubscription?: Subscription;
 
   constructor(
     private formBuilder: FormBuilderService,
@@ -43,14 +46,14 @@ export class SearchbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.buildVideoSearchForm();
+
+    this.isDisplayedSubscription =
+      this.videoService.isSearchbarDisplayed$.subscribe(
+        (data) => (this.isDisplayed = data),
+      );
   }
 
   async onSubmit(): Promise<void> {
-    if (!this.form.valid) {
-      this.snackbarService.open(SeverityEnums.ERROR, 'Search term is invalid!');
-      return;
-    }
-
     const videoSearchRequest: VideoSearchRequest = this.form.value as any;
 
     this.videoService

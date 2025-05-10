@@ -13,7 +13,7 @@ export type ICommentsType = {
   videoId: string;
 };
 
-interface IComment extends Document, ICommentsType {}
+export interface IComment extends Document, ICommentsType {}
 
 const CommentSchema: Schema<IComment> = new mongoose.Schema({
   id: { type: String },

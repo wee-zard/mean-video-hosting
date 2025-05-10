@@ -22,7 +22,7 @@ export type IVideoType = {
   categories: ICategoryType[];
 };
 
-interface IVideo extends Document, IVideoType {}
+export interface IVideo extends Document, IVideoType {}
 
 const VideoSchema: Schema<IVideo> = new mongoose.Schema({
   id: { type: String },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { VideoService } from '../../shared/services/video.service';
 import { VideoSearchRequest } from '../../shared/models/request/VideoSearchRequest';
@@ -15,7 +15,7 @@ import { VideoListDisplayComponent } from '../../component/video-list-display/vi
   styleUrl: './home.component.scss',
 })
 @AutoUnsubscribe
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   listOfVideos: VideoResponse[] = [];
   videoSearchRequest: VideoSearchRequest = {};
   private listOfVideosSubs?: Subscription;
@@ -28,12 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.videoService
       .getVideosBySearchParams(this.videoSearchRequest)
-      .then((videos) =>
-        // TODO: Remove the filter condition before submitting the project to the client.
-        this.videoService.updateListOfVideos(
-          videos.filter((video, index) => index < 6),
-        ),
-      )
+      .then((videos) => this.videoService.updateListOfVideos(videos))
       .catch((error) =>
         this.snackbarService.open(
           SeverityEnums.ERROR,
@@ -44,5 +39,11 @@ export class HomeComponent implements OnInit {
     this.listOfVideosSubs = this.videoService.listOfVideos$.subscribe(
       (listOfVideos) => (this.listOfVideos = listOfVideos),
     );
+
+    this.videoService.updateSearchbarDisplay(true);
+  }
+
+  ngOnDestroy(): void {
+    this.videoService.updateSearchbarDisplay(false);
   }
 }

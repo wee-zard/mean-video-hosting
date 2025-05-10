@@ -15,6 +15,7 @@ import { ChanelHeaderComponent } from './chanel-header/chanel-header.component';
 import { ChanelVideosComponent } from './chanel-videos/chanel-videos.component';
 import { ChanelVideoStatisticsComponent } from './chanel-video-statistics/chanel-video-statistics.component';
 import { ChanelVideoUploadComponent } from './chanel-video-upload/chanel-video-upload.component';
+import { ChanelVideoManagementComponent } from './chanel-video-management/chanel-video-management.component';
 
 @Component({
   selector: 'app-chanel',
@@ -25,6 +26,7 @@ import { ChanelVideoUploadComponent } from './chanel-video-upload/chanel-video-u
     ChanelVideosComponent,
     ChanelVideoStatisticsComponent,
     ChanelVideoUploadComponent,
+    ChanelVideoManagementComponent,
   ],
   templateUrl: './chanel.component.html',
   styleUrl: './chanel.component.scss',

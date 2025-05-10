@@ -9,10 +9,12 @@ import { VideoUploadRequest } from '../../../shared/models/request/VideoUploadRe
 import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { UserService } from '../../../shared/services/user.service';
 import { UserModel } from '../../../shared/models/models/UserModels';
+import { BackdropComponent } from '../../../component/backdrop/backdrop.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-chanel-video-upload',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, BackdropComponent, CommonModule],
   templateUrl: './chanel-video-upload.component.html',
   styleUrl: './chanel-video-upload.component.scss',
 })
@@ -21,6 +23,7 @@ export class ChanelVideoUploadComponent implements OnInit {
   fileName = '';
   userModel?: UserModel;
   requiredFileType = 'video/mp4';
+  isLoading: boolean = false;
   private userModelSubscription?: Subscription;
 
   constructor(
@@ -36,15 +39,21 @@ export class ChanelVideoUploadComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.isLoading = true;
     const file: File = event.target.files[0];
 
-    if (file) {
-      this.fileName = file.name;
-
-      const videoBlob = new Blob([file], { type: 'video/*' });
-
-      this.uploadToExpressServer(videoBlob);
+    if (!file) {
+      this.isLoading = false;
+      return;
     }
+
+    this.fileName = file.name;
+    const videoBlob = new Blob([file], { type: 'video/*' });
+    this.uploadToExpressServer(videoBlob);
   }
 
   private async uploadToExpressServer(videoBlob: Blob): Promise<void> {
@@ -56,11 +65,13 @@ export class ChanelVideoUploadComponent implements OnInit {
         SeverityEnums.ERROR,
         'Error while uploading the video to the express server!',
       );
+      this.isLoading = false;
     }
   }
 
   private async uploadToYoutubeServer(videoPath: string): Promise<void> {
     if (!this.userModel) {
+      this.isLoading = false;
       return;
     }
 
@@ -88,11 +99,14 @@ export class ChanelVideoUploadComponent implements OnInit {
       );
 
       // TODO: reload page.
+
+      this.isLoading = false;
     } catch (error) {
       this.snackbarService.open(
         SeverityEnums.ERROR,
         'Error while uploading the video to the youtube server!',
       );
+      this.isLoading = false;
     }
   }
 }

@@ -1,0 +1,88 @@
+Videómegosztó oldal
+
+Szerepkörök: admin, videófeltöltő, néző
+Admin: 
+		- Felhasználók és videók kezelése
+		- tartalom moderálása.
+Videófeltöltő
+	done	- Videók feltöltése
+		- saját csatorna kezelése
+		- hozzászólások és visszajelzések kezelése
+		- statisztikák megtekintése a lejátszásokról.
+Néző:
+	done	- Videók keresése
+	done	- videók megtekintése
+	done	- videók értékelése.
+
+
+
+=====
+TODO:
+1. Comment
+!	- Kommentek módosítása nem működik. (egyáltalán nincsen implementálva)
+
+
+2. Video
+	!!!!!!!!!!!!!!!!!!!!
+	- Amennyiben egy videó megnyitásra kerül, akkor a videó megtekintése kerüljön növelésre 1-el.
+
+
+3. Chanel
+	- Amennyiben nem kerül még videó feltöltésre a csatorna tulajdonos által, akkor más "empty" üzenetet kéne kiírni a felhasználó számára, hogy
+		- Tulajdonosnak: "Még nem töltöttél fel egy videót sem"
+		- Másoknak: "Ezen csatorna tulajdonosa még nem töltött fel egyetlen videót sem"
+
+	- Videók frissítése
+		- Amennyiben megtörtént a videó feltöltése, a videók listája kerüljön frissítésre a /chanel oldalon.
+
+	- Videó feltöltése
+		- Ellenőrizni, hogy működik ezen funkció
+
+	- Videó törlése
+		- Implementálni a videók törlésének a funkcióját
+
+	- Videók adatainak a módosítása
+		- Implementálni egy űrlapot, amin keresztül lehet módosítani a videóhoz tartozó adatokat.
+
+	- Videók kezelése 
+		- ("publik/privát/link birtokában bárki" rendszer hasonlóan, egy videó lehet privát és akkor senki nem tekintheti meg)
+
+	- Csatorna törlése
+		- Legyen egy felület, ahol lehet a csatornát törölni
+
+	*- Videó speciális:
+		- Hozzászólások letiltása a videó alatt (nem lehet kommentálni, és ha volt komment, akkor azok törlésre kerülnek)
+		- Életkor korlátozása (csak bizonyos életkor felett lehet megtekinteni a videót)
+
+	- Video Statistics
+		- <Megtekintések + Feltöltés ideje>
+		- Like/Dislike arány mutatása
+		- Kommentek száma az egyes videók alatt
+		- Legtöbbször használt címke/kategória a videóban
+
+
+4. Profil
+	- Profile
+		- felhasználó személyes adatainak a módosítása
+		- felhasználó törlése
+	
+	- Profilok admin számára
+		- minden felhasználó listázása
+		- itt lehessen a felhasználókat törölni (vagy megváltoztatni az email/jelszó párokat)
+
+========
+Write down the implemented features per pages per project (frontend/backend/database):
+
+
+
+========
+Youtube:
+user:			meanvideohoster@gmail.com
+password:		IVc40OzPt2ao9iSJXfEp2t1Z240i
+
+
+====================
+Google Cloud Console
+Project ID:	 	mean-video-hosting-458919
+api key			AIzaSyAKgd-t2x8toG2hj09gd-8p0nfbk6T9RgE
+youtube channel id:	UClwPbduxLHJazq9el1gMukg

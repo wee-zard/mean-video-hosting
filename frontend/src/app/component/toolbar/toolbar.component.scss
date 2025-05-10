@@ -1,39 +1,44 @@
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover,
-a:active {
-  color: lightgray;
-}
-
-.header-container {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.navigation-items {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-  flex-direction: row-reverse;
-
-  ul {
-    display: flex;
-    gap: 16px;
-    list-style: none;
-    padding: 0 8px;
-    margin: 0;
-    text-shadow: 1px 1px 1px gray;
-    cursor: pointer;
-  }
-}
-
 .toolbar-container {
   position: sticky;
   top: 0;
   display: flex;
   gap: 16px;
+  z-index: 1000;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 1px 1px 1px gray;
+  background-color: rgba(240, 240, 240);
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover,
+  a:active {
+    color: lightgray;
+  }
+
+  .header-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .navigation-items {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    flex-direction: row-reverse;
+
+    ul {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      padding: 0 8px;
+      margin: 0;
+      text-shadow: 1px 1px 1px gray;
+      cursor: pointer;
+    }
+  }
 }

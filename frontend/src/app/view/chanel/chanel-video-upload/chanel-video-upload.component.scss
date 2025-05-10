@@ -1,7 +1,8 @@
 .video-upload-container {
   display: grid;
   justify-content: center;
-  gap: 16px;
+  padding: 8px;
+  gap: 8px;
 
   .file-input {
     display: none;

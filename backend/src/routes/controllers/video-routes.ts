@@ -1,4 +1,6 @@
-import { Router, Request, Response } from 'express';
+import VideoService from '../services/videoService';
+import VideoServiceImpl from '../services/impl/videoServiceImpl';
+import { Router, Request, Response, response } from 'express';
 import { VideoSearchRequest } from '../../model/request/VideoSearchRequest';
 import { IVideoType, Video } from '../../model/mongodbModels/Video';
 import { IUser, User } from '../../model/mongodbModels/User';
@@ -6,10 +8,28 @@ import { BaseResponse } from '../../model/response/BaseResponse';
 
 export const configureVideoRoutes = (): Router => {
   const router = Router();
+  const videoService: VideoService = new VideoServiceImpl();
 
+  /**
+   * Finds a video by the id of the video.
+   */
   router.get('/', (req: Request, res: Response) => {
-    const query = Video.findOne({ id: req.query.video_id });
-    query.then((result) => res.status(200).send(result)).catch(() => res.status(400).send(null));
+    const videoId = req.query.video_id as string;
+    videoService
+      .findVideoById(videoId)
+      .then((data) => res.status(200).send(data))
+      .catch((err) => res.status(400).send(err));
+  });
+
+  /**
+   * Updates the view count of a video by 1.
+   */
+  router.get('/', (req: Request, res: Response) => {
+    const videoId = req.query.video_id as string;
+    videoService
+      .incrementViewCountOfVideoWithOneByVideoId(videoId)
+      .then((data) => res.status(200).send(data))
+      .catch((err) => res.status(400).send(err));
   });
 
   /**

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ToolbarComponent } from './component/toolbar/toolbar.component';
-import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AutoUnsubscribe } from './shared/decorators/AutoUnsubscribe';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ToolbarComponent, SidenavComponent],
+  imports: [ToolbarComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

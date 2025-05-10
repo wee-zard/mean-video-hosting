@@ -1,0 +1,44 @@
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
+<div class="grid-container delete-dialog-container">
+  <div class="position-to-center">
+    <h3>Delete video</h3>
+  </div>
+  <div>
+    <img
+      class="video-card-image video-delete-image"
+      [src]="data.videoUrlPath | videoImagePath"
+      alt="Video Thumbnail"
+    />
+  </div>
+  <div>
+    <div class="position-to-center">
+      <p>Are you sure you want to delete the following video?</p>
+    </div>
+    <div class="position-to-center">
+      <p>All data related to this video will be lost after the deletion.</p>
+    </div>
+  </div>
+  <div class="flex-container position-to-center">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="isLoading"
+      (click)="handleOnCancelClick()"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      [disabled]="isLoading"
+      class="delete-button"
+      (click)="handleOnRemoveClick()"
+    >
+      Delete
+    </button>
+  </div>
+</div>

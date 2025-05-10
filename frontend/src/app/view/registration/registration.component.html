@@ -1,4 +1,6 @@
-<app-backdrop [isLoading]="isLoading"></app-backdrop>
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
 <div class="login-container">
   <div class="card-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-holder">

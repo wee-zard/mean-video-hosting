@@ -1,22 +1,25 @@
-<app-backdrop [isLoading]="isLoading" *ngIf="isLoading"></app-backdrop>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="flex-container">
-    <div *ngIf="form" class="searchbar-container">
-      <mat-form-field appearance="outline">
-        <mat-label>Search for video title</mat-label>
-        <input
-          matInput
-          [type]="formFields.TEXT"
-          [formControlName]="formFields.TEXT"
-          required
-          maxlength="100"
-        />
-      </mat-form-field>
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
+<ng-container *ngIf="isDisplayed">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="flex-container">
+      <div *ngIf="form" class="searchbar-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Search for video title</mat-label>
+          <input
+            matInput
+            [type]="formFields.TEXT"
+            [formControlName]="formFields.TEXT"
+            maxlength="100"
+          />
+        </mat-form-field>
+      </div>
+      <div class="searchbar-icon-container">
+        <button mat-icon-button type="submit" [disabled]="isLoading">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
     </div>
-    <div class="searchbar-icon-container">
-      <button mat-icon-button type="submit" [disabled]="isLoading">
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
+</ng-container>

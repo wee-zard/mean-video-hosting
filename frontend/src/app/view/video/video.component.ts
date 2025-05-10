@@ -11,7 +11,6 @@ import { VideoDescriptionComponent } from './video-description/video-description
 import { VideoCommentsComponent } from './video-comments/video-comments.component';
 import { VideoCardComponent } from '../../component/video-card/video-card.component';
 import { CommentService } from '../../shared/services/comment.service';
-import { CommentResponse } from '../../shared/models/response/CommentResponse';
 import { Subscription } from 'rxjs';
 import { getLastUrlChunk } from '../../shared/helper/UrlParserHelper';
 

@@ -10,10 +10,10 @@ export const runMigration = async () => {
       title: 'We are Viva La Dirt League',
       rating: { numberOfLikes: 4803, numberOsfDislikes: 2537 },
       upload: {
-        userId: '6806233ad1fbc4a94e0891ad',
-        userName: 'rachelle',
+        userId: '6806233ad1fbc4a94e0891ba',
+        userName: 'udvattila99',
         uploadTime: new Date(new Date().setFullYear(1998, 7, 18)).toISOString(),
-        userImagePath: 'https://cdn.pixabay.com/photo/2024/05/09/11/37/abstract-8750691_1280.png',
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/07/09/09/05/cat-5386372_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891be', name: 'Viral', color: { red: 0, green: 255, blue: 0 } },
@@ -279,10 +279,10 @@ export const runMigration = async () => {
         'She Locked Her BF In A Suitcase During Sick Game of Hide & Seek - Murder of Jorge Torres',
       rating: { numberOfLikes: 111, numberOsfDislikes: 204 },
       upload: {
-        userId: '6806233ad1fbc4a94e0891af',
-        userName: 'oliviawood',
+        userId: '6806233ad1fbc4a94e0891ba',
+        userName: 'udvattila99',
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/07/09/09/05/cat-5386372_1280.jpg',
         uploadTime: new Date(new Date().setFullYear(2012, 8, 3)).toISOString(),
-        userImagePath: 'https://cdn.pixabay.com/photo/2022/06/25/09/27/blue-tit-7283187_1280.jpg',
       },
       tags: [
         {
@@ -841,11 +841,10 @@ export const runMigration = async () => {
       title: "80's Tokyo Funky Lofi Playlist",
       rating: { numberOfLikes: 919813, numberOsfDislikes: 143717 },
       upload: {
-        userId: '6806233ad1fbc4a94e0891b0',
-        userName: 'mark23',
+        userId: '6806233ad1fbc4a94e0891ba',
+        userName: 'udvattila99',
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/07/09/09/05/cat-5386372_1280.jpg',
         uploadTime: new Date(new Date().setFullYear(2011, 7, 17)).toISOString(),
-        userImagePath:
-          'https://cdn.pixabay.com/photo/2022/12/03/11/11/christmas-picture-7632475_1280.jpg',
       },
       tags: [
         { id: '68062bcdd1fbc4a94e0891c0', name: 'News', color: { red: 255, green: 165, blue: 0 } },
@@ -1046,8 +1045,9 @@ export const runMigration = async () => {
       title: 'Creating Water Out of Air',
       rating: { numberOfLikes: 722621, numberOsfDislikes: 1168698 },
       upload: {
-        userId: '6806233ad1fbc4a94e0891aa',
-        userName: 'alexwilliams',
+        userId: '6806233ad1fbc4a94e0891ba',
+        userName: 'udvattila99',
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/07/09/09/05/cat-5386372_1280.jpg',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1055,7 +1055,6 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
-        userImagePath: 'https://cdn.pixabay.com/photo/2021/04/27/15/04/wagtail-6211745_1280.jpg',
       },
       tags: [
         {
@@ -1288,8 +1287,9 @@ export const runMigration = async () => {
       title: 'TUNIC Launch Trailer',
       rating: { numberOfLikes: 232057, numberOsfDislikes: 14833 },
       upload: {
-        userId: '6806233ad1fbc4a94e0891b5',
-        userName: 'annamartin',
+        userId: '6806233ad1fbc4a94e0891ba',
+        userName: 'udvattila99',
+        userImagePath: 'https://cdn.pixabay.com/photo/2020/07/09/09/05/cat-5386372_1280.jpg',
         uploadTime: new Date(
           new Date().setFullYear(
             Math.round(Math.random() * 24 + 2000),
@@ -1297,7 +1297,6 @@ export const runMigration = async () => {
             Math.round(Math.random() * 28)
           )
         ).toISOString(),
-        userImagePath: 'https://cdn.pixabay.com/photo/2021/09/02/20/18/boat-6594343_1280.jpg',
       },
       tags: [
         {

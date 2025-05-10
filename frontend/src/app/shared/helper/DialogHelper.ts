@@ -1,6 +1,7 @@
 import { MatDialogConfig } from '@angular/material/dialog';
 import { CommentDialogDataType } from '../models/CommentDialogDataType';
 import { CommentDialogEnums } from '../enums/CommentDialogEnums';
+import { VideoResponse } from '../models/response/VideoResponse';
 
 export const commentMatDialogConfigs = (
   videoId: string,
@@ -16,7 +17,18 @@ export const commentMatDialogConfigs = (
   return {
     width: '450px',
     height: '360px',
-    panelClass: 'custom-comment-settings-dialog',
+    panelClass: 'common-dialog-setting',
     data: data,
+  };
+};
+
+export const videoRemovalMatDialogConfigs = (
+  video: VideoResponse,
+): MatDialogConfig => {
+  return {
+    width: '480px',
+    height: '550px',
+    panelClass: 'common-dialog-setting',
+    data: video,
   };
 };

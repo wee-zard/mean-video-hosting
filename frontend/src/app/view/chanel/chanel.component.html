@@ -2,19 +2,23 @@
   <app-chanel-header></app-chanel-header>
   <div class="chanel-tab-container">
     <mat-tab-group>
-      <mat-tab label="Videos"><app-chanel-videos></app-chanel-videos></mat-tab>
+      <mat-tab label="Videos">
+        <app-chanel-videos></app-chanel-videos>
+      </mat-tab>
       <ng-container *ngIf="isVideoStatisticsAreDisplayed()">
-        <mat-tab label="Video Management">TODO</mat-tab>
+        <mat-tab label="Video Management">
+          <app-chanel-video-management></app-chanel-video-management>
+        </mat-tab>
       </ng-container>
       <ng-container *ngIf="isVideoStatisticsAreDisplayed()">
-        <mat-tab label="Video Statistics"
-          ><app-chanel-video-statistics></app-chanel-video-statistics
-        ></mat-tab>
+        <mat-tab label="Video Statistics">
+          <app-chanel-video-statistics></app-chanel-video-statistics>
+        </mat-tab>
       </ng-container>
       <ng-container *ngIf="isBrowsingUserTheChanelOwner()">
-        <mat-tab label="Upload Video"
-          ><app-chanel-video-upload></app-chanel-video-upload
-        ></mat-tab>
+        <mat-tab label="Upload Video">
+          <app-chanel-video-upload></app-chanel-video-upload>
+        </mat-tab>
       </ng-container>
     </mat-tab-group>
   </div>

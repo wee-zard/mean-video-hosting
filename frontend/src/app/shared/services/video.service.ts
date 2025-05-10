@@ -22,6 +22,8 @@ export class VideoService {
   videoReload$ = this.videoReload.asObservable();
   private listOfChanelVideos = new BehaviorSubject<VideoResponse[]>([]);
   listOfChanelVideos$ = this.listOfChanelVideos.asObservable();
+  private isSearchbarDisplayed = new BehaviorSubject<boolean>(false);
+  isSearchbarDisplayed$ = this.isSearchbarDisplayed.asObservable();
   server: string = `${environment.serverUrl}/video`;
 
   constructor(private http: HttpClient) {}
@@ -40,6 +42,10 @@ export class VideoService {
 
   updateListOfChanelVideos(data: VideoResponse[]) {
     this.listOfChanelVideos.next(data);
+  }
+
+  updateSearchbarDisplay(data: boolean) {
+    this.isSearchbarDisplayed.next(data);
   }
 
   /**
