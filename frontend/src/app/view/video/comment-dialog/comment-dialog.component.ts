@@ -11,7 +11,6 @@ import { FormBuilderService } from '../../../shared/services/form-builder.servic
 import { MatButtonModule } from '@angular/material/button';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { BackdropComponent } from '../../../component/backdrop/backdrop.component';
-import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
 import { CommonModule } from '@angular/common';
 import { CommentDialogEnums } from '../../../shared/enums/CommentDialogEnums';
 import { CommentDialogDataType } from '../../../shared/models/CommentDialogDataType';
@@ -21,6 +20,10 @@ import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../../shared/services/user.service';
 import { CommentService } from '../../../shared/services/comment.service';
+import MessageEnums from '../../../shared/enums/MessageEnums';
+import { UpdateCommentRequest } from '../../../shared/models/request/UpdateCommentRequest';
+import { VideoResponse } from '../../../shared/models/response/VideoResponse';
+import { VideoService } from '../../../shared/services/video.service';
 
 @Component({
   selector: 'app-comment-dialog',
@@ -40,23 +43,32 @@ export class CommentDialogComponent implements OnInit {
   form!: FormGroup<CommentFormType>;
   formFields: typeof CommentFormField = CommentFormField;
   userModel?: UserModel;
+  video?: VideoResponse;
   isLoading: boolean = false;
-  private userModelSubscription?: Subscription;
+  private subs1?: Subscription;
+  private subs2?: Subscription;
 
   constructor(
     public dialogRef: MatDialogRef<CommentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CommentDialogDataType,
     private formBuilderService: FormBuilderService,
-    private snackbarService: SnackbarService,
+    private snack: SnackbarService,
     private userService: UserService,
     private commentService: CommentService,
+    private videoService: VideoService,
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilderService.buildCommentForm();
+    this.form = this.formBuilderService.buildCommentForm(
+      this.data.commentMessage,
+    );
 
-    this.userModelSubscription = this.userService.userModel$.subscribe(
+    this.subs1 = this.userService.userModel$.subscribe(
       (data) => (this.userModel = data),
+    );
+
+    this.subs2 = this.videoService.selectedVideo$.subscribe(
+      (data) => (this.video = data),
     );
   }
 
@@ -80,22 +92,33 @@ export class CommentDialogComponent implements OnInit {
   onSubmit(): void {
     this.isLoading = true;
 
-    if (!this.form.value || !this.userModel) {
-      this.snackbarService.open(
-        SeverityEnums.ERROR,
-        'The comment form is invalid!',
-      );
+    if (!this.userModel) {
+      this.snack.on(MessageEnums.USER_NOT_PROVIDED);
       this.isLoading = false;
       return;
     }
 
+    if (!this.form.value) {
+      this.snack.on(MessageEnums.INVALID_COMMENT_FORM);
+      this.isLoading = false;
+      return;
+    }
+
+    if (this.data.type === CommentDialogEnums.EDIT_COMMENT) {
+      this.handleUpdateComment();
+    } else {
+      this.handleNewCommentCreation(this.userModel);
+    }
+  }
+
+  private handleNewCommentCreation(user: UserModel): void {
     const commentRequest: CommentRequest = {
       replyId: this.data.replyCommentId ?? null,
       videoId: this.data.videoId,
       user: {
-        userId: this.userModel.id,
-        userName: this.userModel.username,
-        profilePicturePath: this.userModel.profilePicturePath,
+        userId: user.id,
+        userName: user.username,
+        profilePicturePath: user.profilePicturePath,
       },
       lastModification: new Date(Date.now()).toISOString(),
       message: this.form.get(CommentFormField.MESSAGE)?.value as string,
@@ -103,26 +126,26 @@ export class CommentDialogComponent implements OnInit {
 
     this.commentService
       .createComment(commentRequest)
-      .then(() => {
-        this.commentService
-          .getCommentsByVideoId(this.data.videoId)
-          .then((data) => {
-            this.commentService.updateListOfComments(data);
-            this.onNoClick();
-          })
-          .catch(() =>
-            this.snackbarService.open(
-              SeverityEnums.ERROR,
-              'Unexpected error occurred while fetching the list of comments!',
-            ),
-          );
-      })
-      .catch(() =>
-        this.snackbarService.open(
-          SeverityEnums.ERROR,
-          'Unexpected error occurred while saving the new comment!',
-        ),
-      )
+      .then(() => this.updateCommentsAfterCommentAction())
+      .catch(() => this.snack.on(MessageEnums.CREATE_COMMENT_ERROR))
       .finally(() => (this.isLoading = false));
+  }
+
+  private handleUpdateComment(): void {
+    const request: UpdateCommentRequest = {
+      commentId: this.data.replyCommentId ?? '',
+      message: this.form.get(CommentFormField.MESSAGE)?.value as string,
+    };
+
+    this.commentService
+      .updateComment(request)
+      .then(() => this.updateCommentsAfterCommentAction())
+      .catch(() => this.snack.on(MessageEnums.CREATE_COMMENT_ERROR))
+      .finally(() => (this.isLoading = false));
+  }
+
+  private updateCommentsAfterCommentAction(): void {
+    this.commentService.fetchLatestComments(this.video, this.userModel);
+    this.onNoClick();
   }
 }

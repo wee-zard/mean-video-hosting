@@ -3,25 +3,37 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item *ngIf="isLoggedIn()" (click)="handleCommentReply()">
+    <button
+      mat-menu-item
+      *ngIf="isLoggedIn() && isReplyCanBeWritten()"
+      (click)="openCommentDialog()"
+    >
       <mat-icon>reply</mat-icon>
       <span>Reply to comment</span>
     </button>
-    <button mat-menu-item *ngIf="isContentCreatorOrAdmin()" disabled>
-      <mat-icon>visibility</mat-icon>
-      <span>Hide comment</span>
-    </button>
-    <button mat-menu-item *ngIf="isContentCreatorOrAdmin()">
-      <mat-icon>block</mat-icon>
-      <span>Block user</span>
-    </button>
-    <button mat-menu-item *ngIf="isItOwnComment() && isReplyCanBeWritten()">
+    <button
+      mat-menu-item
+      *ngIf="isItOwnComment()"
+      (click)="openCommentDialog(true)"
+    >
       <mat-icon>edit</mat-icon>
       <span>Edit comment</span>
     </button>
     <button
       mat-menu-item
-      *ngIf="isContentCreatorOrAdmin() || isItOwnComment()"
+      *ngIf="isVideoUploaderOrAdmin()"
+      (click)="handleCommentHide()"
+    >
+      <mat-icon>{{ getHideIcon() }}</mat-icon>
+      <span>{{ getHideMessage() }}</span>
+    </button>
+    <button mat-menu-item *ngIf="isVideoUploaderOrAdmin()" disabled>
+      <mat-icon>block</mat-icon>
+      <span>Block user</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="isVideoUploaderOrAdmin() || isItOwnComment()"
       (click)="handleCommentRemoval()"
     >
       <mat-icon>delete</mat-icon>

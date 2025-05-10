@@ -11,6 +11,7 @@ export type ICommentsType = {
     profilePicturePath: string;
   };
   videoId: string;
+  isHidden?: boolean;
 };
 
 export interface IComment extends Document, ICommentsType {}
@@ -22,6 +23,7 @@ const CommentSchema: Schema<IComment> = new mongoose.Schema({
   replyId: { type: String },
   user: { userId: String, userName: String, profilePicturePath: String },
   videoId: { type: String, required: true },
+  isHidden: { type: Boolean, default: false },
 });
 
 export const Comment: Model<IComment> = mongoose.model<IComment>('Comment', CommentSchema);

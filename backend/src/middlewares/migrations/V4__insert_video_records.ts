@@ -1,4 +1,4 @@
-import { Video } from './../../model/mongodbModels/Video';
+import { Video } from '../../model/mongodbModels/Video';
 
 export const runMigration = async () => {
   const listOfDocuments = [

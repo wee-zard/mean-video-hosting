@@ -12,7 +12,8 @@ import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { VideoService } from '../../../shared/services/video.service';
 import { LikeToggleType } from '../../../shared/models/LikeToggleType';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
-import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
+import MessageEnums from '../../../shared/enums/MessageEnums';
+import { VideoRatingUpdateRequest } from '../../../shared/models/request/VideoRatingUpdateRequest';
 
 @Component({
   selector: 'app-like-dislike-toggle',
@@ -31,29 +32,25 @@ export class LikeDislikeToggleComponent implements OnInit {
   video?: VideoResponse;
   userModel?: UserModel;
   selectedToggleOption: LikeToggleType;
-  private userModelSubscription?: Subscription;
-  private selectedVideoSubscription?: Subscription;
+  private subscription1?: Subscription;
+  private subscription2?: Subscription;
 
   constructor(
     private userService: UserService,
     private videoService: VideoService,
-    private snackService: SnackbarService,
+    private snack: SnackbarService,
   ) {}
 
   ngOnInit(): void {
-    this.selectedVideoSubscription = this.videoService.selectedVideo$.subscribe(
-      (selectedVideo) => {
-        this.video = selectedVideo;
-        this.updateSelectedToggleOption();
-      },
-    );
+    this.subscription2 = this.videoService.selectedVideo$.subscribe((data) => {
+      this.video = data;
+      this.updateSelectedToggleOption();
+    });
 
-    this.userModelSubscription = this.userService.userModel$.subscribe(
-      (userModel) => {
-        this.userModel = userModel;
-        this.updateSelectedToggleOption();
-      },
-    );
+    this.subscription1 = this.userService.userModel$.subscribe((data) => {
+      this.userModel = data;
+      this.updateSelectedToggleOption();
+    });
   }
 
   private updateSelectedToggleOption(): void {
@@ -88,7 +85,7 @@ export class LikeDislikeToggleComponent implements OnInit {
   }
 
   toggleChange(event: any) {
-    if (!this.userModel || !this.video) {
+    if (!this.video || !this.userModel) {
       return;
     }
 
@@ -117,17 +114,14 @@ export class LikeDislikeToggleComponent implements OnInit {
           ? false
           : undefined;
 
+    const request: VideoRatingUpdateRequest = {
+      video_id: this.video?.id,
+      user_id: this.userModel?.id,
+      is_liked: isLiked,
+    };
+
     this.videoService
-      .updateVideoRating({
-        video_id: this.video?.id,
-        user_id: this.userModel?.id,
-        is_liked: isLiked,
-      })
-      .catch(() => {
-        this.snackService.open(
-          SeverityEnums.ERROR,
-          'Unexpected error occurred while rating the video!',
-        );
-      });
+      .updateVideoRating(request)
+      .catch(() => this.snack.on(MessageEnums.UPDATE_RATINGS));
   }
 }

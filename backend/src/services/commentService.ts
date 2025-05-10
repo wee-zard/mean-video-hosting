@@ -1,4 +1,4 @@
-import { IComment, ICommentsType } from '../../model/mongodbModels/Comment';
+import { IComment, ICommentsType } from '../model/mongodbModels/Comment';
 
 export default interface CommentService {
   /**
@@ -7,7 +7,7 @@ export default interface CommentService {
    * @param id the id of the video the search by.
    * @param Returns a list of comments.
    */
-  findCommentsByVideoId(id: string): Promise<IComment[]>;
+  getCommentsByVideoId(id: string): Promise<IComment[]>;
 
   /**
    * Creates a new comment based on the provided params.
@@ -32,4 +32,19 @@ export default interface CommentService {
    * @returns Returns true if the comment is deleted successfully.
    */
   deleteCommentById(id: string): Promise<boolean>;
+
+  /**
+   * Updates a comment with a new message.
+   *
+   * @param id The comment to update
+   * @param message The new message of the comment.
+   */
+  updateComment(id: string, message: string): Promise<boolean>;
+
+  /**
+   * Hide a comment to be displayed under the video.
+   *
+   * @param id The id of the comment to hide
+   */
+  hideCommentById(id: string): Promise<boolean>;
 }

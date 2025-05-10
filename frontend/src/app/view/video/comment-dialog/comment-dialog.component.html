@@ -13,7 +13,16 @@
           maxlength="500"
         ></textarea>
       </mat-form-field>
-      <div class="button-holder">
+      <div class="position-to-center">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          [disabled]="isLoading"
+          (click)="onNoClick()"
+        >
+          Back
+        </button>
         <button
           mat-raised-button
           color="primary"

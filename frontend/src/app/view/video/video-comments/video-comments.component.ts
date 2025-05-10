@@ -1,9 +1,9 @@
-import { CommentService } from './../../../shared/services/comment.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { commentMatDialogConfigs } from '../../../shared/helper/DialogHelper';
 import { CommentDialogEnums } from '../../../shared/enums/CommentDialogEnums';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
+import MessageEnums from '../../../shared/enums/MessageEnums';
+import { CommentService } from './../../../shared/services/comment.service';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-video-comments',
@@ -25,6 +29,7 @@ import { CommentDialogEnums } from '../../../shared/enums/CommentDialogEnums';
     MatButtonModule,
     MatIconModule,
     CommentSettingsComponent,
+    MatTooltipModule,
   ],
   templateUrl: './video-comments.component.html',
   styleUrl: './video-comments.component.scss',
@@ -34,25 +39,26 @@ export class VideoCommentsComponent implements OnInit {
   @Input() rootComment?: CommentResponse;
   listOfComments: CommentResponse[] = [];
   video?: VideoResponse;
-  private selectedVideoSubscription?: Subscription;
-  private listOfCommentsSubscription?: Subscription;
+  private subs1?: Subscription;
+  private subs2?: Subscription;
 
   constructor(
     private videoService: VideoService,
     private commentService: CommentService,
+    private userService: UserService,
     private router: Router,
     private dialog: MatDialog,
+    private snack: SnackbarService,
   ) {}
 
   ngOnInit(): void {
-    this.selectedVideoSubscription = this.videoService.selectedVideo$.subscribe(
-      (selectedVideo) => (this.video = selectedVideo),
+    this.subs1 = this.videoService.selectedVideo$.subscribe(
+      (data) => (this.video = data),
     );
 
-    this.listOfCommentsSubscription =
-      this.commentService.listOfComments$.subscribe(
-        (res) => (this.listOfComments = res),
-      );
+    this.subs2 = this.commentService.listOfComments$.subscribe(
+      (data) => (this.listOfComments = data),
+    );
   }
 
   handleUploaderOnClick(userId: string): void {
@@ -77,6 +83,7 @@ export class VideoCommentsComponent implements OnInit {
 
   onNewCommentClick(): void {
     if (!this.video) {
+      this.snack.on(MessageEnums.VIDEO_NOT_PROVIDED);
       return;
     }
 

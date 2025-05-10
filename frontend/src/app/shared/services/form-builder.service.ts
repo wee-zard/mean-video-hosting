@@ -11,6 +11,7 @@ import { CommentFormField, CommentFormType } from '../models/forms/CommentForm';
 type FormControlOption = {
   isNotRequired?: boolean;
   maxLength?: number;
+  data?: string | number;
 };
 
 @Injectable({
@@ -39,11 +40,12 @@ export class FormBuilderService {
 
   private getTextFormControl(option?: FormControlOption) {
     const maxLength = option?.maxLength ?? 100;
+    const data = option?.data ?? '';
 
     if (option?.isNotRequired) {
-      return ['', [Validators.maxLength(maxLength)]];
+      return [data, [Validators.maxLength(maxLength)]];
     } else {
-      return ['', [Validators.required, Validators.maxLength(maxLength)]];
+      return [data, [Validators.required, Validators.maxLength(maxLength)]];
     }
   }
 
@@ -118,11 +120,16 @@ export class FormBuilderService {
   /**
    * Created a new form group for the comments.
    * The form will contains required form controls as well.
+   *
+   * @param message The message of the comment to edit
    * @returns Returns the comment form group.
    */
-  buildCommentForm() {
+  buildCommentForm(message?: string) {
     return this.fb.group<CommentFormType>({
-      [CommentFormField.MESSAGE]: this.getTextFormControl({ maxLength: 500 }),
+      [CommentFormField.MESSAGE]: this.getTextFormControl({
+        maxLength: 500,
+        data: message,
+      }),
     });
   }
 }

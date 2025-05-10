@@ -10,4 +10,5 @@ export interface CommentResponse {
   };
   videoId: string;
   isCommentClicked?: boolean;
+  isHidden: boolean;
 }

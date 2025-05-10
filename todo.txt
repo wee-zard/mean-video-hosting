@@ -2,53 +2,46 @@ Videómegosztó oldal
 
 Szerepkörök: admin, videófeltöltő, néző
 Admin: 
-		- Felhasználók és videók kezelése
-		- tartalom moderálása.
+		- Felhasználók kezelése
+		- Videók kezelése
+done	- tartalom moderálása.
+
 Videófeltöltő
-	done	- Videók feltöltése
-		- saját csatorna kezelése
-		- hozzászólások és visszajelzések kezelése
+done	- Videók feltöltése
+~		- saját csatorna kezelése
+done	- hozzászólások és visszajelzések kezelése
 		- statisztikák megtekintése a lejátszásokról.
+
 Néző:
-	done	- Videók keresése
-	done	- videók megtekintése
-	done	- videók értékelése.
+done	- Videók keresése
+done	- videók megtekintése
+done	- videók értékelése.
 
 
 
 =====
 TODO:
-1. Comment
-!	- Kommentek módosítása nem működik. (egyáltalán nincsen implementálva)
-
-
-2. Video
-	!!!!!!!!!!!!!!!!!!!!
-	- Amennyiben egy videó megnyitásra kerül, akkor a videó megtekintése kerüljön növelésre 1-el.
-
-
-3. Chanel
+1. Chanel
 	- Amennyiben nem kerül még videó feltöltésre a csatorna tulajdonos által, akkor más "empty" üzenetet kéne kiírni a felhasználó számára, hogy
 		- Tulajdonosnak: "Még nem töltöttél fel egy videót sem"
 		- Másoknak: "Ezen csatorna tulajdonosa még nem töltött fel egyetlen videót sem"
 
-	- Videók frissítése
+!#	- Videók frissítése
 		- Amennyiben megtörtént a videó feltöltése, a videók listája kerüljön frissítésre a /chanel oldalon.
 
-	- Videó feltöltése
+!#	- Videó feltöltése
 		- Ellenőrizni, hogy működik ezen funkció
 
-	- Videó törlése
+!#	- Videó törlése
 		- Implementálni a videók törlésének a funkcióját
 
 	- Videók adatainak a módosítása
 		- Implementálni egy űrlapot, amin keresztül lehet módosítani a videóhoz tartozó adatokat.
 
-	- Videók kezelése 
-		- ("publik/privát/link birtokában bárki" rendszer hasonlóan, egy videó lehet privát és akkor senki nem tekintheti meg)
-
-	- Csatorna törlése
-		- Legyen egy felület, ahol lehet a csatornát törölni
+HARD- Videók kezelése 
+		- ([Public, private, unlisted], rendszer hasonlóan, egy videó lehet privát és akkor senki nem tekintheti meg)
+		- Ezen esetben a videók lekérése során csak azok kerüljenek lekérésre, amit a felhasználó meg tud tekinteni.
+		- Ezen esetben a random videók esetén csak azon videók kerüljenek ki, amiket a felhasználó megtekinthet.
 
 	*- Videó speciális:
 		- Hozzászólások letiltása a videó alatt (nem lehet kommentálni, és ha volt komment, akkor azok törlésre kerülnek)
@@ -58,20 +51,41 @@ TODO:
 		- <Megtekintések + Feltöltés ideje>
 		- Like/Dislike arány mutatása
 		- Kommentek száma az egyes videók alatt
-		- Legtöbbször használt címke/kategória a videóban
 
 
-4. Profil
+2. Profil
 	- Profile
 		- felhasználó személyes adatainak a módosítása
 		- felhasználó törlése
+			- Ezzel törlésre kerüljön a felhasználó által feltöltött videók
+			- Ezzel törlésre kerüljön a felhasználó általi kommentek
 	
 	- Profilok admin számára
 		- minden felhasználó listázása
 		- itt lehessen a felhasználókat törölni (vagy megváltoztatni az email/jelszó párokat)
 
+
 ========
-Write down the implemented features per pages per project (frontend/backend/database):
+## Implementations
+
+### 1. Not Found page
+- There is a /not-found page where the user will be nagivated when the requested url, video, or chanel is not found on the server.
+
+
+### 2. Video page
+- When clicking on a video, then the view count under the video will be automatically incremented by 1.
+- On the right side of the page, 5 random video will be displayed where each of the videos are different then the one the user selected to watch.
+- Displaying the video uploader's profile picture and the name. When the users clicks on the profile picture of the uploader, then the users will be redirected to the chanel page of the uploader.
+- Under the uploaded video, the view count and the uploading time is displayed.
+- About the comments under the videoo
+   - The logged in users has the folowing features:
+      - Users can write new comments.
+      - Users can reply to comments.
+      - Users can delete their own comments.
+      - Users can edit their own comments.
+   - Admin and the video uploader has the folowing specific features:
+      - Delete any comments under the uploaded video.
+      - Can hide comments of other users. The comments are hidden for other users, but visible for the comment's writer an the andmin and uploader
 
 
 

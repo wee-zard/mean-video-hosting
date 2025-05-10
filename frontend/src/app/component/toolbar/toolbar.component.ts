@@ -54,7 +54,7 @@ export class ToolbarComponent implements OnInit {
 
         this.authService
           .checkAuth()
-          .then((res) => {
+          .then(() => {
             this.user = user;
           })
           .catch(() => {

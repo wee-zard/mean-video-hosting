@@ -1,4 +1,4 @@
-import { IVideo, Video } from '../../../model/mongodbModels/Video';
+import { IVideo, Video } from '../../model/mongodbModels/Video';
 import VideoService from '../videoService';
 
 export default class VideoServiceImpl implements VideoService {

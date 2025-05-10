@@ -16,7 +16,10 @@
           alt="comment writer's profile picture"
         />
       </div>
-      <div class="grid-container" style="width: 100%">
+      <div
+        class="grid-container"
+        [ngStyle]="{ color: comment.isHidden ? 'gray' : 'black' }"
+      >
         <div class="flex-container">
           <div
             class="username-style"

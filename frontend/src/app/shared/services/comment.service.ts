@@ -5,6 +5,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { CommentResponse } from '../models/response/CommentResponse';
 import { CommentRequest } from '../models/request/CommentRequest';
+import { UpdateCommentRequest } from '../models/request/UpdateCommentRequest';
+import { UserModel } from '../models/models/UserModels';
+import { isVideoUploaderOrAdmin } from '../helper/UserRoleHelper';
+import { SnackbarService } from './snackbar.service';
+import MessageEnums from '../enums/MessageEnums';
+import { VideoResponse } from '../models/response/VideoResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +20,61 @@ export class CommentService {
   listOfComments$ = this.listOfComments.asObservable();
   private server: string = `${environment.serverUrl}/comment`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private snack: SnackbarService,
+  ) {}
 
   updateListOfComments(data: CommentResponse[]) {
     this.listOfComments.next(data);
+  }
+
+  /**
+   * Update the list of comments by fetching the comments from the server.
+   */
+  fetchLatestComments(video?: VideoResponse, userModel?: UserModel): void {
+    if (!video) {
+      return;
+    }
+
+    this.getCommentsByVideoId(video.id)
+      .then((data) => {
+        const filteredList = this.filterCommentsByHiddenProperty(
+          data,
+          userModel,
+        );
+        this.updateListOfComments(filteredList);
+      })
+      .catch(() => {
+        this.snack.on(MessageEnums.GET_COMMENTS_ERROR);
+        this.updateListOfComments([]);
+      });
+  }
+
+  private filterCommentsByHiddenProperty(
+    comments: CommentResponse[],
+    userModel?: UserModel,
+  ): CommentResponse[] {
+    return comments.filter(
+      (comment) =>
+        !comment.isHidden ||
+        this.isItOwnComment(comment, userModel) ||
+        this.isVideoUploaderOrAdmin(comment, userModel),
+    );
+  }
+
+  private isVideoUploaderOrAdmin(
+    comment: CommentResponse,
+    userModel?: UserModel,
+  ): boolean {
+    return isVideoUploaderOrAdmin(comment, userModel);
+  }
+
+  private isItOwnComment(
+    comment: CommentResponse,
+    userModel?: UserModel,
+  ): boolean {
+    return comment.user.userId === userModel?.id;
   }
 
   /**
@@ -68,6 +125,36 @@ export class CommentService {
       this.http.post<boolean>(
         `${this.server}/create`,
         comment,
+        getRequestHeader({ isWithCredentials: true }),
+      ),
+    );
+  }
+
+  /**
+   * Updates a comment with a new message.
+   *
+   * @param request The request that contains the id of the comment and the new message of the comment.
+   */
+  updateComment(request: UpdateCommentRequest): Promise<boolean> {
+    return lastValueFrom(
+      this.http.post<boolean>(
+        `${this.server}/update`,
+        request,
+        getRequestHeader({ isWithCredentials: true }),
+      ),
+    );
+  }
+
+  /**
+   * Hide a comment to be displayed under the video.
+   *
+   * @param commentId The id of the comment to hide.
+   */
+  hideComment(commentId: string): Promise<boolean> {
+    return lastValueFrom(
+      this.http.post<boolean>(
+        `${this.server}/hide`,
+        { comment_id: commentId },
         getRequestHeader({ isWithCredentials: true }),
       ),
     );

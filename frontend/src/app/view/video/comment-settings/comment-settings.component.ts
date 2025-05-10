@@ -10,13 +10,14 @@ import { CommentResponse } from '../../../shared/models/response/CommentResponse
 import { UserService } from '../../../shared/services/user.service';
 import { UserModel } from '../../../shared/models/models/UserModels';
 import { Subscription } from 'rxjs';
-import { isContentCreatorOrAdmin } from '../../../shared/helper/UserRoleHelper';
-import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
+import { isVideoUploaderOrAdmin } from '../../../shared/helper/UserRoleHelper';
 import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { CommentDialogEnums } from '../../../shared/enums/CommentDialogEnums';
-import { CommentDialogDataType } from '../../../shared/models/CommentDialogDataType';
 import { commentMatDialogConfigs } from '../../../shared/helper/DialogHelper';
+import MessageEnums from '../../../shared/enums/MessageEnums';
+import { VideoService } from '../../../shared/services/video.service';
+import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 
 @Component({
   selector: 'app-comment-settings',
@@ -34,24 +35,31 @@ import { commentMatDialogConfigs } from '../../../shared/helper/DialogHelper';
 export class CommentSettingsComponent implements OnInit {
   @Input() comment!: CommentResponse;
   userModel?: UserModel;
+  video?: VideoResponse;
   listOfComments: CommentResponse[] = [];
-  private userModelSubscription?: Subscription;
+  private subs1?: Subscription;
+  private subs2?: Subscription;
 
   constructor(
     private userService: UserService,
+    private videoService: VideoService,
     private commentService: CommentService,
-    private snackbarService: SnackbarService,
+    private snack: SnackbarService,
     private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
-    this.userModelSubscription = this.userService.userModel$.subscribe(
-      (res) => (this.userModel = res),
+    this.subs1 = this.userService.userModel$.subscribe(
+      (data) => (this.userModel = data),
+    );
+
+    this.subs2 = this.videoService.selectedVideo$.subscribe(
+      (data) => (this.video = data),
     );
   }
 
-  isContentCreatorOrAdmin(): boolean {
-    return isContentCreatorOrAdmin(this.userModel);
+  isVideoUploaderOrAdmin(): boolean {
+    return isVideoUploaderOrAdmin(this.comment, this.userModel);
   }
 
   isLoggedIn(): boolean {
@@ -66,50 +74,56 @@ export class CommentSettingsComponent implements OnInit {
     return !this.comment.replyId;
   }
 
+  getHideMessage(): string {
+    return this.comment.isHidden ? 'Unhide comment' : 'Hide comment';
+  }
+
+  getHideIcon(): string {
+    return this.comment.isHidden ? 'visibility_off' : 'visibility';
+  }
+
   /**
    * Remove the specific comment from the website.
-   * TODO: Nem törli megfelelően a kommenteket. Javítani kell
    */
   handleCommentRemoval(): void {
-    if (!this.isContentCreatorOrAdmin()) {
-      this.snackbarService.open(
-        SeverityEnums.ERROR,
-        "You don't have permission to remove the comment!",
-      );
+    if (!this.isVideoUploaderOrAdmin()) {
+      this.snack.on(MessageEnums.DENIED_COMMENT_DELETION);
       return;
     }
 
     this.commentService
       .removeCommentById(this.comment.id)
       .then(() => {
-        this.snackbarService.open(
-          SeverityEnums.SUCCESS,
-          'Comment has been successfully removed!',
-        );
-        // Update the list of comments by fetching the comments from the server.
-        this.commentService
-          .getCommentsByVideoId(this.comment.videoId)
-          .then((res) => this.commentService.updateListOfComments(res));
+        this.snack.on(MessageEnums.COMMENT_IS_DELETED);
+        this.commentService.fetchLatestComments(this.video, this.userModel);
       })
-      .catch(() =>
-        this.snackbarService.open(
-          SeverityEnums.ERROR,
-          'Unexpected error occurred while removing the comment!',
-        ),
-      );
+      .catch(() => this.snack.on(MessageEnums.REMOVE_COMMENT_BY_ID));
   }
 
-  /**
-   * Reply to a specific comment by opening a dialog window.
-   */
-  handleCommentReply(): void {
+  openCommentDialog(isEdit: boolean = false): void {
     this.dialog.open(
       CommentDialogComponent,
       commentMatDialogConfigs(
         this.comment.videoId,
-        CommentDialogEnums.REPLY_TO_COMMENT,
+        isEdit
+          ? CommentDialogEnums.EDIT_COMMENT
+          : CommentDialogEnums.REPLY_TO_COMMENT,
         this.comment.id,
+        isEdit ? this.comment.message : undefined,
       ),
     );
+  }
+
+  handleCommentHide(): void {
+    const visibilityMessage = this.comment.isHidden
+      ? MessageEnums.COMMENT_IS_NOW_NOT_HIDDEN
+      : MessageEnums.COMMENT_IS_NOW_HIDDEN;
+    this.commentService
+      .hideComment(this.comment.id)
+      .then(() => {
+        this.snack.on(visibilityMessage);
+        this.commentService.fetchLatestComments(this.video, this.userModel);
+      })
+      .catch(() => this.snack.on(MessageEnums.COMMENT_HIDE_CHANGE_ERROR));
   }
 }

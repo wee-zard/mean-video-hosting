@@ -1,6 +1,6 @@
-import VideoService from '../services/videoService';
-import VideoServiceImpl from '../services/impl/videoServiceImpl';
-import { Router, Request, Response, response } from 'express';
+import VideoService from '../../services/videoService';
+import VideoServiceImpl from '../../services/impl/videoServiceImpl';
+import { Router, Request, Response } from 'express';
 import { VideoSearchRequest } from '../../model/request/VideoSearchRequest';
 import { IVideoType, Video } from '../../model/mongodbModels/Video';
 import { IUser, User } from '../../model/mongodbModels/User';
@@ -24,7 +24,7 @@ export const configureVideoRoutes = (): Router => {
   /**
    * Updates the view count of a video by 1.
    */
-  router.get('/', (req: Request, res: Response) => {
+  router.post('/increase-view-count', (req: Request, res: Response) => {
     const videoId = req.query.video_id as string;
     videoService
       .incrementViewCountOfVideoWithOneByVideoId(videoId)

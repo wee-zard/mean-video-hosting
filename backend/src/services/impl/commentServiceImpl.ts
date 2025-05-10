@@ -1,11 +1,11 @@
-import { IComment, Comment, ICommentsType } from '../../../model/mongodbModels/Comment';
+import { IComment, Comment, ICommentsType } from '../../model/mongodbModels/Comment';
 import CommentService from '../commentService';
 
 export default class CommentServiceImpl implements CommentService {
   /**
    * @inheritdoc
    */
-  findCommentsByVideoId(id: string): Promise<IComment[]> {
+  getCommentsByVideoId(id: string): Promise<IComment[]> {
     return new Promise((resolve, reject) => {
       const query = Comment.find({ videoId: id });
       query.then((result) => resolve(result as IComment[])).catch(reject);
@@ -49,6 +49,31 @@ export default class CommentServiceImpl implements CommentService {
             .then(() => resolve(true))
             .catch(reject);
         })
+        .catch(reject);
+    });
+  }
+
+  /**
+   * @inheritdoc
+   */
+  updateComment(id: string, message: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      Comment.updateOne(
+        { id: id },
+        { $set: { message: message, lastModification: new Date(Date.now()).toISOString() } }
+      )
+        .then(() => resolve(true))
+        .catch(reject);
+    });
+  }
+
+  /**
+   * @inheritdoc
+   */
+  hideCommentById(id: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      Comment.updateOne({ id: id }, [{ $set: { isHidden: { $eq: [false, '$isHidden'] } } }])
+        .then(() => resolve(true))
         .catch(reject);
     });
   }

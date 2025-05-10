@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { loadFlywayMigrations } from '../mongodb/mongodb-flyway';
+import { loadFlywayMigrations } from './mongodb-flyway';
 
 const dbUrl = 'mongodb://localhost:27017/mean-db';
 

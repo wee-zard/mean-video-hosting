@@ -146,4 +146,17 @@ export class VideoService {
       ),
     );
   }
+
+  increaseViewCount(videoId: string): Promise<boolean> {
+    const video = {
+      videoId: videoId,
+    };
+    return lastValueFrom(
+      this.http.post<boolean>(
+        `${this.server}/increase-view-count`,
+        video,
+        getRequestHeader({}),
+      ),
+    );
+  }
 }

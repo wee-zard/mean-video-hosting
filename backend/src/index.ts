@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
-import { configureRoutesMiddleware } from './routes/routes';
+import { configureRoutesMiddleware } from './middlewares/routesMiddleware';
 import { configurePassportMiddleware } from './middlewares/passportMiddleware';
 import { configureMongooseMiddleware } from './middlewares/mongooseMiddleware';
 import { configureCorsMiddleware } from './middlewares/corsMiddleware';

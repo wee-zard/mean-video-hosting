@@ -13,6 +13,10 @@ import { VideoCardComponent } from '../../component/video-card/video-card.compon
 import { CommentService } from '../../shared/services/comment.service';
 import { Subscription } from 'rxjs';
 import { getLastUrlChunk } from '../../shared/helper/UrlParserHelper';
+import { SnackbarService } from '../../shared/services/snackbar.service';
+import MessageEnums from '../../shared/enums/MessageEnums';
+import { UserModel } from '../../shared/models/models/UserModels';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-video',
@@ -30,18 +34,37 @@ import { getLastUrlChunk } from '../../shared/helper/UrlParserHelper';
 @AutoUnsubscribe
 export class VideoComponent implements OnInit {
   video?: VideoResponse;
+  userModel?: UserModel;
   listOfRandomVideos: VideoResponse[] = [];
-  private reloadSubscription?: Subscription;
+  private subs1?: Subscription;
+  private subs2?: Subscription;
+  private subs3?: Subscription;
 
   constructor(
     private videoService: VideoService,
     private commentService: CommentService,
+    private userService: UserService,
     private router: Router,
+    private snack: SnackbarService,
   ) {}
 
   ngOnInit(): void {
-    this.reloadSubscription = this.videoService.videoReload$.subscribe(() =>
+    const videoId = getLastUrlChunk(this.router.url);
+
+    this.videoService
+      .increaseViewCount(videoId)
+      .catch(() => this.snack.on(MessageEnums.VIDEO_VIEW_INCREMENT));
+
+    this.subs1 = this.videoService.videoReload$.subscribe(() =>
       this.initVideoWebsite(),
+    );
+
+    this.subs2 = this.videoService.selectedVideo$.subscribe(
+      (data) => (this.video = data),
+    );
+
+    this.subs3 = this.userService.userModel$.subscribe(
+      (data) => (this.userModel = data),
     );
   }
 
@@ -51,23 +74,26 @@ export class VideoComponent implements OnInit {
     this.videoService
       .getOneVideoById(videoId)
       .then((videoResponse) => {
-        this.video = videoResponse;
         this.videoService.updateSelectedVideo(videoResponse);
+        this.commentService.fetchLatestComments(videoResponse, this.userModel);
       })
-      .catch(() => this.videoService.updateSelectedVideo());
+      .catch(() => {
+        this.snack.on(MessageEnums.GET_VIDEO_BY_ID);
+        this.videoService.updateSelectedVideo();
+      });
 
     this.videoService
       .getRandomVideosExceptVideoId(videoId)
-      .then((res) => (this.listOfRandomVideos = res));
-
-    this.commentService
-      .getCommentsByVideoId(videoId)
-      .then((res) => this.commentService.updateListOfComments(res))
-      .catch(() => this.commentService.updateListOfComments([]));
+      .then((res) => (this.listOfRandomVideos = res))
+      .catch(() => {
+        this.snack.on(MessageEnums.GET_RANDOM_VIDEOS);
+        this.listOfRandomVideos = [];
+      });
   }
 
   handleUploaderOnClick(): void {
     if (!this.video) {
+      this.snack.on(MessageEnums.VIDEO_NOT_PROVIDED);
       return;
     }
 

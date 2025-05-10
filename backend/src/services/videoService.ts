@@ -1,11 +1,11 @@
-import { IVideo } from '../../model/mongodbModels/Video';
+import { IVideo } from '../model/mongodbModels/Video';
 
 export default interface VideoService {
   /**
    * Finds a video by the id of the video.
    *
    * @param videoId the id of the video the search for.
-   * @param Returns a video model
+   * @returns Returns a video model
    */
   findVideoById(videoId: string): Promise<IVideo>;
 

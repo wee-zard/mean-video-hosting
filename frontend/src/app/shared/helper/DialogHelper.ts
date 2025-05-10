@@ -7,11 +7,13 @@ export const commentMatDialogConfigs = (
   videoId: string,
   commentType: CommentDialogEnums,
   replyCommentId?: string,
+  message?: string,
 ): MatDialogConfig => {
   const data: CommentDialogDataType = {
     type: commentType,
     videoId: videoId,
     replyCommentId: replyCommentId,
+    commentMessage: message,
   };
 
   return {
