@@ -15,7 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../../shared/services/setting.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { StorageKeyEnum } from '../../shared/enums/StorageKeyEnums';
-import { VideoService } from '../../shared/services/video.service';
+import {
+  getLastUrlChunk,
+  getUrlRouteName,
+} from '../../shared/helper/UrlParserHelper';
 
 @Component({
   selector: 'app-toolbar',
@@ -39,7 +42,6 @@ export class ToolbarComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private videoService: VideoService,
     private authService: AuthService,
     private snackbarService: SnackbarService,
     private router: Router,
@@ -84,10 +86,22 @@ export class ToolbarComponent implements OnInit {
   }
 
   reloadPage(): void {
+    const routeName = getUrlRouteName(this.router.url);
+    const lastChunk = getLastUrlChunk(this.router.url);
+
     const url = this.user
       ? `${this.siteRoutes.CHANEL_PAGE}/${this.user.id}`
       : '';
+
     this.router.navigate([url]).then(() => {
+      if (
+        !this.user ||
+        routeName !== this.siteRoutes.CHANEL_PAGE ||
+        this.user.id === lastChunk
+      ) {
+        return;
+      }
+
       window.location.reload();
     });
   }
