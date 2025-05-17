@@ -1,6 +1,23 @@
 import { IVideo, Video } from '../model/mongodbModels/Video';
+import { VideoUpdateRequest } from '../model/request/VideoUpdateRequest';
 
 export default class VideoDao {
+  /**
+   * Updates the video's title and description
+   *
+   * @param request The request that holds the updated properties of the video
+   * @Returns Returns true if the process of the update finished successfully.
+   */
+  updateVideo(request: VideoUpdateRequest): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      Video.updateOne({ id: request.id }, [
+        { $set: { title: request.title, description: request.description } },
+      ])
+        .then(() => resolve(true))
+        .catch(reject);
+    });
+  }
+
   /**
    * Deletes a video by id.
    *

@@ -1,1 +1,62 @@
-<p>chanel-video-edit-dialog works!</p>
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
+<div class="grid-container delete-dialog-container">
+  <div class="position-to-center">
+    <h3>Update video</h3>
+  </div>
+  <div>
+    <img
+      class="video-card-image video-delete-image"
+      [src]="data.videoUrlPath | videoImagePath"
+      alt="Video Thumbnail"
+    />
+  </div>
+  <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-holder">
+      <div class="form-control-holder">
+        <mat-form-field>
+          <mat-label>Video title</mat-label>
+          <input
+            matInput
+            [type]="formFields.TITLE"
+            [formControlName]="formFields.TITLE"
+            required
+            maxlength="100"
+          />
+          <mat-error>{{ formError?.[formFields.TITLE] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Video Description</mat-label>
+          <textarea
+            matInput
+            [formControlName]="formFields.DESCRIPTION"
+            rows="6"
+            maxlength="500"
+            required
+          ></textarea>
+          <mat-error>{{ formError?.[formFields.DESCRIPTION] }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex-container position-to-center">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          [disabled]="isLoading"
+          (click)="handleOnCancelClick()"
+        >
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading"
+        >
+          Modify
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,6 +7,11 @@ import {
   VideoSearchFormType,
 } from '../models/forms/VideoSearchForm';
 import { CommentFormField, CommentFormType } from '../models/forms/CommentForm';
+import {
+  VideoUpdateField,
+  VideoUpdateFormBuilderType,
+  VideoUpdateType,
+} from '../models/forms/VideoUpdateForm';
 
 type FormControlOption = {
   isNotRequired?: boolean;
@@ -52,6 +57,7 @@ export class FormBuilderService {
   /**
    * Created a new form group for the login.
    * The form will contains required form controls as well.
+   *
    * @returns Returns the login form group.
    */
   buildLoginForm() {
@@ -64,6 +70,7 @@ export class FormBuilderService {
   /**
    * Created a new form group for the registration.
    * The form will contains required form controls as well.
+   *
    * @returns Returns the registration form group.
    */
   buildRegistrationForm(): FormGroup<RegistrationFormType> {
@@ -101,6 +108,7 @@ export class FormBuilderService {
   /**
    * Created a new form group for the searchbar.
    * The form will contains required form controls as well.
+   *
    * @returns Returns the searchbar form group.
    */
   buildVideoSearchForm() {
@@ -129,6 +137,25 @@ export class FormBuilderService {
       [CommentFormField.MESSAGE]: this.getTextFormControl({
         maxLength: 500,
         data: message,
+      }),
+    });
+  }
+
+  /**
+   * Created a new form group for the video.
+   * The form will contains required form controls as well.
+   *
+   * @returns Returns the video form group.
+   */
+  buildVideoUpdateForm(builder: VideoUpdateFormBuilderType = {}) {
+    return this.fb.group<VideoUpdateType>({
+      [VideoUpdateField.TITLE]: this.getTextFormControl({
+        maxLength: 100,
+        data: builder[VideoUpdateField.TITLE],
+      }),
+      [VideoUpdateField.DESCRIPTION]: this.getTextFormControl({
+        maxLength: 500,
+        data: builder[VideoUpdateField.DESCRIPTION],
       }),
     });
   }

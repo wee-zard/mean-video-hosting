@@ -1,8 +1,16 @@
 import RootDao from '../../dao/rootDao';
 import { IVideo } from '../../model/mongodbModels/Video';
+import { VideoUpdateRequest } from '../../model/request/VideoUpdateRequest';
 import VideoService from '../videoService';
 
 export default class VideoServiceImpl implements VideoService {
+  /**
+   * @inheritdoc
+   */
+  updateVideo(request: VideoUpdateRequest): Promise<boolean> {
+    return RootDao.videoDao.updateVideo(request);
+  }
+
   /**
    * @inheritdoc
    */

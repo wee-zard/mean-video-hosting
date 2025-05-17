@@ -7,6 +7,7 @@ import { VideoSearchRequest } from '../models/request/VideoSearchRequest';
 import { VideoResponse } from '../models/response/VideoResponse';
 import { UserModel } from '../models/models/UserModels';
 import { VideoRatingUpdateRequest } from '../models/request/VideoRatingUpdateRequest';
+import { VideoUpdateRequest } from '../models/request/VideoUpdateRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -173,6 +174,16 @@ export class VideoService {
       this.http.delete<boolean>(
         `${this.server}/video`,
         getRequestHeader({ isWithCredentials: true, params: queryParams }),
+      ),
+    );
+  }
+
+  updateVideo(request: VideoUpdateRequest): Promise<boolean> {
+    return lastValueFrom(
+      this.http.post<boolean>(
+        `${this.server}/video-update`,
+        request,
+        getRequestHeader({ isWithCredentials: true }),
       ),
     );
   }

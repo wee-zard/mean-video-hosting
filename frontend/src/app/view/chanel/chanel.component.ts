@@ -10,7 +10,6 @@ import { VideoResponse } from '../../shared/models/response/VideoResponse';
 import { getLastUrlChunk } from '../../shared/helper/UrlParserHelper';
 import { VideoService } from '../../shared/services/video.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
-import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { ChanelHeaderComponent } from './chanel-header/chanel-header.component';
 import { ChanelVideosComponent } from './chanel-videos/chanel-videos.component';
 import { ChanelVideoUploadComponent } from './chanel-video-upload/chanel-video-upload.component';
@@ -35,6 +34,7 @@ export class ChanelComponent implements OnInit {
   channelOwnerId?: string;
   user?: UserModel;
   uploadedVideos: VideoResponse[] = [];
+  private subs3?: Subscription;
   private subs2?: Subscription;
   private subs1?: Subscription;
 
@@ -46,8 +46,6 @@ export class ChanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.channelOwnerId = getLastUrlChunk(this.router.url);
-
     this.subs2 = this.userService.userModel$.subscribe(
       (data) => (this.user = data),
     );
@@ -56,10 +54,16 @@ export class ChanelComponent implements OnInit {
       (data) => (this.uploadedVideos = data),
     );
 
-    this.videoService
-      .getVideosUploadedByUser(this.channelOwnerId)
-      .then((res) => this.videoService.updateListOfChanelVideos(res))
-      .catch(() => this.snack.on(MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR));
+    this.subs3 = this.videoService.videoReload$.subscribe(() => {
+      this.channelOwnerId = getLastUrlChunk(this.router.url);
+
+      this.videoService
+        .getVideosUploadedByUser(this.channelOwnerId)
+        .then((res) => this.videoService.updateListOfChanelVideos(res))
+        .catch(() =>
+          this.snack.on(MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR),
+        );
+    });
   }
 
   isVideoStatisticsAreDisplayed(): boolean {

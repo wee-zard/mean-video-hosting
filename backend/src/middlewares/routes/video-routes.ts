@@ -7,11 +7,20 @@ import { IUser, User } from '../../model/mongodbModels/User';
 import { BaseResponse } from '../../model/response/BaseResponse';
 import CommentService from '../../services/commentService';
 import CommentServiceImpl from '../../services/impl/commentServiceImpl';
+import { VideoUpdateRequest } from '../../model/request/VideoUpdateRequest';
 
 export const configureVideoRoutes = (): Router => {
   const router = Router();
   const videoService: VideoService = new VideoServiceImpl();
   const commentService: CommentService = new CommentServiceImpl();
+
+  router.post('/video-update', async (req: Request, res: Response) => {
+    const videoUpdateRequest: VideoUpdateRequest = req.body;
+    videoService
+      .updateVideo(videoUpdateRequest)
+      .then(() => res.status(200).send(true))
+      .catch((err) => res.status(400).send(false));
+  });
 
   /**
    * Deletes a video by id

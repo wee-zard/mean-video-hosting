@@ -17,6 +17,7 @@ export const listOfMessages = Object.freeze({
   [MessageEnums.COMMENT_HIDE_CHANGE_ERROR]: () => SeverityEnums.ERROR,
   [MessageEnums.VIDEO_DELETE_ERROR]: () => SeverityEnums.ERROR,
   [MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR]: () => SeverityEnums.ERROR,
+  [MessageEnums.UPDATE_VIDEO_ERROR]: () => SeverityEnums.ERROR,
 
   // Success snackbar messages
   [MessageEnums.COMMENT_IS_DELETED]: () => SeverityEnums.SUCCESS,

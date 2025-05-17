@@ -54,19 +54,10 @@ export class ChanelVideoDeleteDialogComponent implements OnInit {
   handleOnRemoveClick(): void {
     this.videoService
       .deleteVideoByVideoId(this.data.id)
-      .then(() => this.updateChanelVideos())
-      .catch(() => this.snack.on(MessageEnums.VIDEO_DELETE_ERROR));
-  }
-
-  private updateChanelVideos(): void {
-    const channelOwnerId = getLastUrlChunk(this.router.url);
-
-    this.videoService
-      .getVideosUploadedByUser(channelOwnerId)
-      .then((res) => {
-        this.videoService.updateListOfChanelVideos(res);
+      .then(() => {
+        this.videoService.reloadVideoWebsite();
         this.handleOnCancelClick();
       })
-      .catch(() => this.snack.on(MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR));
+      .catch(() => this.snack.on(MessageEnums.VIDEO_DELETE_ERROR));
   }
 }

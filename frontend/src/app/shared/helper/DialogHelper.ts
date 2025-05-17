@@ -24,12 +24,13 @@ export const commentMatDialogConfigs = (
   };
 };
 
-export const videoRemovalMatDialogConfigs = (
+export const videoModificationMatDialogConfigs = (
   video: VideoResponse,
+  height: number = 550,
 ): MatDialogConfig => {
   return {
     width: '480px',
-    height: '550px',
+    height: `${height}px`,
     panelClass: 'common-dialog-setting',
     data: video,
   };

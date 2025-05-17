@@ -1,6 +1,15 @@
 import { IVideo } from '../model/mongodbModels/Video';
+import { VideoUpdateRequest } from '../model/request/VideoUpdateRequest';
 
 export default interface VideoService {
+  /**
+   * Updates the video's title and description
+   *
+   * @param request The request that holds the updated properties of the video
+   * @Returns Returns true if the process of the update finished successfully.
+   */
+  updateVideo(request: VideoUpdateRequest): Promise<boolean>;
+
   /**
    * Deletes a video by id.
    *
