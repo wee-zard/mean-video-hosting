@@ -2,6 +2,22 @@ import { IComment, ICommentsType } from '../model/mongodbModels/Comment';
 
 export default interface CommentService {
   /**
+   * Deletes comments by video id.
+   *
+   * @param videoId The id of the video.
+   * @returns Returns true if the comment is deleted successfully.
+   */
+  deleteCommentsByVideoId(videoId: string): Promise<boolean>;
+
+  /**
+   * Fetches the number of comments under the requested video.
+   *
+   * @param id the id of the video the search by.
+   * @returns the number of comments under the video
+   */
+  getNumberOfCommentsUnderVideo(id: string): Promise<number>;
+
+  /**
    * Finds a list of comments by the id of the video.
    *
    * @param id the id of the video the search by.
@@ -18,6 +34,14 @@ export default interface CommentService {
   createComment(comment: ICommentsType): Promise<boolean>;
 
   /**
+   * Find a by the id of the comment.
+   *
+   * @param id the id of the comment
+   * @returns Returns a comment
+   */
+  findCommentById(id: string): Promise<IComment | null>;
+
+  /**
    * Find the list of comments where the reply id is the same as the param id.
    *
    * @param replyId the replyId
@@ -29,9 +53,10 @@ export default interface CommentService {
    * Deletes a comment by id.
    *
    * @param id The id of the comment to delete.
+   * @param videoId The id of the video from which we want to remove comments.
    * @returns Returns true if the comment is deleted successfully.
    */
-  deleteCommentById(id: string): Promise<boolean>;
+  deleteCommentById(id: string, videoId: string): Promise<boolean>;
 
   /**
    * Updates a comment with a new message.

@@ -14,10 +14,23 @@ import { SiteRouteEnums } from '../../../shared/enums/SiteRouteEnums';
 import { MatDialog } from '@angular/material/dialog';
 import { ChanelVideoDeleteDialogComponent } from '../chanel-video-delete-dialog/chanel-video-delete-dialog.component';
 import { videoRemovalMatDialogConfigs } from '../../../shared/helper/DialogHelper';
+import { ViewCountFormatterPipe } from '../../../shared/pipes/view-count-formatter.pipe';
+import { UploadTimeFormatterPipe } from '../../../shared/pipes/upload-time-formatter.pipe';
+import { LikeCountFormatterPipe } from '../../../shared/pipes/like-count-formatter.pipe';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-chanel-video-management',
-  imports: [MatTableModule, VideoImagePathPipe, MatButtonModule, MatIconModule],
+  imports: [
+    MatTableModule,
+    VideoImagePathPipe,
+    MatButtonModule,
+    MatIconModule,
+    ViewCountFormatterPipe,
+    UploadTimeFormatterPipe,
+    LikeCountFormatterPipe,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './chanel-video-management.component.html',
   styleUrl: './chanel-video-management.component.scss',
 })
@@ -25,7 +38,13 @@ import { videoRemovalMatDialogConfigs } from '../../../shared/helper/DialogHelpe
 export class ChanelVideoManagementComponent implements OnInit {
   channelOwnerId?: string;
   user?: UserModel;
-  displayedColumns = ['videoUrlPath', 'title', 'description', 'action'];
+  displayedColumns = [
+    'videoUrlPath',
+    'title',
+    'description',
+    'statistics',
+    'action',
+  ];
   dataSource = new MatTableDataSource<VideoResponse>([]);
   private listOfChanelVideosSubs?: Subscription;
 
@@ -42,6 +61,14 @@ export class ChanelVideoManagementComponent implements OnInit {
       this.videoService.listOfChanelVideos$.subscribe((data) => {
         this.dataSource = new MatTableDataSource<VideoResponse>(data);
       });
+  }
+
+  getProgressSpinnerValue(video: VideoResponse): number {
+    return Math.floor(
+      (video.rating.numberOfLikes /
+        (video.rating.numberOfLikes + video.rating.numberOsfDislikes)) *
+        100,
+    );
   }
 
   handleOnVideoClick(videoId: string): void {

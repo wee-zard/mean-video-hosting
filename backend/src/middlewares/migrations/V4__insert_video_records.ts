@@ -414,9 +414,10 @@ export const runMigration = async () => {
     new Video({
       id: '68068ac9a851f22ec3099fc5',
       viewCount: 46741,
-      videoUrlPath: 'https://www.youtube.com/embed/8Pk7iBRPPsc',
-      description: '.',
-      title: 'Penn & Teller: Fool Us - Animal Traps - Season 3 Episode 11 (2016)',
+      videoUrlPath: 'https://www.youtube.com/embed/5_KcQt0z-eE',
+      description: 'Full act of Dani DaOrtiz in Foul Us',
+      title:
+        'Dani DaOrtiz at Fool US 2022 (the act that Penn and Teller didn’t even try to figure out.)',
       rating: { numberOfLikes: 8014, numberOsfDislikes: 9442 },
       upload: {
         userId: '6806233ad1fbc4a94e0891a9',
@@ -547,9 +548,10 @@ export const runMigration = async () => {
     new Video({
       id: '68068ac9a851f22ec3099fc7',
       viewCount: 55020,
-      videoUrlPath: 'https://www.youtube.com/embed/Lrlro3YJ15o',
-      description: 'Defending your thesis may be different than you think.',
-      title: 'Thesis Defense - Studio C',
+      videoUrlPath: 'https://www.youtube.com/embed/p_lWMvh2bBg',
+      description:
+        'Thunderguy’s (Matt) archenemy (Will Forte) exposes his identity, but this triumph is not as sweet as he thought it would be.',
+      title: 'Superhero Secret Identity Reveal (ft. Will Forte) - Studio C',
       rating: { numberOfLikes: 30594, numberOsfDislikes: 16252 },
       upload: {
         userId: '6806233ad1fbc4a94e0891b7',
@@ -903,7 +905,7 @@ export const runMigration = async () => {
     new Video({
       id: '68068ac9a851f22ec3099fcc',
       viewCount: 43228,
-      videoUrlPath: 'https://www.youtube.com/embed/MCNotA_Ie10',
+      videoUrlPath: 'https://www.youtube.com/embed/M6M6a4W1ZPc',
       description:
         'Season 2 Episode 6 (2015) We never pulled a rabbit out of a hat until this episode of Fool Us.',
       title:

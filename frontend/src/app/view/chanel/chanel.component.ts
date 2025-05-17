@@ -13,9 +13,9 @@ import { SnackbarService } from '../../shared/services/snackbar.service';
 import { SeverityEnums } from '../../shared/enums/SeverityEnums';
 import { ChanelHeaderComponent } from './chanel-header/chanel-header.component';
 import { ChanelVideosComponent } from './chanel-videos/chanel-videos.component';
-import { ChanelVideoStatisticsComponent } from './chanel-video-statistics/chanel-video-statistics.component';
 import { ChanelVideoUploadComponent } from './chanel-video-upload/chanel-video-upload.component';
 import { ChanelVideoManagementComponent } from './chanel-video-management/chanel-video-management.component';
+import MessageEnums from '../../shared/enums/MessageEnums';
 
 @Component({
   selector: 'app-chanel',
@@ -24,7 +24,6 @@ import { ChanelVideoManagementComponent } from './chanel-video-management/chanel
     ChanelHeaderComponent,
     CommonModule,
     ChanelVideosComponent,
-    ChanelVideoStatisticsComponent,
     ChanelVideoUploadComponent,
     ChanelVideoManagementComponent,
   ],
@@ -43,7 +42,7 @@ export class ChanelComponent implements OnInit {
     private userService: UserService,
     private videoService: VideoService,
     private router: Router,
-    private snackbarService: SnackbarService,
+    private snack: SnackbarService,
   ) {}
 
   ngOnInit(): void {
@@ -61,12 +60,7 @@ export class ChanelComponent implements OnInit {
     this.videoService
       .getVideosUploadedByUser(this.channelOwnerId)
       .then((res) => this.videoService.updateListOfChanelVideos(res))
-      .catch(() => {
-        this.snackbarService.open(
-          SeverityEnums.ERROR,
-          'Error while loading the uploaded videos of the chanel owner!',
-        );
-      });
+      .catch(() => this.snack.on(MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR));
   }
 
   isVideoStatisticsAreDisplayed(): boolean {

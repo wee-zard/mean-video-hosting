@@ -10,11 +10,6 @@
           <app-chanel-video-management></app-chanel-video-management>
         </mat-tab>
       </ng-container>
-      <ng-container *ngIf="isVideoStatisticsAreDisplayed()">
-        <mat-tab label="Video Statistics">
-          <app-chanel-video-statistics></app-chanel-video-statistics>
-        </mat-tab>
-      </ng-container>
       <ng-container *ngIf="isBrowsingUserTheChanelOwner()">
         <mat-tab label="Upload Video">
           <app-chanel-video-upload></app-chanel-video-upload>

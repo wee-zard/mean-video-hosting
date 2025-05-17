@@ -91,11 +91,17 @@ export class CommentSettingsComponent implements OnInit {
       return;
     }
 
+    if (!this.video) {
+      this.snack.on(MessageEnums.VIDEO_NOT_PROVIDED);
+      return;
+    }
+
     this.commentService
-      .removeCommentById(this.comment.id)
+      .removeCommentById(this.comment.id, this.video.id)
       .then(() => {
         this.snack.on(MessageEnums.COMMENT_IS_DELETED);
         this.commentService.fetchLatestComments(this.video, this.userModel);
+        this.videoService.reloadVideoWebsite();
       })
       .catch(() => this.snack.on(MessageEnums.REMOVE_COMMENT_BY_ID));
   }

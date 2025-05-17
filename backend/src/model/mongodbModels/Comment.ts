@@ -1,4 +1,5 @@
 import mongoose, { Model, Schema } from 'mongoose';
+import { RootService } from '../../services/rootService';
 
 export type ICommentsType = {
   id: string;
@@ -24,6 +25,14 @@ const CommentSchema: Schema<IComment> = new mongoose.Schema({
   user: { userId: String, userName: String, profilePicturePath: String },
   videoId: { type: String, required: true },
   isHidden: { type: Boolean, default: false },
+});
+
+CommentSchema.pre('save', function (next) {
+  const comment = this;
+  RootService.videoService
+    .changeCommentNumberOfVideo(comment.videoId, true)
+    .then(() => next())
+    .catch(next);
 });
 
 export const Comment: Model<IComment> = mongoose.model<IComment>('Comment', CommentSchema);

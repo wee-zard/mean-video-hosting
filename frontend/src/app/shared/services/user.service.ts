@@ -48,4 +48,20 @@ export class UserService implements OnInit {
       ),
     );
   }
+
+  /**
+   * Get a user from the server
+   *
+   * @param userId The id of the user
+   */
+  getUserById(userId: string): Promise<UserModel> {
+    const queryParams = new HttpParams().append('user_id', userId);
+
+    return lastValueFrom(
+      this.http.get<UserModel>(
+        `${this.server}/get-user`,
+        getRequestHeader({ params: queryParams }),
+      ),
+    );
+  }
 }

@@ -20,6 +20,7 @@ export type IVideoType = {
   };
   tags: ITagType[];
   categories: ICategoryType[];
+  numberOfComments: number;
 };
 
 export interface IVideo extends Document, IVideoType {}
@@ -39,6 +40,7 @@ const VideoSchema: Schema<IVideo> = new mongoose.Schema({
   },
   tags: [{ id: String, name: String, color: { red: Number, green: Number, blue: Number } }],
   categories: [{ id: String, name: String }],
+  numberOfComments: { type: Number, default: 0 },
 });
 
 export const Video: Model<IVideo> = mongoose.model<IVideo>('Video', VideoSchema);

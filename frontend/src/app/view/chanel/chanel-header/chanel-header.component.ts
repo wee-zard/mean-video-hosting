@@ -8,6 +8,7 @@ import { VideoService } from '../../../shared/services/video.service';
 import { UserService } from '../../../shared/services/user.service';
 import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 import { UserModel } from '../../../shared/models/models/UserModels';
+import { getLastUrlChunk } from '../../../shared/helper/UrlParserHelper';
 
 @Component({
   selector: 'app-chanel-header',
@@ -18,7 +19,6 @@ import { UserModel } from '../../../shared/models/models/UserModels';
 export class ChanelHeaderComponent {
   user?: UserModel;
   uploadedVideos: VideoResponse[] = [];
-  private userSubscription?: Subscription;
   private listOfChanelVideosSubs?: Subscription;
 
   constructor(
@@ -28,9 +28,8 @@ export class ChanelHeaderComponent {
   ) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.userModel$.subscribe(
-      (data) => (this.user = data),
-    );
+    const userId = getLastUrlChunk(this.router.url);
+    this.userService.getUserById(userId).then((data) => (this.user = data));
 
     this.listOfChanelVideosSubs =
       this.videoService.listOfChanelVideos$.subscribe(

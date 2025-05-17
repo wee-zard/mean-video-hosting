@@ -6,6 +6,17 @@ import { RootService } from '../services/rootService';
 
 export class CommentController {
   /**
+   * Fetches the number of comments under the requested video.
+   */
+  getNumberOfCommentsUnderVideo(req: Request, res: Response): void {
+    const videoId = req.query.video_id as string;
+    RootService.commentService
+      .getNumberOfCommentsUnderVideo(videoId)
+      .then((data) => res.status(200).send(data))
+      .catch((err) => res.status(400).send(err));
+  }
+
+  /**
    * Fetch the list of comments related to a video
    */
   getCommentsByVideoId(req: Request, res: Response): void {
@@ -22,8 +33,9 @@ export class CommentController {
   @AuthenticateUser
   deleteCommentById(req: Request, res: Response): void {
     const commentId = req.query.comment_id as string;
+    const videoId = req.query.video_id as string;
     RootService.commentService
-      .deleteCommentById(commentId)
+      .deleteCommentById(commentId, videoId)
       .then(() => res.status(200).send(true))
       .catch((err) => res.status(400).send(err));
   }

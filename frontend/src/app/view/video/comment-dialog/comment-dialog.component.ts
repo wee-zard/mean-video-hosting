@@ -146,6 +146,7 @@ export class CommentDialogComponent implements OnInit {
 
   private updateCommentsAfterCommentAction(): void {
     this.commentService.fetchLatestComments(this.video, this.userModel);
+    this.videoService.reloadVideoWebsite();
     this.onNoClick();
   }
 }

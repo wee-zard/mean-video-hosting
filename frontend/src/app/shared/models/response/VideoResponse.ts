@@ -19,4 +19,5 @@ export type VideoResponse = {
   };
   tags: TagResponse[];
   categories: CategoryResponse[];
+  numberOfComments: number;
 };

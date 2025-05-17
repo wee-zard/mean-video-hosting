@@ -5,10 +5,29 @@ import { VideoSearchRequest } from '../../model/request/VideoSearchRequest';
 import { IVideoType, Video } from '../../model/mongodbModels/Video';
 import { IUser, User } from '../../model/mongodbModels/User';
 import { BaseResponse } from '../../model/response/BaseResponse';
+import CommentService from '../../services/commentService';
+import CommentServiceImpl from '../../services/impl/commentServiceImpl';
 
 export const configureVideoRoutes = (): Router => {
   const router = Router();
   const videoService: VideoService = new VideoServiceImpl();
+  const commentService: CommentService = new CommentServiceImpl();
+
+  /**
+   * Deletes a video by id
+   */
+  router.delete('/video', async (req: Request, res: Response) => {
+    const videoId = req.query.video_id as string;
+    commentService
+      .deleteCommentsByVideoId(videoId)
+      .then(() =>
+        videoService
+          .deleteById(videoId)
+          .then(() => res.status(200).send(true))
+          .catch((err) => res.status(400).send(false))
+      )
+      .catch((err) => res.status(400).send(false));
+  });
 
   /**
    * Finds a video by the id of the video.

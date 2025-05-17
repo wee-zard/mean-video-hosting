@@ -1,4 +1,4 @@
-<ng-container *ngIf="!rootComment">
+<ng-container *ngIf="!rootComment && !!user">
   <button mat-button type="button" (click)="onNewCommentClick()">
     Write a new comment!
   </button>

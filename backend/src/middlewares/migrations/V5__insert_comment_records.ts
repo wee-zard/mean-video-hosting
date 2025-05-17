@@ -4663,5 +4663,7 @@ export const runMigration = async () => {
     }),
   ];
 
-  await Comment.insertMany(listOfDocuments);
+  for await (const comment of listOfDocuments) {
+    await comment.save();
+  }
 };

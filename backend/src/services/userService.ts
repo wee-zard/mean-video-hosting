@@ -1,7 +1,16 @@
+import mongoose from 'mongoose';
 import { IUser, User } from '../model/mongodbModels/User';
 import { UserRegisterRequest } from '../model/request/UserRegisterRequest';
 
 export default interface UserService {
+
+  /**
+   * Retrieves a user from the server based on the provided user id.
+   *
+   * @param userId the id of the user to retrieve.
+   */
+  getUserById(userId: string): Promise<mongoose.Document<unknown, {}, IUser> | null>;
+
   /**
    * Checks whether the provided content creator user is exists on the server or not.
    *

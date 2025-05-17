@@ -61,5 +61,7 @@ export const loadFlywayMigrations = () => {
         console.log('unexpected error while fetching a migration file:', error);
       }
     }
+
+    console.log('migration is finished!');
   });
 };

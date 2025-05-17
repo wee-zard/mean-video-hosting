@@ -103,11 +103,15 @@ export class CommentService {
 
   /**
    * Removes a comment by id
+   *
    * @param commentId The comment to remove.
+   * @param videoId The id of the video from which we want to remove comments.
    * @returns Returns true if the comment successfully got removed, else false.
    */
-  removeCommentById(commentId: string): Promise<boolean> {
-    const queryParams = new HttpParams().append('comment_id', commentId);
+  removeCommentById(commentId: string, videoId: string): Promise<boolean> {
+    const queryParams = new HttpParams()
+      .append('comment_id', commentId)
+      .append('video_id', videoId);
     return lastValueFrom(
       this.http.delete<boolean>(
         `${this.server}/`,
@@ -118,6 +122,7 @@ export class CommentService {
 
   /**
    * Creates a new comment.
+   *
    * @param comment The comment to create.
    */
   createComment(comment: CommentRequest): Promise<boolean> {

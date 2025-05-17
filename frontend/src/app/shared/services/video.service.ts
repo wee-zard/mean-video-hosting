@@ -18,7 +18,7 @@ export class VideoService {
   selectedVideo$ = this.selectedVideo.asObservable();
   private listOfVideos = new BehaviorSubject<VideoResponse[]>([]);
   listOfVideos$ = this.listOfVideos.asObservable();
-  private videoReload = new BehaviorSubject<null>(null);
+  private videoReload = new BehaviorSubject<void>(undefined);
   videoReload$ = this.videoReload.asObservable();
   private listOfChanelVideos = new BehaviorSubject<VideoResponse[]>([]);
   listOfChanelVideos$ = this.listOfChanelVideos.asObservable();
@@ -37,7 +37,7 @@ export class VideoService {
   }
 
   reloadVideoWebsite() {
-    this.videoReload.next(null);
+    this.videoReload.next();
   }
 
   updateListOfChanelVideos(data: VideoResponse[]) {
@@ -156,6 +156,23 @@ export class VideoService {
         `${this.server}/increase-view-count`,
         video,
         getRequestHeader({}),
+      ),
+    );
+  }
+
+  /**
+   * Deletes a video by id.
+   *
+   * @param videoId the id of the video the delete
+   * @Returns Returns true if the process of the update finished successfully.
+   */
+  deleteVideoByVideoId(videoId: string): Promise<boolean> {
+    const queryParams = new HttpParams().append('video_id', videoId);
+
+    return lastValueFrom(
+      this.http.delete<boolean>(
+        `${this.server}/video`,
+        getRequestHeader({ isWithCredentials: true, params: queryParams }),
       ),
     );
   }

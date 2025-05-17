@@ -20,6 +20,7 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 import MessageEnums from '../../../shared/enums/MessageEnums';
 import { CommentService } from './../../../shared/services/comment.service';
 import { UserService } from '../../../shared/services/user.service';
+import { UserModel } from '../../../shared/models/models/UserModels';
 
 @Component({
   selector: 'app-video-comments',
@@ -38,9 +39,11 @@ import { UserService } from '../../../shared/services/user.service';
 export class VideoCommentsComponent implements OnInit {
   @Input() rootComment?: CommentResponse;
   listOfComments: CommentResponse[] = [];
+  user?: UserModel;
   video?: VideoResponse;
   private subs1?: Subscription;
   private subs2?: Subscription;
+  private subs3?: Subscription;
 
   constructor(
     private videoService: VideoService,
@@ -58,6 +61,10 @@ export class VideoCommentsComponent implements OnInit {
 
     this.subs2 = this.commentService.listOfComments$.subscribe(
       (data) => (this.listOfComments = data),
+    );
+
+    this.subs3 = this.userService.userModel$.subscribe(
+      (data) => (this.user = data),
     );
   }
 

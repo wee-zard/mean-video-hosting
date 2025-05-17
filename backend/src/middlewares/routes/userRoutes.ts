@@ -18,6 +18,7 @@ export default class UserRoutes {
     this.router.get('/logout', this.userController.logout);
     this.router.post('/register', this.userController.register);
     this.router.get('/is-exists', this.userController.isUserExists);
+    this.router.get('/get-user', this.userController.getUserById);
     this.router.post('/login', (req: Request, res: Response, next: NextFunction) =>
       this.userController.login(req, res, next, this.passport)
     );

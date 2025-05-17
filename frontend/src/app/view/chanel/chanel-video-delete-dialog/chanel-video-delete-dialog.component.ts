@@ -1,15 +1,19 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { BackdropComponent } from '../../../component/backdrop/backdrop.component';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { BackdropComponent } from '../../../component/backdrop/backdrop.component';
 import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 import { VideoImagePathPipe } from '../../../shared/pipes/video-image-path.pipe';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../shared/services/user.service';
 import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 import { Subscription } from 'rxjs';
 import { UserModel } from '../../../shared/models/models/UserModels';
-import { MatButtonModule } from '@angular/material/button';
+import { VideoService } from '../../../shared/services/video.service';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
+import MessageEnums from '../../../shared/enums/MessageEnums';
+import { getLastUrlChunk } from '../../../shared/helper/UrlParserHelper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chanel-video-delete-dialog',
@@ -29,10 +33,12 @@ export class ChanelVideoDeleteDialogComponent implements OnInit {
   private userModelSubscription?: Subscription;
 
   constructor(
-    private router: Router,
     public dialogRef: MatDialogRef<ChanelVideoDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: VideoResponse,
     private userService: UserService,
+    private videoService: VideoService,
+    private snack: SnackbarService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +52,21 @@ export class ChanelVideoDeleteDialogComponent implements OnInit {
   }
 
   handleOnRemoveClick(): void {
-    // TODO: Implement the video deletion here.
+    this.videoService
+      .deleteVideoByVideoId(this.data.id)
+      .then(() => this.updateChanelVideos())
+      .catch(() => this.snack.on(MessageEnums.VIDEO_DELETE_ERROR));
+  }
 
-    this.dialogRef.close();
+  private updateChanelVideos(): void {
+    const channelOwnerId = getLastUrlChunk(this.router.url);
+
+    this.videoService
+      .getVideosUploadedByUser(channelOwnerId)
+      .then((res) => {
+        this.videoService.updateListOfChanelVideos(res);
+        this.handleOnCancelClick();
+      })
+      .catch(() => this.snack.on(MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR));
   }
 }

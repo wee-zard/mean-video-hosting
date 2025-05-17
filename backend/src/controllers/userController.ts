@@ -8,6 +8,17 @@ import { AuthenticateUser } from '../decorators/authDecorator';
 
 export class UserController {
   /**
+   * Based on the provided userId, retrieve the user from the server
+   */
+  getUserById(req: Request, res: Response): void {
+    const userId = req.query.user_id as string;
+    RootService.userService
+      .getUserById(userId)
+      .then((data) => res.status(200).send(data))
+      .catch((err) => res.status(400).send(err));
+  }
+
+  /**
    * Fetch the list of comments related to a video
    */
   isUserExists(req: Request, res: Response): void {

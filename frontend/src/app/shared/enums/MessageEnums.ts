@@ -16,6 +16,8 @@ enum MessageEnums {
   REMOVE_COMMENT_BY_ID = 'Error occurred while removing the comment!',
   INVALID_COMMENT_FORM = 'The comment form is invalid!',
   CREATE_COMMENT_ERROR = 'Error occurred while saving the new comment!',
+  VIDEO_DELETE_ERROR = 'Error occurred while deleting the video!',
+  FETCH_CHANEL_OWNER_VIDEO_ERROR = 'Error while loading the uploaded videos of the chanel owner!',
 }
 
 export default MessageEnums;

@@ -13,6 +13,7 @@ export default class CommentRoutes {
     this.router.post('/create', this.commentController.createComment);
     this.router.post('/update', this.commentController.updateComment);
     this.router.post('/hide', this.commentController.hideComment);
+    this.router.post('/video-comments-number', this.commentController.hideComment);
 
     return this.router;
   }
