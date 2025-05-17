@@ -35,8 +35,8 @@ export class ChanelComponent implements OnInit {
   channelOwnerId?: string;
   user?: UserModel;
   uploadedVideos: VideoResponse[] = [];
-  private userSubs?: Subscription;
-  private listOfChanelVideosSubs?: Subscription;
+  private subs2?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private userService: UserService,
@@ -48,14 +48,13 @@ export class ChanelComponent implements OnInit {
   ngOnInit(): void {
     this.channelOwnerId = getLastUrlChunk(this.router.url);
 
-    this.userSubs = this.userService.userModel$.subscribe(
+    this.subs2 = this.userService.userModel$.subscribe(
       (data) => (this.user = data),
     );
 
-    this.listOfChanelVideosSubs =
-      this.videoService.listOfChanelVideos$.subscribe(
-        (data) => (this.uploadedVideos = data),
-      );
+    this.subs1 = this.videoService.listOfChanelVideos$.subscribe(
+      (data) => (this.uploadedVideos = data),
+    );
 
     this.videoService
       .getVideosUploadedByUser(this.channelOwnerId)

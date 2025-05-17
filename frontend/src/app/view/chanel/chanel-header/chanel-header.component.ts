@@ -9,6 +9,7 @@ import { UserService } from '../../../shared/services/user.service';
 import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 import { UserModel } from '../../../shared/models/models/UserModels';
 import { getLastUrlChunk } from '../../../shared/helper/UrlParserHelper';
+import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 
 @Component({
   selector: 'app-chanel-header',
@@ -16,10 +17,11 @@ import { getLastUrlChunk } from '../../../shared/helper/UrlParserHelper';
   templateUrl: './chanel-header.component.html',
   styleUrl: './chanel-header.component.scss',
 })
+@AutoUnsubscribe
 export class ChanelHeaderComponent {
   user?: UserModel;
   uploadedVideos: VideoResponse[] = [];
-  private listOfChanelVideosSubs?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private userService: UserService,
@@ -31,10 +33,9 @@ export class ChanelHeaderComponent {
     const userId = getLastUrlChunk(this.router.url);
     this.userService.getUserById(userId).then((data) => (this.user = data));
 
-    this.listOfChanelVideosSubs =
-      this.videoService.listOfChanelVideos$.subscribe(
-        (data) => (this.uploadedVideos = data),
-      );
+    this.subs1 = this.videoService.listOfChanelVideos$.subscribe(
+      (data) => (this.uploadedVideos = data),
+    );
   }
 
   getUploadedVideoFormatter(): string {

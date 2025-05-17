@@ -16,6 +16,7 @@ import { VideoSearchRequest } from '../../../shared/models/request/VideoSearchRe
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import { SeverityEnums } from '../../../shared/enums/SeverityEnums';
 import { Subscription } from 'rxjs';
+import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 
 @Component({
   selector: 'app-searchbar',
@@ -31,12 +32,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.scss',
 })
+@AutoUnsubscribe
 export class SearchbarComponent implements OnInit {
   isLoading: boolean = false;
   form!: FormGroup<VideoSearchFormType>;
   formFields: typeof VideoSearchFormFields = VideoSearchFormFields;
   isDisplayed: boolean = false;
-  private isDisplayedSubscription?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private formBuilder: FormBuilderService,
@@ -47,10 +49,9 @@ export class SearchbarComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.buildVideoSearchForm();
 
-    this.isDisplayedSubscription =
-      this.videoService.isSearchbarDisplayed$.subscribe(
-        (data) => (this.isDisplayed = data),
-      );
+    this.subs1 = this.videoService.isSearchbarDisplayed$.subscribe(
+      (data) => (this.isDisplayed = data),
+    );
   }
 
   async onSubmit(): Promise<void> {

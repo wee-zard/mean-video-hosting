@@ -24,7 +24,7 @@
       <!-- The following menu options are only available with specific user roles -->
       <ng-container *ngIf="!!user; else notLoggedInUser">
         <li>
-          <a [routerLink]="navigateToUserChanelRoute()">
+          <a (click)="reloadPage()">
             <ng-container>Chanel</ng-container>
           </a>
         </li>

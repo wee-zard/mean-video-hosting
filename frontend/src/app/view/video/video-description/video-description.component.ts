@@ -22,12 +22,12 @@ import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 @AutoUnsubscribe
 export class VideoDescriptionComponent implements OnInit {
   video?: VideoResponse;
-  private selectedVideoSubscription?: Subscription;
+  private subs1?: Subscription;
 
   constructor(private videoService: VideoService) {}
 
   ngOnInit(): void {
-    this.selectedVideoSubscription = this.videoService.selectedVideo$.subscribe(
+    this.subs1 = this.videoService.selectedVideo$.subscribe(
       (selectedVideo) => (this.video = selectedVideo),
     );
   }

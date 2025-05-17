@@ -46,7 +46,7 @@ export class ChanelVideoManagementComponent implements OnInit {
     'action',
   ];
   dataSource = new MatTableDataSource<VideoResponse>([]);
-  private listOfChanelVideosSubs?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private videoService: VideoService,
@@ -57,10 +57,9 @@ export class ChanelVideoManagementComponent implements OnInit {
   ngOnInit(): void {
     this.channelOwnerId = getLastUrlChunk(this.router.url);
 
-    this.listOfChanelVideosSubs =
-      this.videoService.listOfChanelVideos$.subscribe((data) => {
-        this.dataSource = new MatTableDataSource<VideoResponse>(data);
-      });
+    this.subs1 = this.videoService.listOfChanelVideos$.subscribe((data) => {
+      this.dataSource = new MatTableDataSource<VideoResponse>(data);
+    });
   }
 
   getProgressSpinnerValue(video: VideoResponse): number {

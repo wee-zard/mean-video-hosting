@@ -3,6 +3,7 @@ import { VideoListDisplayComponent } from '../../../component/video-list-display
 import { VideoResponse } from '../../../shared/models/response/VideoResponse';
 import { Subscription } from 'rxjs';
 import { VideoService } from '../../../shared/services/video.service';
+import { AutoUnsubscribe } from '../../../shared/decorators/AutoUnsubscribe';
 
 @Component({
   selector: 'app-chanel-videos',
@@ -10,16 +11,16 @@ import { VideoService } from '../../../shared/services/video.service';
   templateUrl: './chanel-videos.component.html',
   styleUrl: './chanel-videos.component.scss',
 })
+@AutoUnsubscribe
 export class ChanelVideosComponent implements OnInit {
   listOfVideos: VideoResponse[] = [];
-  private listOfVideosSubscription?: Subscription;
+  private subs1?: Subscription;
 
   constructor(private videoService: VideoService) {}
 
   ngOnInit(): void {
-    this.listOfVideosSubscription =
-      this.videoService.listOfChanelVideos$.subscribe(
-        (data) => (this.listOfVideos = data),
-      );
+    this.subs1 = this.videoService.listOfChanelVideos$.subscribe(
+      (data) => (this.listOfVideos = data),
+    );
   }
 }

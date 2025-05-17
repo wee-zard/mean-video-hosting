@@ -30,7 +30,7 @@ import { Router } from '@angular/router';
 export class ChanelVideoDeleteDialogComponent implements OnInit {
   isLoading: boolean = false;
   userModel?: UserModel;
-  private userModelSubscription?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     public dialogRef: MatDialogRef<ChanelVideoDeleteDialogComponent>,
@@ -42,7 +42,7 @@ export class ChanelVideoDeleteDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userModelSubscription = this.userService.userModel$.subscribe(
+    this.subs1 = this.userService.userModel$.subscribe(
       (data) => (this.userModel = data),
     );
   }

@@ -24,7 +24,7 @@ export class ChanelVideoUploadComponent implements OnInit {
   userModel?: UserModel;
   requiredFileType = 'video/mp4';
   isLoading: boolean = false;
-  private userModelSubscription?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private userService: UserService,
@@ -33,7 +33,7 @@ export class ChanelVideoUploadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userModelSubscription = this.userService.userModel$.subscribe(
+    this.subs1 = this.userService.userModel$.subscribe(
       (data) => (this.userModel = data),
     );
   }

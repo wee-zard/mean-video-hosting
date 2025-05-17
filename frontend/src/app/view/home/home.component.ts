@@ -18,7 +18,7 @@ import { VideoListDisplayComponent } from '../../component/video-list-display/vi
 export class HomeComponent implements OnInit, OnDestroy {
   listOfVideos: VideoResponse[] = [];
   videoSearchRequest: VideoSearchRequest = {};
-  private listOfVideosSubs?: Subscription;
+  private subs1?: Subscription;
 
   constructor(
     private videoService: VideoService,
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         ),
       );
 
-    this.listOfVideosSubs = this.videoService.listOfVideos$.subscribe(
+    this.subs1 = this.videoService.listOfVideos$.subscribe(
       (listOfVideos) => (this.listOfVideos = listOfVideos),
     );
 
