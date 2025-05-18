@@ -48,7 +48,7 @@ If everything is done, then the backend will run on port 8081.
 
 #### 3.1. Install the dependencies
 
-Run the following command to install the dependencies:
+Enter into the frontend folder and run the following command to install the dependencies:
 
 ```
 npm install
@@ -56,7 +56,7 @@ npm install
 
 #### 3.2. Start the fronend
 
-Enter into the frontend folder and run the following command:
+Run the following command:
 
 ```
 npm start
