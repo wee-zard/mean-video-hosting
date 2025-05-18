@@ -2,8 +2,7 @@ import { getRequestHeader } from './../helper/HttpHeaderHelper';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { UserModel } from '../models/models/UserModels';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { VideoUploadRequest } from '../models/request/VideoUploadRequest';
 import { MulterUploadResponse } from '../models/response/ExpressVideoUploadResponse';
 

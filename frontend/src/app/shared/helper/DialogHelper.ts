@@ -35,3 +35,11 @@ export const videoModificationMatDialogConfigs = (
     data: video,
   };
 };
+
+export const videoUploadMatDialogConfigs = (): MatDialogConfig => {
+  return {
+    width: '480px',
+    height: `500px`,
+    panelClass: 'common-dialog-setting',
+  };
+};

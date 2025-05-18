@@ -1,0 +1,75 @@
+<ng-container *ngIf="isLoading">
+  <app-backdrop [isLoading]="isLoading"></app-backdrop>
+</ng-container>
+<div class="grid-container upload-dialog-container">
+  <div class="position-to-center">
+    <h3>Upload new video</h3>
+  </div>
+  <div>
+    <div class="video-upload-container">
+      <div>
+        <input
+          mat-button
+          type="file"
+          class="file-input"
+          [accept]="requiredFileType"
+          (change)="onFileSelected($event)"
+          #fileUpload
+        />
+
+        <div class="flex-container button-container">
+          {{ uploadedFile?.name || "No video uploaded yet." }}
+
+          <button mat-icon-button color="primary" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-holder">
+      <div class="form-control-holder">
+        <mat-form-field>
+          <mat-label>Video title</mat-label>
+          <input
+            matInput
+            [type]="formFields.TITLE"
+            [formControlName]="formFields.TITLE"
+            required
+            maxlength="100"
+          />
+          <mat-error>{{ formError?.[formFields.TITLE] }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Video Description</mat-label>
+          <textarea
+            matInput
+            [formControlName]="formFields.DESCRIPTION"
+            rows="6"
+            maxlength="500"
+            required
+          ></textarea>
+          <mat-error>{{ formError?.[formFields.DESCRIPTION] }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex-container position-to-center">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          [disabled]="isLoading"
+          (click)="handleOnCancelClick()"
+        >
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading"
+        >
+          Upload
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

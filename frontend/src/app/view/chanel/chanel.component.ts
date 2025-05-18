@@ -12,7 +12,6 @@ import { VideoService } from '../../shared/services/video.service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { ChanelHeaderComponent } from './chanel-header/chanel-header.component';
 import { ChanelVideosComponent } from './chanel-videos/chanel-videos.component';
-import { ChanelVideoUploadComponent } from './chanel-video-upload/chanel-video-upload.component';
 import { ChanelVideoManagementComponent } from './chanel-video-management/chanel-video-management.component';
 import MessageEnums from '../../shared/enums/MessageEnums';
 
@@ -23,7 +22,6 @@ import MessageEnums from '../../shared/enums/MessageEnums';
     ChanelHeaderComponent,
     CommonModule,
     ChanelVideosComponent,
-    ChanelVideoUploadComponent,
     ChanelVideoManagementComponent,
   ],
   templateUrl: './chanel.component.html',

@@ -13,12 +13,16 @@ import { VideoImagePathPipe } from '../../../shared/pipes/video-image-path.pipe'
 import { SiteRouteEnums } from '../../../shared/enums/SiteRouteEnums';
 import { MatDialog } from '@angular/material/dialog';
 import { ChanelVideoDeleteDialogComponent } from '../chanel-video-delete-dialog/chanel-video-delete-dialog.component';
-import { videoModificationMatDialogConfigs } from '../../../shared/helper/DialogHelper';
+import {
+  videoModificationMatDialogConfigs,
+  videoUploadMatDialogConfigs,
+} from '../../../shared/helper/DialogHelper';
 import { ViewCountFormatterPipe } from '../../../shared/pipes/view-count-formatter.pipe';
 import { UploadTimeFormatterPipe } from '../../../shared/pipes/upload-time-formatter.pipe';
 import { LikeCountFormatterPipe } from '../../../shared/pipes/like-count-formatter.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ChanelVideoEditDialogComponent } from '../chanel-video-edit-dialog/chanel-video-edit-dialog.component';
+import { ChanelVideoUploadDialogComponent } from '../chanel-video-upload-dialog/chanel-video-upload-dialog.component';
 
 @Component({
   selector: 'app-chanel-video-management',
@@ -86,6 +90,13 @@ export class ChanelVideoManagementComponent implements OnInit {
     this.dialog.open(
       ChanelVideoEditDialogComponent,
       videoModificationMatDialogConfigs(video, 700),
+    );
+  }
+
+  handleOnUploadVideoClick(): void {
+    this.dialog.open(
+      ChanelVideoUploadDialogComponent,
+      videoUploadMatDialogConfigs(),
     );
   }
 }

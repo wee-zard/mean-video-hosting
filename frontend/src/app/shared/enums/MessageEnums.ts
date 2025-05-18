@@ -17,6 +17,10 @@ enum MessageEnums {
   VIDEO_DELETE_ERROR = 'Error occurred while deleting the video!',
   FETCH_CHANEL_OWNER_VIDEO_ERROR = 'Error occurred while loading the uploaded videos of the chanel owner!',
   UPDATE_VIDEO_ERROR = 'Error occurred while updating the video!',
+  VIDEO_NOT_UPLOADED_ERROR = 'Video has not been uploaded yet!',
+  UPLOAD_TO_EXPRESS_ERROR = 'Error occurred while uploading the video to the express server!',
+  UPLOAD_TO_YOUTUBE_ERROR = 'Error occurred while uploading the video to the youtube server!',
+  UPLOAD_TO_YOUTUBE_DONE = 'Video has been successfully uploaded and saved on the server!',
 }
 
 export default MessageEnums;

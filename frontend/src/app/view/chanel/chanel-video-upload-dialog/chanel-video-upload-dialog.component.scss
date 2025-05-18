@@ -1,0 +1,40 @@
+::ng-deep .common-dialog-setting mat-dialog-container .mat-mdc-dialog-surface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.upload-dialog-container {
+  height: 100%;
+  width: 100%;
+
+  .video-upload-container {
+    display: grid;
+    justify-content: center;
+    padding: 8px;
+    gap: 8px;
+
+    .file-input {
+      display: none;
+    }
+
+    .button-container {
+      justify-content: center;
+    }
+  }
+
+  .form-holder {
+    display: grid;
+  }
+
+  .form-control-holder {
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+
+    mat-form-field textarea {
+      resize: none;
+    }
+  }
+}

@@ -53,7 +53,7 @@ export const configureVideoRoutes = (): Router => {
    * Updates the view count of a video by 1.
    */
   router.post('/increase-view-count', (req: Request, res: Response) => {
-    const videoId = req.query.video_id as string;
+    const videoId = req.body.videoId as string;
     videoService
       .incrementViewCountOfVideoWithOneByVideoId(videoId)
       .then((data) => res.status(200).send(data))

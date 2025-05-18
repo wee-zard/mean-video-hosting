@@ -14,6 +14,7 @@ import { LikeToggleType } from '../../../shared/models/LikeToggleType';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
 import MessageEnums from '../../../shared/enums/MessageEnums';
 import { VideoRatingUpdateRequest } from '../../../shared/models/request/VideoRatingUpdateRequest';
+import { StorageKeyEnum } from '../../../shared/enums/StorageKeyEnums';
 
 @Component({
   selector: 'app-like-dislike-toggle',
@@ -32,8 +33,8 @@ export class LikeDislikeToggleComponent implements OnInit {
   video?: VideoResponse;
   userModel?: UserModel;
   selectedToggleOption: LikeToggleType;
-  private subscription1?: Subscription;
-  private subscription2?: Subscription;
+  private subs1?: Subscription;
+  private subs2?: Subscription;
 
   constructor(
     private userService: UserService,
@@ -42,12 +43,12 @@ export class LikeDislikeToggleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.subscription2 = this.videoService.selectedVideo$.subscribe((data) => {
+    this.subs2 = this.videoService.selectedVideo$.subscribe((data) => {
       this.video = data;
       this.updateSelectedToggleOption();
     });
 
-    this.subscription1 = this.userService.userModel$.subscribe((data) => {
+    this.subs1 = this.userService.userModel$.subscribe((data) => {
       this.userModel = data;
       this.updateSelectedToggleOption();
     });
@@ -62,11 +63,11 @@ export class LikeDislikeToggleComponent implements OnInit {
       (rating) => rating.videoId === this.video?.id,
     );
 
-    if (!foundVideoRating) {
-      this.selectedToggleOption = undefined;
-    } else {
-      this.selectedToggleOption = foundVideoRating.isLiked ? 'like' : 'dislike';
-    }
+    this.selectedToggleOption = !foundVideoRating
+      ? foundVideoRating
+      : foundVideoRating.isLiked
+        ? 'like'
+        : 'dislike';
   }
 
   /**
@@ -122,6 +123,23 @@ export class LikeDislikeToggleComponent implements OnInit {
 
     this.videoService
       .updateVideoRating(request)
+      .then(() => {
+        if (!this.userModel) {
+          return;
+        }
+
+        this.userService.getUserById(this.userModel.id).then((user) => {
+          this.userService.updateUserModel(user);
+
+          if (!this.video) {
+            return;
+          }
+
+          this.videoService
+            .getOneVideoById(this.video.id)
+            .then((data) => this.videoService.updateSelectedVideo(data));
+        });
+      })
       .catch(() => this.snack.on(MessageEnums.UPDATE_RATINGS));
   }
 }

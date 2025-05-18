@@ -29,6 +29,10 @@ export class UserService implements OnInit {
   }
 
   updateUserModel(user?: UserModel) {
+    localStorage.setItem(
+      StorageKeyEnum.AUTHENTICATED_USER,
+      JSON.stringify(user),
+    );
     this.userModel.next(user);
   }
 

@@ -59,6 +59,8 @@ export default class UserServiceImpl implements UserService {
         userRole: UserRoleEnum.NORMAL_USER,
         birthDate: request.birthdate,
         registrationTime: new Date().toISOString(),
+        profilePicturePath:
+          'https://www.pngkit.com/png/detail/126-1262807_instagram-default-profile-picture-png.png',
       });
       user.id = user._id;
       user.save().then(resolve).catch(reject);

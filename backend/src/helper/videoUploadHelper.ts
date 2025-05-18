@@ -59,7 +59,6 @@ export default abstract class VideoUploadHelper {
 
     if (accessToken && refreshToken) {
       this.setOAth2ClientCredential();
-      return;
     }
 
     console.log('Fetching the authorization url for OAuth2Client');
@@ -71,7 +70,7 @@ export default abstract class VideoUploadHelper {
       include_granted_scopes: true,
     });
 
-    console.log('Auth url', authorizationUrl);
+    console.log('[Auth url]:', authorizationUrl);
   };
 
   private static setOAth2ClientCredential = () => {

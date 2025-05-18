@@ -18,9 +18,13 @@ export const listOfMessages = Object.freeze({
   [MessageEnums.VIDEO_DELETE_ERROR]: () => SeverityEnums.ERROR,
   [MessageEnums.FETCH_CHANEL_OWNER_VIDEO_ERROR]: () => SeverityEnums.ERROR,
   [MessageEnums.UPDATE_VIDEO_ERROR]: () => SeverityEnums.ERROR,
+  [MessageEnums.VIDEO_NOT_UPLOADED_ERROR]: () => SeverityEnums.ERROR,
+  [MessageEnums.UPLOAD_TO_EXPRESS_ERROR]: () => SeverityEnums.ERROR,
+  [MessageEnums.UPLOAD_TO_YOUTUBE_ERROR]: () => SeverityEnums.ERROR,
 
   // Success snackbar messages
   [MessageEnums.COMMENT_IS_DELETED]: () => SeverityEnums.SUCCESS,
   [MessageEnums.COMMENT_IS_NOW_HIDDEN]: () => SeverityEnums.SUCCESS,
   [MessageEnums.COMMENT_IS_NOW_NOT_HIDDEN]: () => SeverityEnums.SUCCESS,
+  [MessageEnums.UPLOAD_TO_YOUTUBE_DONE]: () => SeverityEnums.SUCCESS,
 });

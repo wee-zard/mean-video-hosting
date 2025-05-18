@@ -7,7 +7,7 @@ export type ITagType = {
   color: TagColorType;
 };
 
-interface ITag extends Document, ITagType {}
+export interface ITag extends Document, ITagType {}
 
 const TagSchema: Schema<ITag> = new mongoose.Schema({
   id: { type: String, required: true },

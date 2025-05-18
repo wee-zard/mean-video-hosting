@@ -1,14 +1,18 @@
-.statistic-holder {
-  gap: 8px;
-  padding: 4px;
+.video-management-container {
+  gap: 16px;
 
-  .progressbar-holder {
-    width: 24px;
-    height: 24px;
+  .statistic-holder {
+    gap: 8px;
+    padding: 4px;
 
-    mat-progress-spinner {
-      width: 22px !important;
-      height: 22px !important;
+    .progressbar-holder {
+      width: 24px;
+      height: 24px;
+
+      mat-progress-spinner {
+        width: 22px !important;
+        height: 22px !important;
+      }
     }
   }
 }

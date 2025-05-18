@@ -12,11 +12,15 @@ import {
   VideoUpdateFormBuilderType,
   VideoUpdateType,
 } from '../models/forms/VideoUpdateForm';
+import {
+  VideoUploadField,
+  VideoUploadType,
+} from '../models/forms/VideoUploadForm';
 
 type FormControlOption = {
   isNotRequired?: boolean;
   maxLength?: number;
-  data?: string | number;
+  data?: string | string[] | number | number[];
 };
 
 @Injectable({
@@ -157,6 +161,19 @@ export class FormBuilderService {
         maxLength: 500,
         data: builder[VideoUpdateField.DESCRIPTION],
       }),
+    });
+  }
+
+  /**
+   * Created a new form group for the video uploads.
+   * The form will contains required form controls as well.
+   *
+   * @returns Returns the video upload form group.
+   */
+  buildVideoUploadForm() {
+    return this.fb.group<VideoUploadType>({
+      [VideoUploadField.TITLE]: this.getTextFormControl({ data: [] }),
+      [VideoUploadField.DESCRIPTION]: this.getTextFormControl({ data: [] }),
     });
   }
 }
