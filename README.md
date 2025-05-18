@@ -56,7 +56,7 @@ npm install
 
 #### 3.2. Start the fronend
 
-Run the following command to start the frontend:
+Enter into the frontend folder and run the following command:
 
 ```
 npm start
