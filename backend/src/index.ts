@@ -9,7 +9,16 @@ import { configureCorsMiddleware } from './middlewares/corsMiddleware';
 import { configureSessionMiddleware } from './middlewares/sessionMiddleware';
 import VideoUploadHelper from './helper/videoUploadHelper';
 import multer from 'multer';
+import fs from 'fs';
 
+// Create directory if does no exists.
+const dir = './src/uploads';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
+
+// Init express app
 const app = express();
 export const port = 8081;
 
